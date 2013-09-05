@@ -1,0 +1,26 @@
+To get the repository for the first time (clone it from the web to local...)
+	git clone git@github.com:galarnyk/cs408.git
+
+To check status of your LOCAL repository:
+	git status
+
+ALWAYS PULL before you COMMIT or PUSH
+
+If your git status shows an "untracked" file:
+	git add file
+
+Then git status will show "new file" which means it was added
+
+To pull the latest project from GITHUB:
+	git pull
+
+To commit your changes (such as after an add, and after checking that you have the latest version with git pull):
+	git commit
+
+THEN PUSH YOUR CHANGE TO GITHUB:
+	git push
+
+
+
+
+
