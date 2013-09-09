@@ -31,23 +31,23 @@ public class MedicalDatabase {
                 String[] add = new String[100];
 
                 // If there is an error that no tables exist, comment the following 6 lines out. 
-                String drop = " Drop table PATIENT cascade constraints";
-                String drop1 = "Drop table DOCTOR cascade constraints";
-                String drop2 = "Drop table ACCOUNT cascade constraints";
+                //String drop = " Drop table PATIENT cascade constraints";
+                //String drop1 = "Drop table DOCTOR cascade constraints";
+                //String drop2 = "Drop table ACCOUNT cascade constraints";
 
-                stat.execute(drop); 
-                stat.execute(drop1); 
-                stat.execute(drop2); 
+             //   stat.execute(drop); 
+                //stat.execute(drop1); 
+               // stat.execute(drop2); 
 
-                String createPatient="create table PATIENT (id integer, name varchar2(20), primary key (id))";  //add more fields
-                String createDoctor="create table DOCTOR (id integer, name varchar2(20), primary key (id))"; 
-                String createAccount="CREATE TABLE ACCOUNT (type VARCHAR(100), username VARCHAR(100), password VARCHAR(100), id integer, primary key (username))";
+                //String createPatient="create table PATIENT (id integer, name varchar2(20), primary key (id))";  //add more fields
+               // String createDoctor="create table DOCTOR (id integer, name varchar2(20), primary key (id))"; 
+               // String createAccount="CREATE TABLE ACCOUNT (type VARCHAR(100), username VARCHAR(100), password VARCHAR(100), id integer, primary key (username))";
 
-                stat.execute(createPatient);
-                stat.execute(createDoctor);
-                stat.execute(createAccount);
+               // stat.execute(createPatient);
+               // stat.execute(createDoctor);
+               // stat.execute(createAccount);
 
-                System.out.println("Tables created!");
+               // System.out.println("Tables created!");
 
                 stat.close();	
                 conn.close();
