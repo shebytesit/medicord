@@ -5,16 +5,17 @@ import java.util.*;
 
 public class importdb 
 {
-	public static void main(String args[])
+	/*public static void main(String args[])
 	{ 
 		createdb();
+		GUI myGUI = new GUI();
 		//login frame=new login();
 		//frame.setSize(300,100);
 		//frame.setVisible(true);
 //		System.exit(0);
-	}
+	}*/
 	
-	private static void createdb()
+	importdb()
 	{
 		try
 		{
@@ -31,7 +32,7 @@ public class importdb
 				stat.execute(drop1); 
 				stat.execute(drop2); 
 				
-				String createPatient="create table PATIENT (id integer, name varchar2(20), primary key (id))";  //add more fields
+				String createPatient="create table PATIENT (pid integer, pname varchar2(20), ppass varchar2(20), primary key (pid))";  //add more fields				
 				String createDoctor="create table DOCTOR (id integer, name varchar2(20), primary key (id))"; 
 				String createAccount="CREATE TABLE ACCOUNT (type VARCHAR(100), username VARCHAR(100), password VARCHAR(100), id integer, primary key (username))";
 
@@ -118,9 +119,25 @@ public class importdb
 		return id;
 	}
 	
+	public void createPatient(Integer userID, String name, String password)
+	{
+		try {
+			//open connection
+			Connection conn = getConnection();
+			Statement stmtST = conn.createStatement();
+			String patientTest = "INSERT INTO PATIENT " +
+					 "(pid,pname,ppass)" +
+					 " VALUES(" +userID + ",'" + name + "','" + password + "')";//primary key (deptid))";
+			System.out.println(patientTest);
+			stmtST.execute(patientTest);
+			stmtST.close();
+			conn.close();
+		}
+		catch (SQLException sqle) {
+			System.out.println("SQLException : " + sqle);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	
-
-	
-		
 }
