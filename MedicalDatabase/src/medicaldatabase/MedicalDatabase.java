@@ -20,6 +20,8 @@ public class MedicalDatabase {
             //frame.setSize(300,100);
             //frame.setVisible(true);
              //System.exit(0);
+			 Login login = new Login();
+                    
 	}
 	
 	private static void createdb()
