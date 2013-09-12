@@ -90,9 +90,9 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttOk)
-                    .addComponent(bttCancel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttCancel)
+                    .addComponent(bttOk))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -101,8 +101,9 @@ public class Login extends javax.swing.JFrame {
 
     private void bttOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttOkActionPerformed
         // TODO add your handling code here:
-        
-        
+        setVisible(false);
+        frmMain frm = new frmMain(this);
+        frm.setVisible(true);
     }//GEN-LAST:event_bttOkActionPerformed
 
     /**
