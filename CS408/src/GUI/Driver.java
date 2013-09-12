@@ -7,12 +7,17 @@ public class Driver {
 		
 		importdb database = new importdb();
 		GUI myGUI = new GUI(database);
-		database.createPatient(201,"kgalarny","aiaiai");
-		database.createPatient(202,"jason89s","troller");
-		database.createPatient(203,"pyro","indy");
-		database.createPatient(204,"udon","noodles");
-		database.createPatient(205,"darkhorse","feisley");
-		database.createPatient(206,"blarghedy","creeper");
+		database.createAccount("patient","kgalarny","aiaiai","p201");
+		database.createAccount("patient","jason89s","troller","p202");
+		database.createAccount("patient","pyro","indy", "p203");
+		database.createAccount("doctor","udon","noodles", "d201");
+		database.createAccount("doctor","darkhorse","feisley", "d203");
+		database.createAccount("doctor","blarghedy","creeper", "d204");
+		database.setPatientProfile("p201", "kalena", "dob", "female", "allergies", "currentMedication", "history", "contact");
+		database.setDoctorProfile("d203", "dasd", "hospital", "specialization", "gender");
+		importdb.getUserInfo("d203");
+		database.makeAppointment("1", "d203", "p201", "reason", "date");
+		
 	}
 
 }
