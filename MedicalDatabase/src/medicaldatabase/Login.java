@@ -4,12 +4,16 @@
  */
 package medicaldatabase;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Seth
  */
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame
+{
 
+    String userId;
     /**
      * Creates new form Login
      */
@@ -28,11 +32,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        bttOk = new javax.swing.JButton();
-        bttCancel = new javax.swing.JButton();
+        loginBtn = new javax.swing.JButton();
+        createAccountBtn = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        usernameTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -41,18 +44,14 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        jScrollPane1.setViewportView(jTextPane1);
-
-        bttOk.setText("Login");
-        bttOk.addActionListener(new java.awt.event.ActionListener() {
+        loginBtn.setText("Login");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttOkActionPerformed(evt);
+                loginBtnActionPerformed(evt);
             }
         });
 
-        bttCancel.setText("Create Account");
-
-        jPasswordField1.setText("jPasswordField1");
+        createAccountBtn.setText("Create Account");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,47 +61,78 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bttCancel)
+                        .addComponent(createAccountBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                        .addComponent(bttOk))
+                        .addComponent(loginBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(usernameTextField))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttCancel)
-                    .addComponent(bttOk))
+                    .addComponent(createAccountBtn)
+                    .addComponent(loginBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bttOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttOkActionPerformed
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        frmMain frm = new frmMain(this);
-        //frm.setVisible(true);
-    }//GEN-LAST:event_bttOkActionPerformed
+        
+        if (usernameTextField.getText().isEmpty() == true)
+        {
+            JOptionPane.showMessageDialog(this, "Username is empty");
+            return;
+        }
+        if (jPasswordField1.getText().isEmpty() == true)
+        {
+            JOptionPane.showMessageDialog(this, "Password is empty");
+            return;
+        }
+        userId = Importdb.signindb(usernameTextField.getText(), jPasswordField1.getText());
+        if (userId.isEmpty() == true)
+        {
+            JOptionPane.showMessageDialog(this, "Login or password does not match");
+            return;
+        }
+        if (userId.charAt(0)=='d')
+        {
+            frmDoctor frmDoc = new frmDoctor(this);
+        }
+        else if(userId.charAt(0) == 'p')
+        {
+            frmMain frm = new frmMain(this);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Login or password does not match");
+        }        
+    }//GEN-LAST:event_loginBtnActionPerformed
 
+    public String getId()
+    {
+        return userId;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -138,12 +168,11 @@ public class Login extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttCancel;
-    private javax.swing.JButton bttOk;
+    private javax.swing.JButton createAccountBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
