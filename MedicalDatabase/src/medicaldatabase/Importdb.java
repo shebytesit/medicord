@@ -100,7 +100,7 @@ public class Importdb {
 		return id;
 	}
 
-	public void createAccount(String type, String name, String password,
+	public static void createAccount(String type, String name, String password,
 			String string) {
 		try {
 			// open connection
