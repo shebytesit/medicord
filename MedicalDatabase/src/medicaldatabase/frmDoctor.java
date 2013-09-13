@@ -18,7 +18,7 @@ public class frmDoctor extends javax.swing.JFrame {
     public frmDoctor(Login loginForm) {
         initComponents();
         this.loginForm = loginForm;
-        id = loginForm.getId()
+        userId = loginForm.getUserId();
     }
 
     /**
