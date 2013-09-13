@@ -120,7 +120,7 @@ public class Login extends javax.swing.JFrame
         }
         else if(userId.charAt(0) == 'p')
         {
-            frmMain frm = new frmMain(this);
+            frmPatient frm = new frmPatient(this);
         }
         else
         {
@@ -128,7 +128,7 @@ public class Login extends javax.swing.JFrame
         }        
     }//GEN-LAST:event_loginBtnActionPerformed
 
-    public String getId()
+    public String getUserId()
     {
         return userId;
     }
