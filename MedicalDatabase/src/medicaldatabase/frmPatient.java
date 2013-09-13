@@ -6,10 +6,14 @@ package medicaldatabase;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -55,10 +59,10 @@ public class frmPatient extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        txtDob = new javax.swing.JTextField();
         txtGender = new javax.swing.JTextField();
         txtEmergencyContact = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        txtDob = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -106,18 +110,14 @@ public class frmPatient extends javax.swing.JFrame {
 
         jLabel10.setText("Medical History");
 
-        txtDob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDobActionPerformed(evt);
-            }
-        });
-
         jButton4.setText("Save Changes");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        txtDob.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,8 +152,8 @@ public class frmPatient extends javax.swing.JFrame {
                             .addGap(53, 53, 53)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtGender, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(txtDob)
-                                .addComponent(txtName)))))
+                                .addComponent(txtName)
+                                .addComponent(txtDob)))))
                 .addContainerGap(377, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,14 +179,13 @@ public class frmPatient extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel8)
                         .addGap(97, 97, 97)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -309,18 +308,23 @@ public class frmPatient extends javax.swing.JFrame {
             // TODO add your handling code here:
             ListModel<String> lst = lstAppointments.getModel();
             ResultSet r = Importdb.getUserInfo(id);
-            r.next();
-            txtName.setText(r.getString("name"));
-            lblWelcome.setText("Welcome "+r.getString("name"));
-            txtDob.setText(r.getString("dob"));
-            txtGender.setText(r.getString("gender"));
-            txtEmergencyContact.setText(r.getString("econtact"));
-            txaAllergies.setText(r.getString("allergies"));
-            txaCurrentMedication.setText(r.getString("medication"));
-            txaMedicalHistory.setText(r.getString("history"));
-            r=Importdb.viewAppointments(id);
-            while(r.next()){
-                
+            if(r!=null){
+                r.next();
+                txtName.setText(r.getString("name"));
+                lblWelcome.setText("Welcome "+r.getString("name"));
+                txtDob.setText(r.getString("dob"));
+                txtGender.setText(r.getString("gender"));
+                txtEmergencyContact.setText(r.getString("econtact"));
+                txaAllergies.setText(r.getString("allergies"));
+                txaCurrentMedication.setText(r.getString("medication"));
+                txaMedicalHistory.setText(r.getString("history"));
+                r=Importdb.viewAppointments(id);
+                while(r.next()){
+
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Database error");
             }
             
         } catch (SQLException ex) {
@@ -333,12 +337,8 @@ public class frmPatient extends javax.swing.JFrame {
         // save changes button
         Importdb.setPatientProfile(id,txtName.getText(),txtDob.getText(),txtGender.getText(),txaAllergies.getText(),
             txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
-        
+        JOptionPane.showMessageDialog(this, "Credentials saved!");
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void txtDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDobActionPerformed
-
-    }//GEN-LAST:event_txtDobActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,7 +402,7 @@ public class frmPatient extends javax.swing.JFrame {
     private javax.swing.JTextArea txaAllergies;
     private javax.swing.JTextArea txaCurrentMedication;
     private javax.swing.JTextArea txaMedicalHistory;
-    private javax.swing.JTextField txtDob;
+    private javax.swing.JFormattedTextField txtDob;
     private javax.swing.JTextField txtEmergencyContact;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtName;

@@ -6,13 +6,9 @@ public class Driver {
 		// TODO Auto-generated method stub
 		
 		Importdb database = new Importdb();
-		GUI myGUI = new GUI(database);
-		Importdb.createAccount("patient","kgalarny","aiaiai");
-		Importdb.createAccount("patient","jason89s","troller");
-		Importdb.createAccount("patient","pyro","indy");
-		Importdb.createAccount("doctor","udon","noodles");
-		Importdb.createAccount("doctor","darkhorse","feisley");
-		Importdb.createAccount("doctor","blarghedy","creeper");
+                
+                Importdb.clearDb();
+                
 		
 //		Importdb.setPatientProfile("p201", "kalena", "dob", "female", "allergies", "currentMedication", "history", "contact");
 		

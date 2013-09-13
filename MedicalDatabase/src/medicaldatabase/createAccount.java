@@ -4,6 +4,8 @@
  */
 package medicaldatabase;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author carrolla
@@ -207,6 +209,7 @@ public class createAccount extends javax.swing.JFrame {
     private boolean userVerified(String s){
         System.out.println(s);
         if(s.length()<5 || s.length()>12){
+            JOptionPane.showMessageDialog(this, "Error, Username must be within 5 to 12 charactors long");
             return false;
         }
         return true;
@@ -215,6 +218,7 @@ public class createAccount extends javax.swing.JFrame {
     private boolean passwordVerified(String s){
         System.out.println(s);
         if(s.length()<8 || s.length()>15){
+            JOptionPane.showMessageDialog(this, "Error, password must be between 8 and 15 charactors long");
             return false;
         }
         return true;
@@ -235,14 +239,17 @@ public class createAccount extends javax.swing.JFrame {
                 System.out.println("Logged in");
                 if(uid == null){
                       //Error
-                      
+                      JOptionPane.showMessageDialog(this, "Database Error, account not created!");
                 }else{
                     //Successful patient account created and sign in
                     frmPatient frm = new frmPatient(login);
                     frm.setVisible(true);
                     this.dispose();
                 }
-            }   
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Error, Passwords do not match!");
+            }
             if(jRadioButton2.isEnabled()==true && password==passVer){
                 Importdb.createAccount("doctor",username,password);
             }
