@@ -170,12 +170,12 @@ public class createAccount extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(jRadioButton1.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
-            Importdb.createAccount("patient",jTextField1.getText(),jTextField2.getText(),"p555");
+            Importdb.createAccount("patient",jTextField1.getText(),jTextField2.getText());
         
         }   
         if(jRadioButton2.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
 
-            Importdb.createAccount("doctor",jTextField1.getText(),jTextField2.getText(),"d555");
+            Importdb.createAccount("doctor",jTextField1.getText(),jTextField2.getText());
 
         
         }// TODO add your handling code here:
