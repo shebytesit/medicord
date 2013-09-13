@@ -108,11 +108,16 @@ public class Importdb {
 			String patientTest = null;
 			
 			ResultSet rs = stmtST.executeQuery("select count(*) from ACCOUNT"); 
-	
 
 			while (rs.next()) {
 				id = Integer.toString(rs.getInt(1));
 			}
+                         patientTest = "INSERT INTO  ACCOUNT"
+					+ "(id,username,password)" + " VALUES( '" + id + "','"
+					+ name + "','" + password + "')";
+
+			System.out.println(patientTest);
+			stmtST.execute(patientTest);
 			if (type.equals("patient")) {
 				id = "p" + id;
 				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES( '"
@@ -129,12 +134,6 @@ public class Importdb {
 			stmtST.execute(patientTest);
 			
 			
-			 patientTest = "INSERT INTO  ACCOUNT"
-					+ "(id,username,password)" + " VALUES( '" + id + "','"
-					+ name + "','" + password + "')";
-
-			System.out.println(patientTest);
-			stmtST.execute(patientTest);
 			
 			return id;
 			
