@@ -103,6 +103,11 @@ public class Login extends javax.swing.JFrame
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
         
+        if (jPasswordField1.getText().isEmpty() && usernameTextField.getText().isEmpty() == true)
+        {
+            JOptionPane.showMessageDialog(this, "Enter Username and Password");
+            return;
+        }
         if (usernameTextField.getText().isEmpty() == true)
         {
             JOptionPane.showMessageDialog(this, "Username is empty");
