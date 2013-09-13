@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame
 {
 
-    String userId;
+    String userId = "";
     /**
      * Creates new form Login
      */
@@ -52,6 +52,11 @@ public class Login extends javax.swing.JFrame
         });
 
         createAccountBtn.setText("Create Account");
+        createAccountBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createAccountBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,7 +114,7 @@ public class Login extends javax.swing.JFrame
             return;
         }
         userId = Importdb.signindb(usernameTextField.getText(), jPasswordField1.getText());
-        if (userId.isEmpty() == true)
+        if (userId == null || userId.length()<=0)
         {
             JOptionPane.showMessageDialog(this, "Login or password does not match");
             return;
@@ -117,6 +122,8 @@ public class Login extends javax.swing.JFrame
         if (userId.charAt(0)=='d')
         {
             frmDoctor frmDoc = new frmDoctor(this);
+            frmDoc.setVisible(true);
+            this.setVisible(false);
         }
         else if(userId.charAt(0) == 'p')
         {
@@ -127,6 +134,12 @@ public class Login extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Login or password does not match");
         }        
     }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void createAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountBtnActionPerformed
+        // TODO add your handling code here:
+        createAccount cAccount = new createAccount();
+        
+    }//GEN-LAST:event_createAccountBtnActionPerformed
 
     public String getUserId()
     {
