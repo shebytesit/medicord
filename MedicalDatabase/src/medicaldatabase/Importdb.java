@@ -1,16 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package medicaldatabase;
+package GUI;
 
 import java.sql.*;
 import java.io.*;
 import java.util.*;
 
-public class Importdb {
+public class importdb {
 
-	public Importdb() {
+	importdb() {
 		try {
 			Connection conn = getConnection();
 			Statement stat = conn.createStatement();
@@ -100,40 +96,57 @@ public class Importdb {
 		return id;
 	}
 
-	public static void createAccount(String type, String name, String password,
-			String string) {
+	public static String createAccount(String type, String name, String password) {
+		String id = null;
 		try {
 			// open connection
 			Connection conn = getConnection();
 			Statement stmtST = conn.createStatement();
-			String patientTest = "INSERT INTO  ACCOUNT"
-					+ "(id,username,password)" + " VALUES( '" + string + "','"
+		
+			String patientTest = null;
+			
+			ResultSet rs = stmtST.executeQuery("select count(*) from ACCOUNT"); 
+	
+
+			while (rs.next()) {
+				id = Integer.toString(rs.getInt(1));
+			}
+			if (type.equals("patient")) {
+				id = "p" + id;
+				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES( '"
+						+ id + "')";
+			}
+			if (type.equals("doctor")) {
+				id = "d" + id;
+				patientTest = "INSERT INTO  DOCTOR" + "(did)"
+
+				+ " VALUES( '" + id + "')";
+
+			}
+
+			stmtST.execute(patientTest);
+			
+			
+			 patientTest = "INSERT INTO  ACCOUNT"
+					+ "(id,username,password)" + " VALUES( '" + id + "','"
 					+ name + "','" + password + "')";
 
 			System.out.println(patientTest);
 			stmtST.execute(patientTest);
-
-			if (type.equals("patient")) {
-				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES( '"
-						+ string + "')";
-			}
-			if (type.equals("doctor")) {
-				patientTest = "INSERT INTO  DOCTOR" + "(did)"
-
-				+ " VALUES( '" + string + "')";
-
-			}
-			stmtST.execute(patientTest);
-			stmtST.close();
-			conn.close();
+			
+			return id;
+			
+			//stmtST.close();
+			//conn.close();
 		} catch (SQLException sqle) {
 			System.out.println("SQLException : " + sqle);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return id;
 	}
 
-	public void setPatientProfile(String pid, String name, String dob,
+	public static void setPatientProfile(String pid, String name, String dob,
 			String gender, String allergies, String currentMedication,
 			String history, String econtact) {
 
@@ -163,7 +176,7 @@ public class Importdb {
 		}
 	}
 
-	public void setDoctorProfile(String did, String name, String hospital,
+	public static void setDoctorProfile(String did, String name, String hospital,
 			String specialization, String gender) {
 
 		try {
@@ -191,12 +204,20 @@ public class Importdb {
 		}
 	}
 
-	public void makeAppointment(String aid, String did, String pid, String reason,
+	public static void makeAppointment( String did, String pid, String reason,
 			String date) {
-
+		String aid = null;
 		try {
 			Connection conn = getConnection();
 			Statement stat = conn.createStatement();
+ 
+			ResultSet rs = stat.executeQuery("select count(*) from ACCOUNT"); 
+	
+
+			while (rs.next()) {
+				aid = Integer.toString(rs.getInt(1));
+			}
+			
 			String apt;
 
 			apt = "INSERT INTO  APPOINTMENT(aid, did, pid, dates, reason)  VALUES( '" + aid + "','" + did + "' ,'" + pid  + "', '" +  date + "','" + reason+ "')";
