@@ -78,6 +78,11 @@ public class createAccount extends javax.swing.JFrame {
 
         jLabel4.setText("Account Type");
 
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
         jTextField1.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
@@ -92,6 +97,11 @@ public class createAccount extends javax.swing.JFrame {
         jRadioButton2.setText("Doctor");
 
         jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusLost(evt);
+            }
+        });
         jPasswordField1.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
@@ -101,6 +111,11 @@ public class createAccount extends javax.swing.JFrame {
         });
 
         jPasswordField2.setText("jPasswordField2");
+        jPasswordField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField2FocusLost(evt);
+            }
+        });
         jPasswordField2.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
@@ -190,6 +205,7 @@ public class createAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_formPropertyChange
 
     private boolean userVerified(String s){
+        System.out.println(s);
         if(s.length()<5 || s.length()>12){
             return false;
         }
@@ -197,6 +213,7 @@ public class createAccount extends javax.swing.JFrame {
     }
     
     private boolean passwordVerified(String s){
+        System.out.println(s);
         if(s.length()<8 || s.length()>15){
             return false;
         }
@@ -209,11 +226,16 @@ public class createAccount extends javax.swing.JFrame {
 
         
         if(userVerified(username) == true && passwordVerified(password) == true) {
-            if(jRadioButton1.isEnabled()==true && password==passVer){
+            System.out.println("Credentials verified");
+            if(jRadioButton1.isEnabled()==true && password.equals(passVer)){
+                System.out.println("Creating patient account");
                 String uid=Importdb.createAccount("patient",username,password);
+                System.out.println("Account created");
                 uid = Importdb.signindb(username, password);
+                System.out.println("Logged in");
                 if(uid == null){
                       //Error
+                      
                 }else{
                     //Successful patient account created and sign in
                     frmPatient frm = new frmPatient(login);
@@ -229,18 +251,30 @@ public class createAccount extends javax.swing.JFrame {
 
     private void jTextField1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField1InputMethodTextChanged
         // TODO add your handling code here:
-        username = jTextField1.getText();
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
 
     private void jPasswordField1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jPasswordField1InputMethodTextChanged
         // TODO add your handling code here:
-        password = jPasswordField1.getSelectedText();
     }//GEN-LAST:event_jPasswordField1InputMethodTextChanged
 
     private void jPasswordField2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jPasswordField2InputMethodTextChanged
         // TODO add your handling code here:
-        passVer = jPasswordField2.getSelectedText();
     }//GEN-LAST:event_jPasswordField2InputMethodTextChanged
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        // TODO add your handling code here:
+        username = jTextField1.getText();
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+        // TODO add your handling code here:
+        password = new String(jPasswordField1.getPassword());
+    }//GEN-LAST:event_jPasswordField1FocusLost
+
+    private void jPasswordField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField2FocusLost
+        // TODO add your handling code here:
+        passVer = new String(jPasswordField2.getPassword());
+    }//GEN-LAST:event_jPasswordField2FocusLost
 
     /**
      * @param args the command line arguments
