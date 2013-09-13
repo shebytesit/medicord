@@ -168,16 +168,32 @@ public class createAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formPropertyChange
 
+    private boolean userVerified(String s){
+        if(s.length()<5 || s.length()>12){
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean passwordVerified(String s){
+        if(s.length()<8 || s.length()>15){
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(jRadioButton1.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
-            Importdb.createAccount("patient",jTextField1.getText(),jTextField2.getText(),"p555");
         
-        }   
-        if(jRadioButton2.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
-
-            Importdb.createAccount("doctor",jTextField1.getText(),jTextField2.getText(),"d555");
-
         
+        if(userVerified(jTextField1.getText()) == true && passwordVerified(jTextField2.getText()) == true) {
+            if(jRadioButton1.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
+                Importdb.createAccount("patient",jTextField1.getText(),jTextField2.getText(),"p555");
+            }   
+            if(jRadioButton2.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
+                Importdb.createAccount("doctor",jTextField1.getText(),jTextField2.getText(),"d555");
+            }
         }// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
