@@ -51,6 +51,11 @@ public class createAccount extends javax.swing.JFrame {
         });
 
         jButton1.setText("Create");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +167,19 @@ public class createAccount extends javax.swing.JFrame {
     private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_formPropertyChange
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jRadioButton1.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
+            Importdb.createAccount("patient",jTextField1.getText(),jTextField2.getText(),"p555");
+        
+        }   
+        if(jRadioButton2.isEnabled()==true && jTextField2.getText()==jTextField3.getText()){
+
+            Importdb.createAccount("doctor",jTextField1.getText(),jTextField2.getText(),"d555");
+
+        
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
