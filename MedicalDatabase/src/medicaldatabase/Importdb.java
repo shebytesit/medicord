@@ -7,46 +7,48 @@ import java.util.*;
 public class Importdb {
 
 	Importdb() {
-		try {
-			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
-			String[] add = new String[100];
-
-			// If there is an error that no tables exist, comment the following
-			// 6 lines out.
-			String drop = " Drop table PATIENT cascade constraints";
-			String drop1 = "Drop table DOCTOR cascade constraints";
-			String drop2 = "Drop table ACCOUNT cascade constraints";
-			String drop3 = "Drop table APPOINTMENT cascade constraints";
-
-			stat.execute(drop);
-			stat.execute(drop1);
-			stat.execute(drop2);
-			stat.execute(drop3);
-			String createPatient = "create table PATIENT (pid varchar2(20), name varchar2(20), dob varchar2(20), gender VARCHAR(100), allergies VARCHAR(100), medication VARCHAR(100), history VARCHAR(100), econtact VARCHAR(100), primary key (pid))";
-			String createDoctor = "create table DOCTOR (did varchar2(20), name varchar2(20),gender varchar2(20),hospital varchar2(20),specialization varchar2(20), primary key (did))";
-			String createAccount = "CREATE TABLE ACCOUNT (username VARCHAR(100), password VARCHAR(100), id varchar2(20), primary key (id))";
-			String createAppointment = "CREATE TABLE APPOINTMENT (aid varchar2(20), dates varchar2(20), did varchar2(20), pid varchar2(20),reason VARCHAR(100), foreign key (did) references DOCTOR, foreign key (pid) references PATIENT, primary key (aid))";
-
-			System.out.println(createAppointment);
-			stat.execute(createPatient);
-			stat.execute(createDoctor);
-			stat.execute(createAccount);
-			stat.execute(createAppointment);
-
-			System.out.println("Tables created!");
-
-			stat.close();
-			conn.close();
-		} catch (SQLException ex) {
-			while (ex != null) {
-				ex.printStackTrace();
-				ex = ex.getNextException();
-			}
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
+		
 	}
+        public static void clearDb(){
+            try {
+                Connection conn = getConnection();
+                Statement stat = conn.createStatement();
+
+                // If there is an error that no tables exist, comment the following
+                // 6 lines out.
+                String drop = " Drop table PATIENT cascade constraints";
+                String drop1 = "Drop table DOCTOR cascade constraints";
+                String drop2 = "Drop table ACCOUNT cascade constraints";
+                String drop3 = "Drop table APPOINTMENT cascade constraints";
+
+                stat.execute(drop);
+                stat.execute(drop1);
+                stat.execute(drop2);
+                stat.execute(drop3);
+                String createPatient = "create table PATIENT (pid varchar2(20), name varchar2(20), dob varchar2(20), gender VARCHAR(100), allergies VARCHAR(100), medication VARCHAR(100), history VARCHAR(100), econtact VARCHAR(100),pnumber VARCHAR(100), primary key (pid))";
+                String createDoctor = "create table DOCTOR (did varchar2(20), name varchar2(20),gender varchar2(20),hospital varchar2(20),specialization varchar2(20), primary key (did))";
+                String createAccount = "CREATE TABLE ACCOUNT (username VARCHAR(100), password VARCHAR(100), id varchar2(20), primary key (id))";
+                String createAppointment = "CREATE TABLE APPOINTMENT (aid varchar2(20), dates varchar2(20), did varchar2(20), pid varchar2(20),reason VARCHAR(100), foreign key (did) references DOCTOR, foreign key (pid) references PATIENT, primary key (aid))";
+
+                System.out.println(createAppointment);
+                stat.execute(createPatient);
+                stat.execute(createDoctor);
+                stat.execute(createAccount);
+                stat.execute(createAppointment);
+
+                System.out.println("Tables created!");
+
+                stat.close();
+                conn.close();
+        } catch (SQLException ex) {
+                while (ex != null) {
+                        ex.printStackTrace();
+                        ex = ex.getNextException();
+                }
+        } catch (IOException ex) {
+                ex.printStackTrace();
+        }
+    }
 
 	public static Connection getConnection() throws SQLException, IOException {
 		Properties props = new Properties();
