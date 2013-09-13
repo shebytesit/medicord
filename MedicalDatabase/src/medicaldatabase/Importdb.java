@@ -1,12 +1,12 @@
-package GUI;
+package medicaldatabase;
 
 import java.sql.*;
 import java.io.*;
 import java.util.*;
 
-public class importdb {
+public class Importdb {
 
-	importdb() {
+	Importdb() {
 		try {
 			Connection conn = getConnection();
 			Statement stat = conn.createStatement();

@@ -1,4 +1,4 @@
-package GUI;
+package medicaldatabase;
 
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
@@ -71,13 +71,13 @@ public class GUI implements ActionListener {
 	private Integer messageID;
 	private Integer evalID;
 	private String kID;
-	private importdb database;
+	private Importdb database;
 
 	/**
 	 * constructor that creates the frame and the main portion of the graphical
 	 * user interface
 	 */
-	public GUI(importdb database) {
+	public GUI(Importdb database) {
 		this.database = database;
 		messageID = 1;
 		evalID = 1;
@@ -169,7 +169,7 @@ public class GUI implements ActionListener {
 			kID = userID;
 			String password = passwordTextField.getText();
 			//pass username & password to query from the database. Returns user ID. well be able to find out if they are a doctor or patient from the first letter of ID.
-			String s = importdb.signindb(kID, password);
+			String s = Importdb.signindb(kID, password);
 			if (s == null) { //wrong password or username. throw message to user to tell them invalid credentials
 				System.out.println("ENTER VALID BLAHHHH");
 			}
@@ -195,7 +195,7 @@ public class GUI implements ActionListener {
 
 	private void pCreateGUI(String userID) throws SQLException {
 
-		ResultSet rsK = importdb.getUserInfo(userID); 
+		ResultSet rsK = Importdb.getUserInfo(userID); 
 		
 			while (rsK.next()) {
 				String b = rsK.getString("name");
