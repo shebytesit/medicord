@@ -99,8 +99,8 @@ public class Login extends javax.swing.JFrame {
     private void bttOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttOkActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        frmMain frm = new frmMain(this);
-        //frm.setVisible(true);
+        frmPatient frm = new frmPatient(this);
+        frm.setVisible(true);
     }//GEN-LAST:event_bttOkActionPerformed
 
     /**
