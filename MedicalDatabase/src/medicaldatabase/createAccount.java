@@ -238,6 +238,7 @@ public class createAccount extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error, Passwords do not match!");
             }
             System.out.println("Credentials verified");
+            String uid;
             username = jTextField1.getText();
             password = new String(jPasswordField1.getPassword());
             passVer = new String(jPasswordField2.getPassword());
