@@ -112,7 +112,15 @@ public class Importdb {
 			while (rs.next()) {
 				id = Integer.toString(rs.getInt(1));
 			}
-                         patientTest = "INSERT INTO  ACCOUNT"
+
+                        if (type.equals("patient")) {
+				id = "p" + id;
+                        }
+                       if (type.equals("doctor")) {
+				id = "d" + id;
+			}
+                        
+                        patientTest = "INSERT INTO  ACCOUNT"
 					+ "(id,username,password)" + " VALUES( '" + id + "','"
 					+ name + "','" + password + "')";
 
@@ -289,6 +297,65 @@ public class Importdb {
 
 			return rs;
 
+		} catch (SQLException ex) {
+			while (ex != null) {
+				ex.printStackTrace();
+				ex = ex.getNextException();
+			}
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
+        
+         //for appoint
+	public static ResultSet getListofNames(String id) {
+		ResultSet rs = null;
+		try {
+			Connection conn = getConnection();
+			Statement stat = conn.createStatement();
+			String search = null;
+
+			if(id.substring(0,1).equals("p"))
+			search = "select name from doctor";
+
+			if(id.substring(0,1).equals("d"))
+			search = "select name from patient";
+			
+			rs = stat.executeQuery(search);
+
+			return rs;
+
+		} catch (SQLException ex) {
+			while (ex != null) {
+				ex.printStackTrace();
+				ex = ex.getNextException();
+			}
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
+        
+                 
+	public static String getName(String id) {
+		ResultSet rs = null;
+		try {
+			Connection conn = getConnection();
+			Statement stat = conn.createStatement();
+			String search = null;
+
+			if(id.substring(0,1).equals("d"))
+			search = "select name from doctor where did '" + id + "'";
+
+			if(id.substring(0,1).equals("p"))
+			search = "select name from patient where pid '" + id + "'";
+			
+			rs = stat.executeQuery(search);
+                        while(rs.next())
+                        {
+                        return rs.getString(1);
+                        }
 		} catch (SQLException ex) {
 			while (ex != null) {
 				ex.printStackTrace();
