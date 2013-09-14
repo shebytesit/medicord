@@ -232,15 +232,16 @@ public class createAccount extends javax.swing.JFrame {
             if(jRadioButton1.isEnabled()==true && password.equals(passVer)){
                 System.out.println("Creating patient account");
                 String uid=Importdb.createAccount("patient",username,password);
-                System.out.println("Account created");
+               
                 uid = Importdb.signindb(username, password);
-                System.out.println("Logged in");
                 if(uid == null){
                       //Error
                       JOptionPane.showMessageDialog(this, "Database Error, account not created!");
                 }else{
                     //Successful patient account created and sign in
+                    System.out.println("Account created");
                     frmPatient frm = new frmPatient(login);
+                    System.out.println("Logged in");
                     frm.setVisible(true);
                     this.dispose();
                 }
