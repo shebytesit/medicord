@@ -309,7 +309,7 @@ public class Importdb {
 	}
         
          //for appoint
-	public static ResultSet getListofNames(String id) {
+	public static ResultSet getListofDoctorNames(String id) {
 		ResultSet rs = null;
 		try {
 			Connection conn = getConnection();
@@ -317,11 +317,8 @@ public class Importdb {
 			String search = null;
 
 			if(id.substring(0,1).equals("p"))
-			search = "select * from doctor";
-
-			if(id.substring(0,1).equals("d"))
-			search = "select * from patient";
-			
+			search = "select * from doctor"; 
+                        
 			rs = stat.executeQuery(search);
 
 			return rs;
