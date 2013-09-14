@@ -38,6 +38,10 @@ public class frmDoctor extends javax.swing.JFrame {
         try
             {
             ResultSet rsK = Importdb.getUserInfo(userId);
+            if (rsK==null)
+            {
+                throw new Exception("null result set");
+            }
             while (rsK.next())
             {
                 if (rsK.getString("name") != null && rsK.getString("name").isEmpty()==false)
