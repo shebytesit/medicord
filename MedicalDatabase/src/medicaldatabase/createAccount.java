@@ -232,7 +232,7 @@ public class createAccount extends javax.swing.JFrame {
             }
             System.out.println("Credentials verified");
             String uid = Importdb.signindb(username, password);
-            if (uid!=null || uid.isEmpty()==false)
+            if (uid!=null)
             {
                 JOptionPane.showMessageDialog(this, "Error, Username already exists");
             }
