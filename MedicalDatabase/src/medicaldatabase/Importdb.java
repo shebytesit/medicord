@@ -20,7 +20,6 @@ public class Importdb {
                 String drop1 = "Drop table DOCTOR cascade constraints";
                 String drop2 = "Drop table ACCOUNT cascade constraints";
                 String drop3 = "Drop table APPOINTMENT cascade constraints";
-
                 /*stat.execute(drop);
                 stat.execute(drop1);
                 stat.execute(drop2);
@@ -127,15 +126,16 @@ public class Importdb {
 			System.out.println(patientTest);
 			stmtST.execute(patientTest);
 			if (type.equals("patient")) {
-				id = "p" + id;
 				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES( '"
 						+ id + "')";
+                        System.out.println(patientTest);
+
 			}
 			if (type.equals("doctor")) {
-				id = "d" + id;
 				patientTest = "INSERT INTO  DOCTOR" + "(did)"
 
 				+ " VALUES( '" + id + "')";
+			System.out.println(patientTest);
 
 			}
 
@@ -317,10 +317,10 @@ public class Importdb {
 			String search = null;
 
 			if(id.substring(0,1).equals("p"))
-			search = "select name from doctor";
+			search = "select * from doctor";
 
 			if(id.substring(0,1).equals("d"))
-			search = "select name from patient";
+			search = "select * from patient";
 			
 			rs = stat.executeQuery(search);
 
