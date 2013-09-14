@@ -232,6 +232,9 @@ public class createAccount extends javax.swing.JFrame {
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        username = jTextField1.getText();
+        password = new String(jPasswordField1.getPassword());
+        passVer = new String(jPasswordField2.getPassword());
         if(userVerified(username) == true && passwordVerified(password) == true) {            
             if (password.equals(passVer) == false)
             {
@@ -239,10 +242,8 @@ public class createAccount extends javax.swing.JFrame {
             }
             System.out.println("Credentials verified");
             String uid;
-            username = jTextField1.getText();
-            password = new String(jPasswordField1.getPassword());
-            passVer = new String(jPasswordField2.getPassword());
-            if(jRadioButton1.isEnabled()==true && password.equals(passVer)){
+            
+            if(jRadioButton1.isSelected()==true && password.equals(passVer)){
                 System.out.println("Creating patient account");
                 uid=Importdb.createAccount("patient",username,password);
                 if(uid == null)
