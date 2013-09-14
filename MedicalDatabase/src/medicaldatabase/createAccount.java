@@ -206,6 +206,9 @@ public class createAccount extends javax.swing.JFrame {
 
     private boolean userVerified(String s){
         System.out.println(s);
+        if(s==null){
+            return false;
+        }
         if(s.length()<5 || s.length()>12){
             JOptionPane.showMessageDialog(this, "Error, Username must be within 5 to 12 charactors long");
             return false;
@@ -215,6 +218,10 @@ public class createAccount extends javax.swing.JFrame {
     
     private boolean passwordVerified(String s){
         System.out.println(s);
+        if(s==null){
+            JOptionPane.showMessageDialog(this, "Error, password must be between 8 and 15 charactors long");
+            return false;
+        }
         if(s.length()<8 || s.length()>15){
             JOptionPane.showMessageDialog(this, "Error, password must be between 8 and 15 charactors long");
             return false;
@@ -229,6 +236,9 @@ public class createAccount extends javax.swing.JFrame {
         
         if(userVerified(username) == true && passwordVerified(password) == true) {
             System.out.println("Credentials verified");
+            username = jTextField1.getText();
+            password = new String(jPasswordField1.getPassword());
+            passVer = new String(jPasswordField2.getPassword());
             if(jRadioButton1.isEnabled()==true && password.equals(passVer)){
                 System.out.println("Creating patient account");
                 String uid=Importdb.createAccount("patient",username,password);
@@ -265,18 +275,15 @@ public class createAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField2InputMethodTextChanged
 
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-        // TODO add your handling code here:
-        username = jTextField1.getText();
+        // TODO add your handling code here
     }//GEN-LAST:event_jTextField1FocusLost
 
     private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
         // TODO add your handling code here:
-        password = new String(jPasswordField1.getPassword());
     }//GEN-LAST:event_jPasswordField1FocusLost
 
     private void jPasswordField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField2FocusLost
-        // TODO add your handling code here:
-        passVer = new String(jPasswordField2.getPassword());
+        // TODO add your handling code here: 
     }//GEN-LAST:event_jPasswordField2FocusLost
 
     /**

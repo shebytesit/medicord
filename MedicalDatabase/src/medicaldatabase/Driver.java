@@ -8,8 +8,16 @@ public class Driver {
 		Importdb database = new Importdb();
                 
                 Importdb.clearDb();
-                
-		
+                Importdb.createAccount("patient", "username", "password");
+                Importdb.createAccount("doctor", "doctor1", "password");
+                Importdb.makeAppointment("d1", "p0", "test", "09/13/13");
+		//Importdb.createAccount("patient", "", "");
+                //Importdb.createAccount("patient", "", "");
+                //Importdb.createAccount("patient", "", "");
+               // Importdb.createAccount("doctor", "", "");
+		//Importdb.createAccount("doctor", "", "");
+               // Importdb.createAccount("doctor", "", "");
+               // Importdb.createAccount("doctor", "", "");
 //		Importdb.setPatientProfile("p201", "kalena", "dob", "female", "allergies", "currentMedication", "history", "contact");
 		
 		

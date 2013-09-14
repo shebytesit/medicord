@@ -9,10 +9,12 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DateFormatter;
 
 /**
@@ -64,13 +66,10 @@ public class frmPatient extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         txtDob = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        lstAppointments = new javax.swing.JList();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAppointments = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         lblWelcome = new javax.swing.JLabel();
 
@@ -198,38 +197,29 @@ public class frmPatient extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Account Information", jPanel1);
 
-        jLabel11.setText("Appt #");
-
-        lstAppointments.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "sadgs" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        lstAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane5.setViewportView(lstAppointments);
-
         jButton2.setText("Make New Appointment");
 
         jButton3.setText("View Appointment Information");
 
-        jLabel12.setText("Doctor Name");
+        tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jLabel13.setText("Date of Appointment");
+            },
+            new String [] {
+                "Appointment number", "Doctor Name", "Date of appointment"
+            }
+        ));
+        tblAppointments.setEnabled(false);
+        jScrollPane3.setViewportView(tblAppointments);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -238,20 +228,14 @@ public class frmPatient extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(555, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Appointments", jPanel2);
@@ -306,7 +290,6 @@ public class frmPatient extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             // TODO add your handling code here:
-            ListModel<String> lst = lstAppointments.getModel();
             ResultSet r = Importdb.getUserInfo(id);
             if(r!=null){
                 r.next();
@@ -319,8 +302,11 @@ public class frmPatient extends javax.swing.JFrame {
                 txaCurrentMedication.setText(r.getString("medication"));
                 txaMedicalHistory.setText(r.getString("history"));
                 r=Importdb.viewAppointments(id);
-                while(r.next()){
-
+                DefaultTableModel model = (DefaultTableModel) tblAppointments.getModel();
+                if(r!=null){
+                    while(r.next()){
+                        model.addRow(new Object[]{r.getString("aid"),Importdb.getName(r.getString("did")) ,r.getString("dates")});
+                    }
                 }
             }
             else{
@@ -381,9 +367,6 @@ public class frmPatient extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -394,11 +377,11 @@ public class frmPatient extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblWelcome;
-    private javax.swing.JList lstAppointments;
+    private javax.swing.JTable tblAppointments;
     private javax.swing.JTextArea txaAllergies;
     private javax.swing.JTextArea txaCurrentMedication;
     private javax.swing.JTextArea txaMedicalHistory;
