@@ -317,10 +317,10 @@ public class Importdb {
 			String search = null;
 
 			if(id.substring(0,1).equals("p"))
-			search = "select name from doctor";
+			search = "select * from doctor";
 
 			if(id.substring(0,1).equals("d"))
-			search = "select name from patient";
+			search = "select * from patient";
 			
 			rs = stat.executeQuery(search);
 
