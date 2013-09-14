@@ -225,29 +225,44 @@ public class createAccount extends javax.swing.JFrame {
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        
-        if(userVerified(username) == true && passwordVerified(password) == true) {
+        if(userVerified(username) == true && passwordVerified(password) == true) {            
+            if (password.equals(passVer) == false)
+            {
+                JOptionPane.showMessageDialog(this, "Error, Passwords do not match!");
+            }
             System.out.println("Credentials verified");
-            if(jRadioButton1.isEnabled()==true && password.equals(passVer)){
+            String uid = Importdb.signindb(username, password);
+            if (uid!=null || uid.isEmpty()==false)
+            {
+                JOptionPane.showMessageDialog(this, "Error, Username already exists");
+            }
+            if(jRadioButton1.isSelected()== true){
                 System.out.println("Creating patient account");
-                String uid=Importdb.createAccount("patient",username,password);
-               
-                uid = Importdb.signindb(username, password);
-                if(uid == null){
+                uid=Importdb.createAccount("patient",username,password);
+                if(uid == null)
+                {
                       //Error
                       JOptionPane.showMessageDialog(this, "Database Error, account not created!");
                 }else{
                     //Successful patient account created and sign in
+                    System.out.println("Successfully creating patient account");
                     login.setVisible(true);
                     this.dispose();
                 }
             }
-            else{
-                JOptionPane.showMessageDialog(this, "Error, Passwords do not match!");
-            }
-            if(jRadioButton2.isEnabled()==true && password==passVer){
-                Importdb.createAccount("doctor",username,password);
+            if(jRadioButton2.isSelected() == true){
+                System.out.println("Creating doctor account");
+                uid= Importdb.createAccount("doctor",username, password);
+                if(uid == null)
+                {
+                      //Error
+                      JOptionPane.showMessageDialog(this, "Database Error, account not created!");
+                }else{
+                    //Successful patient account created and sign in
+                    System.out.println("Successfully creating patient account");
+                    login.setVisible(true);
+                    this.dispose();
+                }
             }
         }// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
