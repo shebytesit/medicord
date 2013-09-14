@@ -240,8 +240,7 @@ public class createAccount extends javax.swing.JFrame {
                       JOptionPane.showMessageDialog(this, "Database Error, account not created!");
                 }else{
                     //Successful patient account created and sign in
-                    frmPatient frm = new frmPatient(login);
-                    frm.setVisible(true);
+                    login.setVisible(true);
                     this.dispose();
                 }
             }
