@@ -5,7 +5,7 @@
 package medicaldatabase;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,15 +13,26 @@ import java.sql.SQLException;
  */
 public class frmDoctor extends javax.swing.JFrame {
 
-    Login loginForm;
-    /**
-     * Creates new form frmDoctor
-     */     
+    Login loginForm = null;
+    frmDoctorApptInfo doctorApptForm = null;
     
-    public frmDoctor(Login loginForm){
+    ArrayList <String> appDates;    
+    
+    public frmDoctor(Login frm){
         initComponents();
-        this.loginForm = loginForm;
-        String userId = loginForm.getUserId();
+        this.loginForm = frm;
+        String userId = frm.getUserId();
+        populate(userId);
+    }
+
+    public frmDoctor(frmDoctorApptInfo frm)
+    {
+        
+    }
+    
+    private void populate(String userId)
+    {
+        appDates = new ArrayList<>();
         patientListBox.removeAll();
         doctorId.setText(userId);
         try
@@ -46,16 +57,37 @@ public class frmDoctor extends javax.swing.JFrame {
                         femaleRadioBtn.setSelected(true);
                     }
                 }
+                if (rsK.getString("SPECIALIZATION") != null && rsK.getString("SPECIALIZATION").isEmpty()==false)
+                {
+                    specialtiesTextField.setText(rsK.getString("SPECIALIZATION"));
+                }
+                if (rsK.getString("HOSPITAL") != null && rsK.getString("HOSPITAL").isEmpty()==false)
+                {
+                    hospitalTextField.setText(rsK.getString("HOSPITAL"));
+                }                
+            }
+            /*
+            rsK = Importdb.viewAppointments(userId);
+            int number=1;
+            DefaultListModel model = new DefaultListModel();            
+            
+            while(rsK.next())
+            {
+                String myElement= Integer.toString(number) + ". \t";
+                if (rsK.getString("dates") != null && rsK.getString("dates").isEmpty()==false)
+                {
+                    myElement+= rsK.getString("dates") + "\t";
+                }
+                number++;
                 
             }
+            * */
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,14 +107,9 @@ public class frmDoctor extends javax.swing.JFrame {
         specialtiesLabel = new javax.swing.JLabel();
         specialtiesTextField = new javax.swing.JTextField();
         companyLabel = new javax.swing.JLabel();
-        companyTextField = new javax.swing.JTextField();
+        hospitalTextField = new javax.swing.JTextField();
         phoneLabel = new javax.swing.JLabel();
         phoneTextField = new javax.swing.JTextField();
-        phoneLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
         saveInfoButton = new javax.swing.JButton();
         doctorId = new javax.swing.JLabel();
         doctorIdLabel = new javax.swing.JLabel();
@@ -111,21 +138,16 @@ public class frmDoctor extends javax.swing.JFrame {
 
         specialtiesLabel.setText("Specialties");
 
-        companyLabel.setText("Company");
+        companyLabel.setText("Hospital");
 
         phoneLabel.setText("Phone");
 
-        phoneLabel1.setText("Additional Information Required for Appointment");
-
-        jCheckBox1.setText("jCheckBox1");
-
-        jCheckBox2.setText("jCheckBox2");
-
-        jCheckBox3.setText("jCheckBox3");
-
-        jCheckBox4.setText("jCheckBox4");
-
         saveInfoButton.setText("Save");
+        saveInfoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveInfoButtonActionPerformed(evt);
+            }
+        });
 
         doctorId.setText("value");
 
@@ -145,46 +167,33 @@ public class frmDoctor extends javax.swing.JFrame {
             .addGroup(basicInfoPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox1)
-                    .addComponent(phoneLabel1)
-                    .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(saveInfoButton)
-                        .addGroup(basicInfoPanelLayout.createSequentialGroup()
+                    .addGroup(basicInfoPanelLayout.createSequentialGroup()
+                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel)
+                            .addComponent(doctorIdLabel)
+                            .addComponent(genderLabel))
+                        .addGap(99, 99, 99)
+                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(basicInfoPanelLayout.createSequentialGroup()
-                                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nameLabel)
-                                            .addComponent(companyLabel))
-                                        .addGap(98, 98, 98))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, basicInfoPanelLayout.createSequentialGroup()
-                                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(doctorIdLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(specialtiesLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(basicInfoPanelLayout.createSequentialGroup()
-                                    .addComponent(phoneLabel)
-                                    .addGap(116, 116, 116)))
-                            .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(basicInfoPanelLayout.createSequentialGroup()
-                                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(companyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(specialtiesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(doctorId))
-                                        .addGap(3, 4, Short.MAX_VALUE))
-                                    .addGroup(basicInfoPanelLayout.createSequentialGroup()
-                                        .addComponent(maleRadioBtn)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(femaleRadioBtn)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addComponent(genderLabel)
-                    .addComponent(jCheckBox2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(doctorId))
+                            .addGroup(basicInfoPanelLayout.createSequentialGroup()
+                                .addComponent(maleRadioBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(femaleRadioBtn))))
+                    .addGroup(basicInfoPanelLayout.createSequentialGroup()
+                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(phoneLabel)
+                            .addComponent(companyLabel)
+                            .addComponent(specialtiesLabel))
+                        .addGap(89, 89, 89)
+                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hospitalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(specialtiesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(saveInfoButton)
+                                .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         basicInfoPanelLayout.setVerticalGroup(
             basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,11 +206,11 @@ public class frmDoctor extends javax.swing.JFrame {
                 .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(genderLabel)
                     .addComponent(femaleRadioBtn)
-                    .addComponent(maleRadioBtn))
+                    .addComponent(maleRadioBtn)
+                    .addComponent(genderLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(specialtiesLabel)
@@ -209,24 +218,14 @@ public class frmDoctor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(companyLabel)
-                    .addComponent(companyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hospitalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneLabel)
                     .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(phoneLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveInfoButton)
-                .addGap(21, 21, 21))
+                .addGap(165, 165, 165))
         );
 
         jTabbedPane1.addTab("Basic Information", basicInfoPanel);
@@ -251,7 +250,7 @@ public class frmDoctor extends javax.swing.JFrame {
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -281,8 +280,8 @@ public class frmDoctor extends javax.swing.JFrame {
                     .addComponent(welcomeLabel)
                     .addComponent(logoutLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -293,6 +292,18 @@ public class frmDoctor extends javax.swing.JFrame {
         loginForm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutLabelMouseClicked
+
+    private void saveInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInfoButtonActionPerformed
+        // TODO add your handling code here:
+        if (maleRadioBtn.isSelected())
+        {
+            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "M");
+        }
+        else
+        {
+            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F");
+        }
+    }//GEN-LAST:event_saveInfoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,15 +345,11 @@ public class frmDoctor extends javax.swing.JFrame {
     private javax.swing.JPanel basicInfoPanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel companyLabel;
-    private javax.swing.JTextField companyTextField;
     private javax.swing.JLabel doctorId;
     private javax.swing.JLabel doctorIdLabel;
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JLabel genderLabel;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JTextField hospitalTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel logoutLabel;
@@ -352,7 +359,6 @@ public class frmDoctor extends javax.swing.JFrame {
     private javax.swing.JList patientListBox;
     private javax.swing.JPanel patientListPanel;
     private javax.swing.JLabel phoneLabel;
-    private javax.swing.JLabel phoneLabel1;
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JButton saveInfoButton;
     private javax.swing.JLabel specialtiesLabel;
