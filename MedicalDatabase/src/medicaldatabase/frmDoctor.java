@@ -6,6 +6,8 @@ package medicaldatabase;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +18,8 @@ public class frmDoctor extends javax.swing.JFrame {
     Login loginForm = null;
     frmDoctorApptInfo doctorApptForm = null;
     
-    ArrayList <String> appDates;    
+    ArrayList <String> appDates;
+    ArrayList<String> patientNames;
     
     public frmDoctor(Login frm){
         initComponents();
@@ -32,7 +35,8 @@ public class frmDoctor extends javax.swing.JFrame {
     
     private void populate(String userId)
     {
-        appDates = new ArrayList<>();
+        appDates = new ArrayList<String>();
+        patientNames = new ArrayList<String>();
         patientListBox.removeAll();
         doctorId.setText(userId);
         try
@@ -70,22 +74,28 @@ public class frmDoctor extends javax.swing.JFrame {
                     hospitalTextField.setText(rsK.getString("HOSPITAL"));
                 }                
             }
-            /*
+            
             rsK = Importdb.viewAppointments(userId);
-            int number=1;
+            //int number=1;
             DefaultListModel model = new DefaultListModel();            
             
             while(rsK.next())
             {
-                String myElement= Integer.toString(number) + ". \t";
+                /*String myElement= Integer.toString(number) + ". \t";
                 if (rsK.getString("dates") != null && rsK.getString("dates").isEmpty()==false)
                 {
                     myElement+= rsK.getString("dates") + "\t";
                 }
-                number++;
+                number++;*/
                 
+                int count = 1;
+                String patientId = rsK.getString("pid");
+                patientNames.add(Importdb.getName(patientId));
+                appDates.add(rsK.getString("dates"));
+                model.addElement(Integer.toString(count) + ".\t " + patientNames.get(count - 1) + "\t"
+                        + appDates.get(count - 1));
             }
-            * */
+            patientListBox.setModel(model);
         }
         catch(Exception e)
         {
@@ -128,6 +138,11 @@ public class frmDoctor extends javax.swing.JFrame {
         buttonGroup1.add(femaleRadioBtn);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         welcomeLabel.setText("Welcome username!");
 
@@ -178,9 +193,8 @@ public class frmDoctor extends javax.swing.JFrame {
                             .addComponent(genderLabel))
                         .addGap(99, 99, 99)
                         .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(doctorId))
+                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(doctorId)
                             .addGroup(basicInfoPanelLayout.createSequentialGroup()
                                 .addComponent(maleRadioBtn)
                                 .addGap(18, 18, 18)
@@ -197,7 +211,7 @@ public class frmDoctor extends javax.swing.JFrame {
                             .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(saveInfoButton)
                                 .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         basicInfoPanelLayout.setVerticalGroup(
             basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,11 +248,6 @@ public class frmDoctor extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Basic Information", basicInfoPanel);
 
-        patientListBox.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(patientListBox);
 
         javax.swing.GroupLayout patientListPanelLayout = new javax.swing.GroupLayout(patientListPanel);
@@ -247,14 +256,14 @@ public class frmDoctor extends javax.swing.JFrame {
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
                 .addContainerGap())
         );
         patientListPanelLayout.setVerticalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -307,7 +316,13 @@ public class frmDoctor extends javax.swing.JFrame {
         {
             Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F");
         }
+        JOptionPane.showMessageDialog(null, "Information has been saved!");
     }//GEN-LAST:event_saveInfoButtonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
