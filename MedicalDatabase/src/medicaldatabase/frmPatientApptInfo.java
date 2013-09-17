@@ -94,6 +94,11 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnLookup.setText("Look at info");
 
@@ -150,7 +155,20 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
         // TODO add your handling code here:
+        if(cmbDoctors.getSelectedIndex() != -1) {
+            Importdb.makeAppointment(doctorUids.get(cmbDoctors.getSelectedIndex()), uid, txtReason.getText(), txtDate.getText());
+            JOptionPane.showMessageDialog(null, "Appointment has been scheduled!");
+        }else{
+            JOptionPane.showMessageDialog(null, "No doctor is selected.");
+        }
     }//GEN-LAST:event_btnScheduleActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        patient.setVisible(true);
+        patient.updateApptTable();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
