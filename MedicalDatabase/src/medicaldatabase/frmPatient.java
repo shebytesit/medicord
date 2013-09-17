@@ -7,16 +7,10 @@ package medicaldatabase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JFormattedTextField.AbstractFormatterFactory;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.ListModel;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.DateFormatter;
-
+import java.io.*;
 /**
  *
  * @author Seth
@@ -24,6 +18,10 @@ import javax.swing.text.DateFormatter;
 public class frmPatient extends javax.swing.JFrame {
     private Login login;
     private String id;
+    private ArrayList<String> doctorNames;
+    private ArrayList<String> apptNums;
+    private ArrayList<String> apptDates;
+    
     /**
      * Creates new form frmPatient
      */
@@ -33,6 +31,9 @@ public class frmPatient extends javax.swing.JFrame {
         initComponents();
         login.setVisible(false);
         setVisible(true);
+        doctorNames = new ArrayList<String>();
+        apptNums = new ArrayList<String>();
+        apptDates = new ArrayList<String>();
     }
     
 
@@ -300,7 +301,6 @@ public class frmPatient extends javax.swing.JFrame {
             else{
                 JOptionPane.showMessageDialog(this, "Database error");
             }
-            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -324,6 +324,26 @@ public class frmPatient extends javax.swing.JFrame {
         apptInfo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void updateApptTable() {
+        DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+            model.removeRow(i); 
+        }
+        
+        try{
+            ResultSet r=Importdb.viewAppointments(id);
+            if(r!=null){
+                while(r.next()){
+                    model.addRow(new Object[]{r.getString("aid"),Importdb.getName(r.getString("did")) ,r.getString("dates")});
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
