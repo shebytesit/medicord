@@ -220,7 +220,7 @@ public class Importdb {
 			Connection conn = getConnection();
 			Statement stat = conn.createStatement();
  
-			ResultSet rs = stat.executeQuery("select count(*) from ACCOUNT"); 
+			ResultSet rs = stat.executeQuery("select count(*) from APPOINTMENT"); 
 	
 
 			while (rs.next()) {
