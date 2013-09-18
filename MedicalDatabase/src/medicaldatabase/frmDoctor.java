@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,26 +22,26 @@ public class frmDoctor extends javax.swing.JFrame {
     ArrayList <String> appDates;
     ArrayList<String> patientNames;
     
+    
     public frmDoctor(Login frm){
         initComponents();
         this.loginForm = frm;
-        String userId = frm.getUserId();
+        String userId = loginForm.getUserId();
         populate(userId);
     }
 
-    public frmDoctor(frmDoctorApptInfo frm)
+    public frmDoctor(String userId)
     {
-        
+        initComponents();
+        populate(userId);
     }
     
     private void populate(String userId)
     {
-        appDates = new ArrayList<String>();
-        patientNames = new ArrayList<String>();
-        patientListBox.removeAll();
+        //setting the basic information tab
         doctorId.setText(userId);
         try
-            {
+        {
             ResultSet rsK = Importdb.getUserInfo(userId);
             if (rsK==null)
             {
@@ -75,27 +76,24 @@ public class frmDoctor extends javax.swing.JFrame {
                 }                
             }
             
+            //set the appointment tab
             rsK = Importdb.viewAppointments(userId);
-            //int number=1;
-            DefaultListModel model = new DefaultListModel();            
-            
-            while(rsK.next())
+            int rowNum=1;
+            //DefaultTableModel model = new DefaultTableModel();  
+            if (rsK!=null)
             {
-                /*String myElement= Integer.toString(number) + ". \t";
-                if (rsK.getString("dates") != null && rsK.getString("dates").isEmpty()==false)
+                DefaultTableModel model = (DefaultTableModel) tblAppointments.getModel();
+                while(rsK.next())
                 {
-                    myElement+= rsK.getString("dates") + "\t";
+                    String patientId = rsK.getString("pid");
+                    String patientName = Importdb.getName(patientId);
+                    String appDate = rsK.getString("dates");
+                    rowNum++;
+                    model.addRow(new Object[]{rowNum ,patientName ,appDate});                
                 }
-                number++;*/
-                
-                int count = 1;
-                String patientId = rsK.getString("pid");
-                patientNames.add(Importdb.getName(patientId));
-                appDates.add(rsK.getString("dates"));
-                model.addElement(Integer.toString(count) + ".\t " + patientNames.get(count - 1) + "\t"
-                        + appDates.get(count - 1));
             }
-            patientListBox.setModel(model);
+            //tblAppointments.setModel(model);
+            
         }
         catch(Exception e)
         {
@@ -131,8 +129,8 @@ public class frmDoctor extends javax.swing.JFrame {
         maleRadioBtn = new javax.swing.JRadioButton();
         femaleRadioBtn = new javax.swing.JRadioButton();
         patientListPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        patientListBox = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAppointments = new javax.swing.JTable();
 
         buttonGroup1.add(maleRadioBtn);
         buttonGroup1.add(femaleRadioBtn);
@@ -211,7 +209,7 @@ public class frmDoctor extends javax.swing.JFrame {
                             .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(saveInfoButton)
                                 .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         basicInfoPanelLayout.setVerticalGroup(
             basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,23 +246,44 @@ public class frmDoctor extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Basic Information", basicInfoPanel);
 
-        jScrollPane1.setViewportView(patientListBox);
+        tblAppointments.setRowSelectionAllowed(true);
+        tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No", "Patient Name", "Date of appointment"
+            }){
+                public boolean isCellEditable(int row, int column) {
+                    //all cells false
+                    return false;
+                }
+
+            }
+
+        );
+        tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(tblAppointments);
 
         javax.swing.GroupLayout patientListPanelLayout = new javax.swing.GroupLayout(patientListPanel);
         patientListPanel.setLayout(patientListPanelLayout);
         patientListPanelLayout.setHorizontalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 392, Short.MAX_VALUE)
+            .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         patientListPanelLayout.setVerticalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         jTabbedPane1.addTab("Patient List", patientListPanel);
@@ -352,13 +371,13 @@ public class frmDoctor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        /*
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmDoctor(null).setVisible(true);
+                new frmDoctor("d2").setVisible(true);
             }
         });
-        * */
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basicInfoPanel;
@@ -369,19 +388,19 @@ public class frmDoctor extends javax.swing.JFrame {
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JLabel genderLabel;
     private javax.swing.JTextField hospitalTextField;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel logoutLabel;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JList patientListBox;
     private javax.swing.JPanel patientListPanel;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JButton saveInfoButton;
     private javax.swing.JLabel specialtiesLabel;
     private javax.swing.JTextField specialtiesTextField;
+    private javax.swing.JTable tblAppointments;
     private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }
