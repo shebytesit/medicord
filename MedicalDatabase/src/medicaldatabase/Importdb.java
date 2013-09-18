@@ -20,10 +20,10 @@ public class Importdb {
                 String drop1 = "Drop table DOCTOR cascade constraints";
                 String drop2 = "Drop table ACCOUNT cascade constraints";
                 String drop3 = "Drop table APPOINTMENT cascade constraints";
-                /*stat.execute(drop);
+                stat.execute(drop);
                 stat.execute(drop1);
                 stat.execute(drop2);
-                stat.execute(drop3);  */
+                stat.execute(drop3);  
                 String createAccount = "CREATE TABLE ACCOUNT (username VARCHAR(100), password VARCHAR(100) not null, id varchar2(20),primary key(username), unique(id))";
                 String createPatient = "create table PATIENT (pid varchar2(20), name varchar2(20), dob varchar2(20), gender VARCHAR(100), allergies VARCHAR(100), medication VARCHAR(100), history VARCHAR(100), econtact VARCHAR(100), primary key (pid))";
                 String createDoctor = "create table DOCTOR (did varchar2(20), name varchar2(20),gender varchar2(20),hospital varchar2(20),specialization varchar2(20), primary key (did) )";
@@ -125,6 +125,7 @@ public class Importdb {
 
 			System.out.println(patientTest);
 			stmtST.execute(patientTest);
+                        
 			if (type.equals("patient")) {
 				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES( '"
 						+ id + "')";
@@ -343,17 +344,18 @@ public class Importdb {
 			String search = null;
 
 			if(id.substring(0,1).equals("d"))
-			search = "select name from doctor where did '" + id + "'";
+			search = "select name from doctor where did = '" + id + "'";
 
 			if(id.substring(0,1).equals("p"))
-			search = "select name from patient where pid '" + id + "'";
+			search = "select name from patient where pid = '" + id + "'";
 			
 			rs = stat.executeQuery(search);
+                        
                         while(rs.next())
                         {
                         return rs.getString(1);
                         }
-		} catch (SQLException ex) {
+            	} catch (SQLException ex) {
 			while (ex != null) {
 				ex.printStackTrace();
 				ex = ex.getNextException();
