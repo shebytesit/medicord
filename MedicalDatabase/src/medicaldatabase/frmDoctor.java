@@ -87,9 +87,9 @@ public class frmDoctor extends javax.swing.JFrame {
                 {
                     String patientId = rsK.getString("pid");
                     String patientName = Importdb.getName(patientId);
-                    String appDate = rsK.getString("dates");
+                    String appDate = rsK.getString("dates");                    
+                    model.addRow(new Object[]{rowNum ,patientName ,appDate});
                     rowNum++;
-                    model.addRow(new Object[]{rowNum ,patientName ,appDate});                
                 }
             }
             //tblAppointments.setModel(model);
@@ -371,12 +371,13 @@ public class frmDoctor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmDoctor("d2").setVisible(true);
             }
         });
+        * */
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
