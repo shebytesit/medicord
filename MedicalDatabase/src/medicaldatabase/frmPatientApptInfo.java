@@ -157,6 +157,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(cmbDoctors.getSelectedIndex() != -1) {
             Importdb.makeAppointment(doctorUids.get(cmbDoctors.getSelectedIndex()), uid, txtReason.getText(), txtDate.getText());
+           
             JOptionPane.showMessageDialog(null, "Appointment has been scheduled!");
         }else{
             JOptionPane.showMessageDialog(null, "No doctor is selected.");

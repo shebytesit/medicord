@@ -154,7 +154,7 @@ public class frmPatient extends javax.swing.JFrame {
                                 .addComponent(txtGender, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                                 .addComponent(txtName)
                                 .addComponent(txtDob)))))
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +185,7 @@ public class frmPatient extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addGap(97, 97, 97)
                         .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -215,6 +215,7 @@ public class frmPatient extends javax.swing.JFrame {
         jPanel2.add(jButton3);
 
         tblAppointments.setRowSelectionAllowed(true);
+        tblAppointments.setAutoCreateRowSorter(true);
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -230,6 +231,9 @@ public class frmPatient extends javax.swing.JFrame {
             }
 
         );
+        tblAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblAppointments.setShowVerticalLines(false);
         jScrollPane3.setViewportView(tblAppointments);
 
         jPanel2.add(jScrollPane3);
@@ -250,7 +254,7 @@ public class frmPatient extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1))
             .addGroup(layout.createSequentialGroup()
@@ -297,6 +301,7 @@ public class frmPatient extends javax.swing.JFrame {
                 txaAllergies.setText(r.getString("allergies"));
                 txaCurrentMedication.setText(r.getString("medication"));
                 txaMedicalHistory.setText(r.getString("history"));
+                int count = 1;
                 r=Importdb.viewAppointments(id);
                 DefaultTableModel model = (DefaultTableModel) tblAppointments.getModel();
                 if(r!=null){
@@ -344,6 +349,9 @@ public class frmPatient extends javax.swing.JFrame {
             if(r!=null){
                 while(r.next()){
                     model.addRow(new Object[]{r.getString("aid"),Importdb.getName(r.getString("did")) ,r.getString("dates")});
+            
+                    System.out.println("DATA IN MAKEAAPOINTMENT" + Importdb.getName(r.getString("did")));
+                
                 }
             }
         }catch(SQLException e){

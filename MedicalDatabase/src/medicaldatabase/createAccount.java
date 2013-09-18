@@ -240,7 +240,6 @@ public class createAccount extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this, "Error, Passwords do not match!");
             }
-            System.out.println("Credentials verified");
             String uid;
             
             if(jRadioButton1.isSelected()==true && password.equals(passVer)){
@@ -249,9 +248,10 @@ public class createAccount extends javax.swing.JFrame {
                 if(uid == null)
                 {
                       //Error
-                      JOptionPane.showMessageDialog(this, "Database Error, account not created!");
+                      JOptionPane.showMessageDialog(this, "Username already exists, please select a new username.");
                 }else{
                     //Successful patient account created and sign in
+                    
                     System.out.println("Successfully creating patient account");
                     login.setVisible(true);
                     this.dispose();
