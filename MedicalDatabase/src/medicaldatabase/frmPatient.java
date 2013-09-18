@@ -215,6 +215,7 @@ public class frmPatient extends javax.swing.JFrame {
         jPanel2.add(jButton3);
 
         tblAppointments.setRowSelectionAllowed(true);
+        tblAppointments.setAutoCreateRowSorter(true);
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -230,6 +231,9 @@ public class frmPatient extends javax.swing.JFrame {
             }
 
         );
+        tblAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblAppointments.setShowVerticalLines(false);
         jScrollPane3.setViewportView(tblAppointments);
 
         jPanel2.add(jScrollPane3);
@@ -297,6 +301,7 @@ public class frmPatient extends javax.swing.JFrame {
                 txaAllergies.setText(r.getString("allergies"));
                 txaCurrentMedication.setText(r.getString("medication"));
                 txaMedicalHistory.setText(r.getString("history"));
+                int count = 1;
                 r=Importdb.viewAppointments(id);
                 DefaultTableModel model = (DefaultTableModel) tblAppointments.getModel();
                 if(r!=null){
