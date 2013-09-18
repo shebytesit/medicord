@@ -78,7 +78,7 @@ public class frmDoctor extends javax.swing.JFrame {
             rsK = Importdb.viewAppointments(userId);
             //int number=1;
             DefaultListModel model = new DefaultListModel();            
-            
+            int count = 1;
             while(rsK.next())
             {
                 /*String myElement= Integer.toString(number) + ". \t";
@@ -88,12 +88,13 @@ public class frmDoctor extends javax.swing.JFrame {
                 }
                 number++;*/
                 
-                int count = 1;
+                
                 String patientId = rsK.getString("pid");
                 patientNames.add(Importdb.getName(patientId));
                 appDates.add(rsK.getString("dates"));
                 model.addElement(Integer.toString(count) + ".\t " + patientNames.get(count - 1) + "\t"
                         + appDates.get(count - 1));
+                count++;
             }
             patientListBox.setModel(model);
         }
