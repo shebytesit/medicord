@@ -343,10 +343,10 @@ public class Importdb {
 			String search = null;
 
 			if(id.substring(0,1).equals("d"))
-			search = "select name from doctor where did '" + id + "'";
+			search = "select name from doctor where did ='" + id + "'";
 
 			if(id.substring(0,1).equals("p"))
-			search = "select name from patient where pid '" + id + "'";
+			search = "select name from patient where pid ='" + id + "'";
 			
 			rs = stat.executeQuery(search);
                         while(rs.next())

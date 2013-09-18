@@ -214,15 +214,22 @@ public class frmPatient extends javax.swing.JFrame {
         });
         jPanel2.add(jButton3);
 
+        tblAppointments.setRowSelectionAllowed(true);
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Appointment number", "Doctor Name", "Date of appointment"
+            }){
+                public boolean isCellEditable(int row, int column) {
+                    //all cells false
+                    return false;
+                }
+
             }
-        ));
-        tblAppointments.setEnabled(false);
+
+        );
         jScrollPane3.setViewportView(tblAppointments);
 
         jPanel2.add(jScrollPane3);
