@@ -107,7 +107,7 @@ public class Importdb {
 			String patientTest = null;
 			
 			ResultSet rs = stmtST.executeQuery("select count(*) from ACCOUNT"); 
-
+                          
 			while (rs.next()) {
 				id = Integer.toString(rs.getInt(1));
 			}
@@ -117,14 +117,24 @@ public class Importdb {
                         }
                        if (type.equals("doctor")) {
 				id = "d" + id;
+                                
 			}
-                        
+                        ResultSet checkUser = stmtST.executeQuery("select * from account where username = '" + name + "'");
+                       if(checkUser.next())
+                        {
+                            System.out.println("ID IS ??????" + checkUser.getString("id"));
+                            if(checkUser.getString("id") != null)
+                            return null;
+                        }      
+                       
                         patientTest = "INSERT INTO  ACCOUNT"
 					+ "(id,username,password)" + " VALUES( '" + id + "','"
 					+ name + "','" + password + "')";
 
-			System.out.println(patientTest);
+                        
 			stmtST.execute(patientTest);
+			System.out.println(patientTest); 
+
                         
 			if (type.equals("patient")) {
 				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES( '"

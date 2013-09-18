@@ -337,6 +337,9 @@ public class frmPatient extends javax.swing.JFrame {
             if(r!=null){
                 while(r.next()){
                     model.addRow(new Object[]{r.getString("aid"),Importdb.getName(r.getString("did")) ,r.getString("dates")});
+            
+                    System.out.println("DATA IN MAKEAAPOINTMENT" + Importdb.getName(r.getString("did")));
+                
                 }
             }
         }catch(SQLException e){
