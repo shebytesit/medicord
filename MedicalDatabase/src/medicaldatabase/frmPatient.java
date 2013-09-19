@@ -299,9 +299,13 @@ public class frmPatient extends javax.swing.JFrame {
             if(r!=null){
                 r.next();
                 txtName.setText(r.getString("name"));
-                if(txtName.getText().isEmpty()){
+                
+                if(txtName.getText().isEmpty())
+                {
                     lblWelcome.setText("Welcome, please fill out your information.");
-                }else lblWelcome.setText("Welcome "+r.getString("name")+"!");
+                }
+                else lblWelcome.setText("Welcome "+r.getString("name")+"!");
+                
                 txtDob.setText(r.getString("dob"));
                 txtGender.setText(r.getString("gender"));
                 txtEmergencyContact.setText(r.getString("econtact"));
@@ -329,9 +333,12 @@ public class frmPatient extends javax.swing.JFrame {
         // save changes button
         Importdb.setPatientProfile(id,txtName.getText(),txtDob.getText(),txtGender.getText(),txaAllergies.getText(),
             txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
-                if(txtName.getText().isEmpty()){
+                if(txtName.getText().isEmpty())
+                {
                     lblWelcome.setText("Welcome, please fill out your information.");
-                }else lblWelcome.setText("Welcome "+txtName.getText()+"!");
+                }
+                else lblWelcome.setText("Welcome "+txtName.getText()+"!");
+                
         JOptionPane.showMessageDialog(this, "Credentials saved!");
     }//GEN-LAST:event_jButton4ActionPerformed
 
