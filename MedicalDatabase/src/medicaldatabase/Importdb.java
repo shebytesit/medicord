@@ -376,5 +376,30 @@ public class Importdb {
 		}
 		return null;
 	}
+        
+        //For appointment info
+        public static ResultSet viewAppointment(String id) {
+		ResultSet rs = null;
+		try {
+			Connection conn = getConnection();
+			Statement stat = conn.createStatement();
+			String search = null;
+
+			search = "select * from appointment where aid = '" + id + "'";
+			
+			rs = stat.executeQuery(search);
+
+			return rs;
+
+		} catch (SQLException ex) {
+			while (ex != null) {
+				ex.printStackTrace();
+				ex = ex.getNextException();
+			}
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
 
 }

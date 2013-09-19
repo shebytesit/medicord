@@ -20,12 +20,13 @@ public class frmDoctor extends javax.swing.JFrame {
     
     ArrayList <String> appDates;
     ArrayList<String> patientNames;
+    String userId;
     
     
     public frmDoctor(Login frm){
         initComponents();
         this.loginForm = frm;
-        String userId = loginForm.getUserId();
+        userId = loginForm.getUserId();
         populate(userId);
     }
 
@@ -137,6 +138,7 @@ public class frmDoctor extends javax.swing.JFrame {
         patientListPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAppointments = new javax.swing.JTable();
+        btnView = new javax.swing.JButton();
 
         buttonGroup1.add(maleRadioBtn);
         buttonGroup1.add(femaleRadioBtn);
@@ -271,25 +273,33 @@ public class frmDoctor extends javax.swing.JFrame {
         tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(tblAppointments);
 
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout patientListPanelLayout = new javax.swing.GroupLayout(patientListPanel);
         patientListPanel.setLayout(patientListPanelLayout);
         patientListPanelLayout.setHorizontalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
-            .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
-                    .addContainerGap(17, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(patientListPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(btnView)
+                .addContainerGap())
         );
         patientListPanelLayout.setVerticalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 289, Short.MAX_VALUE)
-            .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
-                    .addContainerGap(19, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(patientListPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btnView)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Patient List", patientListPanel);
@@ -386,6 +396,15 @@ public class frmDoctor extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        String apptId = tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0).toString();
+        if(apptId != null){
+            frmDoctorApptInfo apptInfo = new frmDoctorApptInfo(this, userId, apptId);
+            apptInfo.setVisible(true);
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,6 +444,7 @@ public class frmDoctor extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basicInfoPanel;
+    private javax.swing.JButton btnView;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel companyLabel;
     private javax.swing.JLabel doctorId;

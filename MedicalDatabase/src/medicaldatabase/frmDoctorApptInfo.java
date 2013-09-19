@@ -4,6 +4,10 @@
  */
 package medicaldatabase;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Austin
@@ -13,8 +17,22 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
     /**
      * Creates new form frmDoctorApptInfo
      */
-    public frmDoctorApptInfo() {
+    String aid;
+    public frmDoctorApptInfo(frmDoctor doctor, String uid, String aid) {
         initComponents();
+        this.aid = aid;
+        ResultSet rs = Importdb.viewAppointment(aid);
+        try{
+            if(rs.next()){
+                txtPatient.setText(Importdb.getName(rs.getString("pid")));
+                txtReason.setText(rs.getString("reason"));
+                txtDate.setText(rs.getString("dates"));
+                txtNotes.setText(rs.getString("notes"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
     }
 
     /**
@@ -58,6 +76,11 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         txtReason.setColumns(20);
         txtReason.setRows(5);
@@ -133,7 +156,14 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        Importdb.saveNotes(aid, txtNotes.getText());
+        JOptionPane.showMessageDialog(null, "Notes have been saved!");
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,11 +193,6 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmDoctorApptInfo().setVisible(true);
-            }
-        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

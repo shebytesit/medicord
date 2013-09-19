@@ -53,6 +53,59 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No doctors found in database.");
         }
     }
+    
+    public frmPatientApptInfo(frmPatient patient, String uid, String aid){
+        initComponents();
+        this.uid = uid;
+        this.patient = patient;
+        rs = Importdb.getListofDoctorNames(this.uid);
+        if(rs != null){
+            String doctorName;
+            String doctorUid;
+            try{
+                while(rs.next()){
+                    doctorName = rs.getString("name");
+                    doctorUid = rs.getString("did");
+                    if(doctorName != null && doctorUid != null){
+                        doctorNames.add(doctorName);
+                        doctorUids.add(doctorUid);
+                    }else{
+                        System.out.println("Either a doctor name or uid was null with did: " + doctorUid
+                                   + " or name: " + doctorName + ".");
+                    }
+                }
+                for(int i = 0; i < doctorNames.size(); i++){
+                    cmbDoctors.addItem(doctorNames.get(i));
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No doctors found in database.");
+        }
+        System.out.println("Aid is " + aid);
+        ResultSet rs = Importdb.viewAppointment(aid);
+        try{
+            if(rs.next()){
+                String did = rs.getString("did");
+                String doctorName = Importdb.getName(did);
+                for(int i = 0; i < cmbDoctors.getItemCount(); i++){
+                    if(cmbDoctors.getItemAt(i).equals(doctorName)){
+                        cmbDoctors.setSelectedIndex(i);
+                        break;
+                    }
+                }
+                cmbDoctors.setEditable(false);
+                txtDate.setText(rs.getString("dates"));
+                txtDate.setEditable(false);
+                txtReason.setText(rs.getString("reason"));
+                txtReason.setEditable(false);
+                btnSchedule.setVisible(false);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

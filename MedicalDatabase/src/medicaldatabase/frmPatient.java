@@ -19,7 +19,7 @@ public class frmPatient extends javax.swing.JFrame {
     private Login login;
     private String id;
     private ArrayList<String> doctorNames;
-    private ArrayList<String> apptNums;
+    private ArrayList<String> apptIds;
     private ArrayList<String> apptDates;
     
     /**
@@ -32,7 +32,7 @@ public class frmPatient extends javax.swing.JFrame {
         login.setVisible(false);
         setVisible(true);
         doctorNames = new ArrayList<String>();
-        apptNums = new ArrayList<String>();
+        apptIds = new ArrayList<String>();
         apptDates = new ArrayList<String>();
     }
     
@@ -344,12 +344,16 @@ public class frmPatient extends javax.swing.JFrame {
                 txaAllergies.setText(r.getString("allergies"));
                 txaCurrentMedication.setText(r.getString("medication"));
                 txaMedicalHistory.setText(r.getString("history"));
-                int count = 1;
+                int count = 0;
                 r=Importdb.viewAppointments(id);
                 DefaultTableModel model = (DefaultTableModel) tblAppointments.getModel();
                 if(r!=null){
                     while(r.next()){
-                        model.addRow(new Object[]{r.getString("aid"),Importdb.getName(r.getString("did")) ,r.getString("dates")});
+                        doctorNames.add(Importdb.getName(r.getString("did")));
+                        apptIds.add(r.getString("aid"));
+                        apptDates.add(r.getString("dates"));
+                        model.addRow(new Object[]{apptIds.get(count),doctorNames.get(count) ,apptDates.get(count)});
+                        count++;
                     }
                 }
             }
@@ -422,6 +426,11 @@ public class frmPatient extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        String apptId = (String)tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0);
+        if(apptId != null){
+            frmPatientApptInfo apptInfo = new frmPatientApptInfo(this, id, apptId);
+            apptInfo.setVisible(true);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
