@@ -6,6 +6,7 @@ package medicaldatabase;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,8 +17,10 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
     /**
      * Creates new form frmDoctorApptInfo
      */
+    String aid;
     public frmDoctorApptInfo(frmDoctor doctor, String uid, String aid) {
         initComponents();
+        this.aid = aid;
         ResultSet rs = Importdb.viewAppointment(aid);
         try{
             if(rs.next()){
@@ -153,6 +156,8 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        Importdb.saveNotes(aid, txtNotes.getText());
+        JOptionPane.showMessageDialog(null, "Notes have been saved!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
