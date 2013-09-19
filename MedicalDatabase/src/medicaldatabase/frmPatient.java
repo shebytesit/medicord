@@ -118,6 +118,11 @@ public class frmPatient extends javax.swing.JFrame {
         });
 
         txtDob.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtDob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDobActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,7 +159,7 @@ public class frmPatient extends javax.swing.JFrame {
                                 .addComponent(txtGender, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                                 .addComponent(txtName)
                                 .addComponent(txtDob)))))
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +190,7 @@ public class frmPatient extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addGap(97, 97, 97)
                         .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -324,6 +329,9 @@ public class frmPatient extends javax.swing.JFrame {
         // save changes button
         Importdb.setPatientProfile(id,txtName.getText(),txtDob.getText(),txtGender.getText(),txaAllergies.getText(),
             txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
+                if(txtName.getText().isEmpty()){
+                    lblWelcome.setText("Welcome, please fill out your information.");
+                }else lblWelcome.setText("Welcome "+txtName.getText()+"!");
         JOptionPane.showMessageDialog(this, "Credentials saved!");
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -336,6 +344,10 @@ public class frmPatient extends javax.swing.JFrame {
         frmPatientApptInfo apptInfo = new frmPatientApptInfo(this, id);
         apptInfo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDobActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDobActionPerformed
 
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 

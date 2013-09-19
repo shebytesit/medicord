@@ -208,7 +208,7 @@ public class frmDoctor extends javax.swing.JFrame {
                             .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(saveInfoButton)
                                 .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         basicInfoPanelLayout.setVerticalGroup(
             basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,19 +268,19 @@ public class frmDoctor extends javax.swing.JFrame {
         patientListPanel.setLayout(patientListPanelLayout);
         patientListPanelLayout.setHorizontalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 392, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
             .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(17, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
         patientListPanelLayout.setVerticalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
+            .addGap(0, 289, Short.MAX_VALUE)
             .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(19, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
