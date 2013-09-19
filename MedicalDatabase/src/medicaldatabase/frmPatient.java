@@ -294,7 +294,9 @@ public class frmPatient extends javax.swing.JFrame {
             if(r!=null){
                 r.next();
                 txtName.setText(r.getString("name"));
-                lblWelcome.setText("Welcome "+r.getString("name"));
+                if(txtName.getText().isEmpty()){
+                    lblWelcome.setText("Welcome, please fill out your information.");
+                }else lblWelcome.setText("Welcome "+r.getString("name")+"!");
                 txtDob.setText(r.getString("dob"));
                 txtGender.setText(r.getString("gender"));
                 txtEmergencyContact.setText(r.getString("econtact"));
@@ -316,7 +318,6 @@ public class frmPatient extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -349,9 +350,7 @@ public class frmPatient extends javax.swing.JFrame {
             if(r!=null){
                 while(r.next()){
                     model.addRow(new Object[]{r.getString("aid"),Importdb.getName(r.getString("did")) ,r.getString("dates")});
-            
                     System.out.println("DATA IN MAKEAAPOINTMENT" + Importdb.getName(r.getString("did")));
-                
                 }
             }
         }catch(SQLException e){
