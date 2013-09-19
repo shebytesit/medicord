@@ -26,7 +26,7 @@ public class Importdb {
                 stat.execute(drop3);  
                 String createAccount = "CREATE TABLE ACCOUNT (username VARCHAR(100), password VARCHAR(100) not null, id varchar2(20),primary key(username), unique(id))";
                 String createPatient = "create table PATIENT (pid varchar2(20), name varchar2(20), dob varchar2(20), gender VARCHAR(100), allergies VARCHAR(100), medication VARCHAR(100), history VARCHAR(100), econtact VARCHAR(100), primary key (pid))";
-                String createDoctor = "create table DOCTOR (did varchar2(20), name varchar2(20),gender varchar2(20),hospital varchar2(20),specialization varchar2(20), primary key (did) )";
+                String createDoctor = "create table DOCTOR (did varchar2(20), name varchar2(20),gender varchar2(20),hospital varchar2(20),specialization varchar2(20), dPhone varchar2(20), primary key (did) )";
                 String createAppointment = "CREATE TABLE APPOINTMENT (aid varchar2(20), dates varchar2(20), did varchar2(20), pid varchar2(20),reason VARCHAR(100), primary key (aid))";
 
                 System.out.println(createAppointment);
@@ -197,7 +197,7 @@ public class Importdb {
 	}
 
 	public static void setDoctorProfile(String did, String name, String hospital,
-			String specialization, String gender) {
+			String specialization, String gender, String phone_number) {
 
 		try {
 			Connection conn = getConnection();
@@ -207,7 +207,8 @@ public class Importdb {
 			profile = "update doctor set name = '" + name + "' , hospital = '"
 					+ hospital + "' , gender = '" + gender
 					+ "' , specialization = '" + specialization
-					+ "' where did = '" + did + "'";
+					+ "' , dPhone = '" + phone_number
+                                        + "' where did = '" + did + "'";
 			System.out.println(profile);
 			stat.execute(profile);
 

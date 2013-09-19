@@ -333,13 +333,43 @@ public class frmDoctor extends javax.swing.JFrame {
 
     private void saveInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInfoButtonActionPerformed
         // TODO add your handling code here:
+        
+        StringBuilder phone = new StringBuilder();
+        char[] chars = phoneTextField.getText().toCharArray();
+        //Character [] digits = new Character[10];
+        //int j=0;
+        for(int i=0;i<chars.length;i++){
+            if(Character.isDigit(chars[i])){
+                //digits[j] = chars[i];
+                phone.append(chars[i]);
+                //j++;
+            }
+      //          for (int i = 0; i < chars.length; i++) {
+      //  characters[i]=chars[i];
+      //  System.out.println(chars[i]);
+        }
+        int pLen = phone.toString().length();
+        switch(pLen){
+            case 0:
+                break;
+            case 7:
+                phoneTextField.setText(phone.toString());
+                break;
+            case 10: 
+                phoneTextField.setText(phone.toString());
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
+                return;
+        }
+        
         if (maleRadioBtn.isSelected())
         {
-            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "M");
+            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "M", phoneTextField.getText());
         }
         else
         {
-            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F");
+            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F", phoneTextField.getText());
         }
         
         if(nameTextField.getText().isEmpty())
@@ -347,7 +377,7 @@ public class frmDoctor extends javax.swing.JFrame {
             welcomeLabel.setText("Welcome, please fill out your information.");
         }
         else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
-                
+                 
         JOptionPane.showMessageDialog(null, "Information has been saved!");
     }//GEN-LAST:event_saveInfoButtonActionPerformed
 
