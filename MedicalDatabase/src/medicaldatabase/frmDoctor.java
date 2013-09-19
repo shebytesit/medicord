@@ -52,6 +52,13 @@ public class frmDoctor extends javax.swing.JFrame {
                 {
                     nameTextField.setText(rsK.getString("name"));
                 }
+                
+                if(nameTextField.getText().isEmpty())
+                {
+                    welcomeLabel.setText("Welcome, please fill out your information.");
+                }
+                else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
+                
                 String gender;
                 if (rsK.getString("gender") != null && rsK.getString("gender").isEmpty()==false)
                 {
@@ -334,6 +341,13 @@ public class frmDoctor extends javax.swing.JFrame {
         {
             Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F");
         }
+        
+        if(nameTextField.getText().isEmpty())
+        {
+            welcomeLabel.setText("Welcome, please fill out your information.");
+        }
+        else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
+                
         JOptionPane.showMessageDialog(null, "Information has been saved!");
     }//GEN-LAST:event_saveInfoButtonActionPerformed
 
