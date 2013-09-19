@@ -53,6 +53,27 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No doctors found in database.");
         }
     }
+    
+    public frmPatientApptInfo(frmPatient patient, String uid, String aid){
+        initComponents();
+        System.out.println("Aid is " + aid);
+        ResultSet rs = Importdb.viewAppointment(aid);
+        try{
+            if(rs.next()){
+                String did = rs.getString("did");
+                String doctorName = Importdb.getName(did);
+                cmbDoctors.setSelectedItem(doctorName);
+                cmbDoctors.setEditable(false);
+                txtDate.setText(rs.getString("dates"));
+                txtDate.setEditable(false);
+                txtReason.setText(rs.getString("reason"));
+                txtReason.setEditable(false);
+                btnSchedule.setVisible(false);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
