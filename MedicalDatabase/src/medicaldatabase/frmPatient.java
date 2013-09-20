@@ -130,6 +130,9 @@ public class frmPatient extends javax.swing.JFrame {
         jLabel10.setText("Medical History:");
 
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNameKeyTyped(evt);
             }
@@ -516,6 +519,10 @@ public class frmPatient extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+
+    }//GEN-LAST:event_txtNameKeyPressed
 
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 
