@@ -126,7 +126,6 @@ public class frmDoctor extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         welcomeLabel = new javax.swing.JLabel();
-        logoutLabel = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         basicInfoPanel = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
@@ -147,6 +146,7 @@ public class frmDoctor extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAppointments = new javax.swing.JTable();
         btnView = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         buttonGroup1.add(maleRadioBtn);
         buttonGroup1.add(femaleRadioBtn);
@@ -159,13 +159,6 @@ public class frmDoctor extends javax.swing.JFrame {
         });
 
         welcomeLabel.setText("Welcome username!");
-
-        logoutLabel.setText("Logout");
-        logoutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoutLabelMouseClicked(evt);
-            }
-        });
 
         nameLabel.setText("Name");
 
@@ -225,7 +218,7 @@ public class frmDoctor extends javax.swing.JFrame {
                             .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(saveInfoButton)
                                 .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         basicInfoPanelLayout.setVerticalGroup(
             basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +287,7 @@ public class frmDoctor extends javax.swing.JFrame {
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(patientListPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(btnView)
                 .addContainerGap())
         );
@@ -312,6 +305,13 @@ public class frmDoctor extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Patient List", patientListPanel);
 
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,7 +325,7 @@ public class frmDoctor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(welcomeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logoutLabel)))
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -334,20 +334,14 @@ public class frmDoctor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(welcomeLabel)
-                    .addComponent(logoutLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton1))
+                .addGap(20, 20, 20)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
-        // TODO add your handling code here:   
-        loginForm.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_logoutLabelMouseClicked
 
     private void saveInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInfoButtonActionPerformed
         // TODO add your handling code here:
@@ -425,6 +419,12 @@ public class frmDoctor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnViewActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        loginForm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -472,9 +472,9 @@ public class frmDoctor extends javax.swing.JFrame {
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JLabel genderLabel;
     private javax.swing.JTextField hospitalTextField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel logoutLabel;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
