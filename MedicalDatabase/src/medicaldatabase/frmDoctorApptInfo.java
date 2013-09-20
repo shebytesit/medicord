@@ -21,13 +21,20 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
     public frmDoctorApptInfo(frmDoctor doctor, String uid, String aid) {
         initComponents();
         this.aid = aid;
+        System.out.println("Aid is " + aid +".");
         ResultSet rs = Importdb.viewAppointment(aid);
         try{
             if(rs.next()){
                 txtPatient.setText(Importdb.getName(rs.getString("pid")));
-                txtReason.setText(rs.getString("reason"));
-                txtDate.setText(rs.getString("dates"));
-                txtNotes.setText(rs.getString("notes"));
+                if(rs.getString("reason") != null){
+                    txtReason.setText(rs.getString("reason"));
+                }
+                if(rs.getString("dates") != null){
+                    txtDate.setText(rs.getString("dates"));
+                }
+                if(rs.getString("notes") != null){
+                    txtNotes.setText(rs.getString("notes"));
+                }
             }
         }catch(SQLException e){
             e.printStackTrace();

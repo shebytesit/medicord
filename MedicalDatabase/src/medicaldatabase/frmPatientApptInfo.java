@@ -95,7 +95,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
                         break;
                     }
                 }
-                cmbDoctors.setEditable(false);
+                cmbDoctors.setEnabled(false);
                 txtDate.setText(rs.getString("dates"));
                 txtDate.setEditable(false);
                 txtReason.setText(rs.getString("reason"));

@@ -19,6 +19,7 @@ public class frmDoctor extends javax.swing.JFrame {
     frmDoctorApptInfo doctorApptForm = null;
     
     ArrayList <String> appDates;
+    ArrayList<String> appIds;
     ArrayList<String> patientNames;
     String userId;
     
@@ -27,12 +28,14 @@ public class frmDoctor extends javax.swing.JFrame {
         initComponents();
         this.loginForm = frm;
         userId = loginForm.getUserId();
+        appIds = new ArrayList<String>();
         populate(userId);
     }
 
     public frmDoctor(String userId)
     {
         initComponents();
+        appIds = new ArrayList<String>();
         populate(userId);
     }
     
@@ -96,6 +99,7 @@ public class frmDoctor extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) tblAppointments.getModel();
                 while(rsK.next())
                 {
+                    appIds.add(rsK.getString("aid"));
                     String patientId = rsK.getString("pid");
                     String patientName = Importdb.getName(patientId);
                     String appDate = rsK.getString("dates");                    
@@ -414,7 +418,7 @@ public class frmDoctor extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-        String apptId = tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0).toString();
+        String apptId = appIds.get(Integer.parseInt(tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0).toString()) - 1);
         if(apptId != null){
             frmDoctorApptInfo apptInfo = new frmDoctorApptInfo(this, userId, apptId);
             apptInfo.setVisible(true);
