@@ -446,36 +446,30 @@ public class frmDoctor extends javax.swing.JFrame {
 
     private void nameTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextFieldKeyTyped
         // TODO add your handling code here:
-        if(nameTextField.getText().length()>=19){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            nameTextField.setText(nameTextField.getText().substring(0,19));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
+            if(nameTextField.getText().length()>19){
+                nameTextField.setText(nameTextField.getText().substring(0,19));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_nameTextFieldKeyTyped
 
     private void specialtiesTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_specialtiesTextFieldKeyTyped
         // TODO add your handling code here:
-        if(specialtiesTextField.getText().length()>=19){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            specialtiesTextField.setText(specialtiesTextField.getText().substring(0,19));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(specialtiesTextField.getText().length()>19){
+                specialtiesTextField.setText(specialtiesTextField.getText().substring(0,19));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_specialtiesTextFieldKeyTyped
 
     private void hospitalTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hospitalTextFieldKeyTyped
         // TODO add your handling code here:
-        if(hospitalTextField.getText().length()>=100){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            hospitalTextField.setText(hospitalTextField.getText().substring(0,99));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){ 
+            if(hospitalTextField.getText().length()>19){
+                hospitalTextField.setText(hospitalTextField.getText().substring(0,19));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_hospitalTextFieldKeyTyped

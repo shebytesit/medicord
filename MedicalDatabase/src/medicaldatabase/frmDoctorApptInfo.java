@@ -72,6 +72,8 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
 
         jLabel3.setText("Reason for Visit:");
 
+        txtDate.setEditable(false);
+
         jLabel1.setText("Date:");
 
         btnPatientInfo.setText("Look at info");
@@ -97,6 +99,7 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
             }
         });
 
+        txtReason.setEditable(false);
         txtReason.setColumns(20);
         txtReason.setRows(5);
         jScrollPane1.setViewportView(txtReason);
@@ -111,6 +114,8 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(txtNotes);
+
+        txtPatient.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,12 +192,10 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
 
     private void txtNotesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNotesKeyTyped
         // TODO add your handling code here:
-        if(txtNotes.getText().length()>=99){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            txtNotes.setText(txtNotes.getText().substring(0,99));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(txtNotes.getText().length()>99){
+                txtNotes.setText(txtNotes.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_txtNotesKeyTyped

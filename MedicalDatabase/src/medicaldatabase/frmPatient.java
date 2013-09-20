@@ -129,6 +129,12 @@ public class frmPatient extends javax.swing.JFrame {
 
         jLabel10.setText("Medical History:");
 
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
+            }
+        });
+
         txtEmergencyContact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmergencyContactActionPerformed(evt);
@@ -164,7 +170,7 @@ public class frmPatient extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 33, Short.MAX_VALUE)
                                 .addComponent(jLabel7)
                                 .addGap(138, 138, 138)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,7 +183,7 @@ public class frmPatient extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(310, Short.MAX_VALUE))
+                        .addContainerGap(344, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -222,7 +228,7 @@ public class frmPatient extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -476,39 +482,40 @@ public class frmPatient extends javax.swing.JFrame {
 
     private void txaCurrentMedicationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaCurrentMedicationKeyTyped
         // TODO add your handling code here:
-        if(txaCurrentMedication.getText().length()>=99){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            txaCurrentMedication.setText(txaCurrentMedication.getText().substring(0,99));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){ 
+            if(txaCurrentMedication.getText().length()>99){
+                txaCurrentMedication.setText(txaCurrentMedication.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_txaCurrentMedicationKeyTyped
 
     private void txaAllergiesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaAllergiesKeyTyped
-        // TODO add your handling code here:
-        if(txaAllergies.getText().length()>=99){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            txaAllergies.setText(txaAllergies.getText().substring(0,99));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+       if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+           if(txaAllergies.getText().length()>99){
+                txaAllergies.setText(txaAllergies.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_txaAllergiesKeyTyped
 
     private void txaMedicalHistoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaMedicalHistoryKeyTyped
-        // TODO add your handling code here:
-        if(txaMedicalHistory.getText().length()>=99){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            txaMedicalHistory.setText(txaMedicalHistory.getText().substring(0,99));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+       if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+           if(txaMedicalHistory.getText().length()>99){
+                txaMedicalHistory.setText(txaMedicalHistory.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_txaMedicalHistoryKeyTyped
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+           if(txtName.getText().length()>19){
+                txtName.setText(txtName.getText().substring(0,19));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+            }
+        }
+    }//GEN-LAST:event_txtNameKeyTyped
 
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 
