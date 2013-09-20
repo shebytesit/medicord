@@ -163,7 +163,7 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        //Importdb.saveNotes(aid, txtNotes.getText());
+        Importdb.saveNotes(aid, txtNotes.getText());
         JOptionPane.showMessageDialog(null, "Notes have been saved!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
