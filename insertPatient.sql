@@ -1,0 +1,21 @@
+INSERT INTO PATIENT VALUES('p1', 'myname1', '1/1/1995', 'M', 'allergy1', 'medication1', 'history1', 1234567890);
+INSERT INTO PATIENT VALUES('p2', 'myname2', '1/1/1995', 'M', 'allergy2', 'medication2', 'history2', 1234567890);
+INSERT INTO PATIENT VALUES('p3', 'myname3', '1/1/1995', 'M', 'allergy3', 'medication3', 'history3', 1234567890);
+INSERT INTO PATIENT VALUES('p4', 'myname4', '1/1/1995', 'M', 'allergy4', 'medication4', 'history4', 1234567890);
+INSERT INTO PATIENT VALUES('p5', 'myname5', '1/1/1995', 'M', 'allergy5', 'medication5', 'history5', 1234567890);
+INSERT INTO PATIENT VALUES('p6', 'myname6', '1/1/1995', 'M', 'allergy6', 'medication6', 'history6', 1234567890);
+INSERT INTO PATIENT VALUES('p7', 'myname7', '1/1/1995', 'M', 'allergy7', 'medication7', 'history7', 1234567890);
+INSERT INTO PATIENT VALUES('p8', 'myname8', '1/1/1995', 'M', 'allergy8', 'medication8', 'history8', 1234567890);
+INSERT INTO PATIENT VALUES('p9', 'myname9', '1/1/1995', 'M', 'allergy9', 'medication9', 'history9', 1234567890);
+INSERT INTO PATIENT VALUES('p10', 'myname10', '1/1/1995', 'M', 'allergy10', 'medication10', 'history10', 1234567890);
+INSERT INTO PATIENT VALUES('p11', 'myname11', '1/1/1995', 'F', 'allergy11', 'medication11', 'history11', 123456789);
+INSERT INTO PATIENT VALUES('p12', 'myname12', '1/1/1995', 'F', 'allergy12', 'medication12', 'history12', 123456789);
+INSERT INTO PATIENT VALUES('p13', 'myname13', '1/1/1995', 'F', 'allergy13', 'medication13', 'history13', 123456789);
+INSERT INTO PATIENT VALUES('p14', 'myname14', '1/1/1995', 'F', 'allergy14', 'medication14', 'history14', 123456789);
+INSERT INTO PATIENT VALUES('p15', 'myname15', '1/1/1995', 'F', 'allergy15', 'medication15', 'history15', 123456789);
+INSERT INTO PATIENT VALUES('p16', 'myname16', '1/1/1995', 'F', 'allergy16', 'medication16', 'history16', 123456789);
+INSERT INTO PATIENT VALUES('p17', 'myname17', '1/1/1995', 'F', 'allergy17', 'medication17', 'history17', 123456789);
+INSERT INTO PATIENT VALUES('p18', 'myname18', '1/1/1995', 'F', 'allergy18', 'medication18', 'history18', 123456789);
+INSERT INTO PATIENT VALUES('p19', 'myname19', '1/1/1995', 'F', 'allergy19', 'medication19', 'history19', 123456789);
+INSERT INTO PATIENT VALUES('p20', 'myname20', '1/1/1995', 'F', 'allergy20', 'medication20', 'history20', 123456789);
+
