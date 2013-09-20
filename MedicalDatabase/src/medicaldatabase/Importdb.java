@@ -401,5 +401,25 @@ public class Importdb {
 		}
 		return null;
 	}
+        
+        public static void saveNotes(String id, String notes) {
+		try {
+			Connection conn = getConnection();
+			Statement stat = conn.createStatement();
+			String update = null;
+
+			update = "update appointment set notes = '" + notes + "' where aid = '" + id + "'";
+			
+			stat.execute(update);
+
+		} catch (SQLException ex) {
+			while (ex != null) {
+				ex.printStackTrace();
+				ex = ex.getNextException();
+			}
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+        }
 
 }
