@@ -150,7 +150,7 @@ public class createAccount extends javax.swing.JFrame {
                         .addGap(39, 39, 39))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButton1)
                             .addComponent(jRadioButton2))
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -247,7 +247,7 @@ public class createAccount extends javax.swing.JFrame {
                       JOptionPane.showMessageDialog(this, "Username already exists, please select a new username.");
                 }else{
                     //Successful patient account created and sign in
-                    
+                   JOptionPane.showMessageDialog(this, "Account successfully created!");
                     System.out.println("Successfully creating patient account");
                     login.setVisible(true);
                     this.dispose();
