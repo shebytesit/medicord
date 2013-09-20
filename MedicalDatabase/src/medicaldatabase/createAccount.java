@@ -247,7 +247,7 @@ public class createAccount extends javax.swing.JFrame {
                       JOptionPane.showMessageDialog(this, "Username already exists, please select a new username.");
                 }else{
                     //Successful patient account created and sign in
-                    
+                   JOptionPane.showMessageDialog(this, "Account successfully created!");
                     System.out.println("Successfully creating patient account");
                     login.setVisible(true);
                     this.dispose();
