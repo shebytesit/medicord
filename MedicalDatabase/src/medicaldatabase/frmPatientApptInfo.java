@@ -242,7 +242,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
         // TODO add your handling code here:
-        if(txtDate.getText() == null){
+        if(txtDate.getText() == ""){
             JOptionPane.showMessageDialog(null, "Please enter a date.");
             txtDate.requestFocusInWindow();
             return;
