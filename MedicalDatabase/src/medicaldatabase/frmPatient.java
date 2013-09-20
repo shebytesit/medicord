@@ -280,6 +280,7 @@ public class frmPatient extends javax.swing.JFrame {
             }
 
         );
+        tblAppointments.getTableHeader().setReorderingAllowed(false);
         tblAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblAppointments.setShowVerticalLines(false);
