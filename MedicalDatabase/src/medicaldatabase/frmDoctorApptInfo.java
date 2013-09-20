@@ -4,6 +4,7 @@
  */
 package medicaldatabase;
 
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -97,6 +98,11 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
 
         txtNotes.setColumns(20);
         txtNotes.setRows(5);
+        txtNotes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNotesKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtNotes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,6 +177,18 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtNotesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNotesKeyTyped
+        // TODO add your handling code here:
+        if(txtNotes.getText().length()>=99){
+            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
+        //code to execute if backspace is pressed
+            txtNotes.setText(txtNotes.getText().substring(0,99));
+            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+
+            }
+        }
+    }//GEN-LAST:event_txtNotesKeyTyped
 
     /**
      * @param args the command line arguments

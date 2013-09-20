@@ -4,6 +4,7 @@
  */
 package medicaldatabase;
 
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -99,14 +100,29 @@ public class frmPatient extends javax.swing.JFrame {
 
         txaAllergies.setColumns(20);
         txaAllergies.setRows(5);
+        txaAllergies.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txaAllergiesKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txaAllergies);
 
         txaMedicalHistory.setColumns(20);
         txaMedicalHistory.setRows(5);
+        txaMedicalHistory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txaMedicalHistoryKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(txaMedicalHistory);
 
         txaCurrentMedication.setColumns(20);
         txaCurrentMedication.setRows(5);
+        txaCurrentMedication.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txaCurrentMedicationKeyTyped(evt);
+            }
+        });
         jScrollPane4.setViewportView(txaCurrentMedication);
 
         jLabel8.setText("Current Medication:");
@@ -457,6 +473,42 @@ public class frmPatient extends javax.swing.JFrame {
     private void txtEmergencyContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyContactActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmergencyContactActionPerformed
+
+    private void txaCurrentMedicationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaCurrentMedicationKeyTyped
+        // TODO add your handling code here:
+        if(txaCurrentMedication.getText().length()>=99){
+            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
+        //code to execute if backspace is pressed
+            txaCurrentMedication.setText(txaCurrentMedication.getText().substring(0,99));
+            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+
+            }
+        }
+    }//GEN-LAST:event_txaCurrentMedicationKeyTyped
+
+    private void txaAllergiesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaAllergiesKeyTyped
+        // TODO add your handling code here:
+        if(txaAllergies.getText().length()>=99){
+            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
+        //code to execute if backspace is pressed
+            txaAllergies.setText(txaAllergies.getText().substring(0,99));
+            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+
+            }
+        }
+    }//GEN-LAST:event_txaAllergiesKeyTyped
+
+    private void txaMedicalHistoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaMedicalHistoryKeyTyped
+        // TODO add your handling code here:
+        if(txaMedicalHistory.getText().length()>=99){
+            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
+        //code to execute if backspace is pressed
+            txaMedicalHistory.setText(txaMedicalHistory.getText().substring(0,99));
+            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+
+            }
+        }
+    }//GEN-LAST:event_txaMedicalHistoryKeyTyped
 
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 

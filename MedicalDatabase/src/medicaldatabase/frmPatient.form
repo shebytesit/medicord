@@ -230,6 +230,9 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txaAllergiesKeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -245,6 +248,9 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txaMedicalHistoryKeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -260,6 +266,9 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txaCurrentMedicationKeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
