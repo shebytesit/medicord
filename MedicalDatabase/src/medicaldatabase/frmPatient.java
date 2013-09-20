@@ -160,8 +160,6 @@ public class frmPatient extends javax.swing.JFrame {
                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(49, 49, 49)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(310, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -179,7 +177,8 @@ public class frmPatient extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(male)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(female))))
+                                        .addComponent(female))
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel5))
                         .addGap(0, 458, Short.MAX_VALUE))))
         );
@@ -388,23 +387,31 @@ public class frmPatient extends javax.swing.JFrame {
       //  System.out.println(chars[i]);
         }
         int pLen = phone.toString().length();
+        StringBuilder modNum = new StringBuilder();
         switch(pLen){
             case 0:
                 txtEmergencyContact.setText("");
                 break;
             case 7:
-                txtEmergencyContact.setText(phone.toString());
+                modNum.append(phone.substring(0, 3));
+                modNum.append("-");
+                modNum.append(phone.substring(3, 7));
+                txtEmergencyContact.setText(modNum.toString());
                 break;
             case 10: 
-                txtEmergencyContact.setText(phone.toString());
+                modNum.append("(");
+                modNum.append(phone.substring(0, 3));
+                modNum.append(")");
+                modNum.append(phone.substring(3, 6));
+                modNum.append("-");
+                modNum.append(phone.substring(6, 10));
+                txtEmergencyContact.setText(modNum.toString());
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
                 return;
         }
-                
-                
-                
+                    
         //txtEmergencyContact.setText(phone.toString());
              
         if (male.isSelected())

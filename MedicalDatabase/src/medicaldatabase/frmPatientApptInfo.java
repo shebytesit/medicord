@@ -146,7 +146,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             }
         });
 
-        btnCancel.setText("Cancel");
+        btnCancel.setText("Close");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
