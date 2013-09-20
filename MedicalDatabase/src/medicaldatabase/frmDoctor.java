@@ -431,6 +431,10 @@ public class frmDoctor extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        if(tblAppointments.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Select an appointment to view.");
+            return;
+        }
         String apptId = appIds.get(Integer.parseInt(tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0).toString()) - 1);
         if(apptId != null){
             frmDoctorApptInfo apptInfo = new frmDoctorApptInfo(this, userId, apptId);

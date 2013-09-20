@@ -466,7 +466,13 @@ public class frmPatient extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String apptId = (String)tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0);
+        String apptId = null;
+        if(tblAppointments.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Please select an appointment first.");
+            return;
+        }else{
+            apptId = (String)tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0);
+        }
         if(apptId != null){
             frmPatientApptInfo apptInfo = new frmPatientApptInfo(this, id, apptId);
             apptInfo.setVisible(true);
