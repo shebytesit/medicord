@@ -19,6 +19,7 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
      * Creates new form frmDoctorApptInfo
      */
     String aid;
+    String pid;
     public frmDoctorApptInfo(frmDoctor doctor, String uid, String aid) {
         initComponents();
         this.aid = aid;
@@ -36,6 +37,7 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
                 if(rs.getString("notes") != null){
                     txtNotes.setText(rs.getString("notes"));
                 }
+                this.pid = rs.getString("pid");
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -73,6 +75,11 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
         jLabel1.setText("Date:");
 
         btnPatientInfo.setText("Look at info");
+        btnPatientInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientInfoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Patient:");
 
@@ -117,7 +124,7 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -189,6 +196,12 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtNotesKeyTyped
+
+    private void btnPatientInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientInfoActionPerformed
+        // TODO add your handling code here:
+        viewPatient patient = new viewPatient(pid);
+        patient.setVisible(true);
+    }//GEN-LAST:event_btnPatientInfoActionPerformed
 
     /**
      * @param args the command line arguments

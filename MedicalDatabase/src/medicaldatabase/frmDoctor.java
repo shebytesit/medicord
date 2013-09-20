@@ -128,10 +128,6 @@ public class frmDoctor extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         welcomeLabel = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        patientListPanel = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblAppointments = new javax.swing.JTable();
-        btnView = new javax.swing.JButton();
         basicInfoPanel = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
@@ -147,6 +143,10 @@ public class frmDoctor extends javax.swing.JFrame {
         genderLabel = new javax.swing.JLabel();
         maleRadioBtn = new javax.swing.JRadioButton();
         femaleRadioBtn = new javax.swing.JRadioButton();
+        patientListPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAppointments = new javax.swing.JTable();
+        btnView = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         buttonGroup1.add(maleRadioBtn);
@@ -160,56 +160,6 @@ public class frmDoctor extends javax.swing.JFrame {
         });
 
         welcomeLabel.setText("Welcome username!");
-
-        tblAppointments.setRowSelectionAllowed(true);
-        tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "No", "Patient Name", "Date of appointment"
-            }){
-                public boolean isCellEditable(int row, int column) {
-                    //all cells false
-                    return false;
-                }
-
-            }
-
-        );
-        tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane3.setViewportView(tblAppointments);
-
-        btnView.setText("View");
-        btnView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout patientListPanelLayout = new javax.swing.GroupLayout(patientListPanel);
-        patientListPanel.setLayout(patientListPanelLayout);
-        patientListPanelLayout.setHorizontalGroup(
-            patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(patientListPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(btnView)
-                .addContainerGap())
-        );
-        patientListPanelLayout.setVerticalGroup(
-            patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(patientListPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(btnView)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Patient List", patientListPanel);
 
         nameLabel.setText("Name");
 
@@ -324,6 +274,56 @@ public class frmDoctor extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Basic Information", basicInfoPanel);
 
+        tblAppointments.setRowSelectionAllowed(true);
+        tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No", "Patient Name", "Date of appointment"
+            }){
+                public boolean isCellEditable(int row, int column) {
+                    //all cells false
+                    return false;
+                }
+
+            }
+
+        );
+        tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(tblAppointments);
+
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout patientListPanelLayout = new javax.swing.GroupLayout(patientListPanel);
+        patientListPanel.setLayout(patientListPanelLayout);
+        patientListPanelLayout.setHorizontalGroup(
+            patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(patientListPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(btnView)
+                .addContainerGap())
+        );
+        patientListPanelLayout.setVerticalGroup(
+            patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(patientListPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btnView)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Patient List", patientListPanel);
+
         jButton1.setText("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,12 +339,12 @@ public class frmDoctor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(welcomeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -354,9 +354,9 @@ public class frmDoctor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(welcomeLabel)
                     .addComponent(jButton1))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
