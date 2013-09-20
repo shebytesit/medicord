@@ -171,6 +171,11 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         });
 
         btnLookup.setText("Look at info");
+        btnLookup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLookupActionPerformed(evt);
+            }
+        });
 
         notes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,6 +321,12 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_notesKeyTyped
+
+    private void btnLookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLookupActionPerformed
+        // TODO add your handling code here:
+        viewDoctor doctor = new viewDoctor(doctorUids.get(cmbDoctors.getSelectedIndex()));
+        doctor.setVisible(true);
+    }//GEN-LAST:event_btnLookupActionPerformed
 
     /**
      * @param args the command line arguments
