@@ -130,6 +130,9 @@ public class frmPatient extends javax.swing.JFrame {
         jLabel10.setText("Medical History:");
 
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNameKeyTyped(evt);
             }
@@ -464,7 +467,13 @@ public class frmPatient extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String apptId = (String)tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0);
+        String apptId = null;
+        if(tblAppointments.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Please select an appointment first.");
+            return;
+        }else{
+            apptId = (String)tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0);
+        }
         if(apptId != null){
             frmPatientApptInfo apptInfo = new frmPatientApptInfo(this, id, apptId);
             apptInfo.setVisible(true);
@@ -517,6 +526,10 @@ public class frmPatient extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+
+    }//GEN-LAST:event_txtNameKeyPressed
 
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 
