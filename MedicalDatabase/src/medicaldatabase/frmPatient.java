@@ -110,6 +110,12 @@ public class frmPatient extends javax.swing.JFrame {
 
         jLabel10.setText("Medical History:");
 
+        txtEmergencyContact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmergencyContactActionPerformed(evt);
+            }
+        });
+
         jButton4.setText("Save Changes");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,6 +360,7 @@ public class frmPatient extends javax.swing.JFrame {
         int pLen = phone.toString().length();
         switch(pLen){
             case 0:
+                txtEmergencyContact.setText("");
                 break;
             case 7:
                 txtEmergencyContact.setText(phone.toString());
@@ -395,6 +402,10 @@ public class frmPatient extends javax.swing.JFrame {
         frmPatientApptInfo apptInfo = new frmPatientApptInfo(this, id);
         apptInfo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtEmergencyContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyContactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmergencyContactActionPerformed
 
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 

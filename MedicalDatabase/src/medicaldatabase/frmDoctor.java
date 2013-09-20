@@ -81,6 +81,10 @@ public class frmDoctor extends javax.swing.JFrame {
                 {
                     hospitalTextField.setText(rsK.getString("HOSPITAL"));
                 }                
+                if (rsK.getString("DPHONE") != null && rsK.getString("DPHONE").isEmpty()==false)
+                {
+                    phoneTextField.setText(rsK.getString("DPHONE"));
+                }                
             }
             
             //set the appointment tab
@@ -336,7 +340,7 @@ public class frmDoctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
-        // TODO add your handling code here:        
+        // TODO add your handling code here:   
         loginForm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutLabelMouseClicked
@@ -358,15 +362,27 @@ public class frmDoctor extends javax.swing.JFrame {
       //  characters[i]=chars[i];
       //  System.out.println(chars[i]);
         }
+        
         int pLen = phone.toString().length();
+        StringBuilder modNum = new StringBuilder();
         switch(pLen){
             case 0:
+                phoneTextField.setText("");
                 break;
             case 7:
-                phoneTextField.setText(phone.toString());
+                modNum.append(phone.substring(0, 3));
+                modNum.append("-");
+                modNum.append(phone.substring(3, 7));
+                phoneTextField.setText(modNum.toString());
                 break;
             case 10: 
-                phoneTextField.setText(phone.toString());
+                modNum.append("(");
+                modNum.append(phone.substring(0, 3));
+                modNum.append(")");
+                modNum.append(phone.substring(3, 6));
+                modNum.append("-");
+                modNum.append(phone.substring(6, 10));
+                phoneTextField.setText(modNum.toString());
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");

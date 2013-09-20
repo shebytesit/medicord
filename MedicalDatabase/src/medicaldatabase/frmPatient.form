@@ -261,6 +261,9 @@
             <Component class="javax.swing.JTextField" name="txtGender">
             </Component>
             <Component class="javax.swing.JTextField" name="txtEmergencyContact">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmergencyContactActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
