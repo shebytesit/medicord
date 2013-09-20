@@ -18,8 +18,6 @@ public class Driver {
 		//Importdb.createAccount("doctor", "", "");
                // Importdb.createAccount("doctor", "", "");
                // Importdb.createAccount("doctor", "", "");
-//		Importdb.setPatientProfile("p201", "kalena", "dob", "female", "allergies", "currentMedication", "history", "contact");
-		
 		
 		//Importdb.setDoctorProfile("d203", "dasd", "hospital", "specialization", "gender");
 		
