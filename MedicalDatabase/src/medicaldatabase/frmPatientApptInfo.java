@@ -300,12 +300,10 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
     private void txtReasonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReasonKeyTyped
         // TODO add your handling code here:
-        if(txtReason.getText().length()>=99){
-            if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-        //code to execute if backspace is pressed
-            txtReason.setText(txtReason.getText().substring(0,99));
-            JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){ 
+            if(txtReason.getText().length()>99){
+                txtReason.setText(txtReason.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
     }//GEN-LAST:event_txtReasonKeyTyped
