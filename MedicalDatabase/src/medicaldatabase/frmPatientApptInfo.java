@@ -6,6 +6,7 @@ package medicaldatabase;
 
 import java.awt.Dimension;
 import java.sql.*;
+import java.text.DateFormat;
 import java.util.*;
 import javax.swing.*;
 /**
@@ -125,7 +126,6 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cmbDoctors = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
@@ -136,6 +136,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         btnLookup = new javax.swing.JButton();
         notes = new javax.swing.JTextField();
         noteslb = new javax.swing.JLabel();
+        txtDate = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -173,6 +174,8 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
         noteslb.setText("Notes:");
 
+        txtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,16 +186,8 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(notes)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(81, 81, 81)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cmbDoctors, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnSchedule, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,7 +195,15 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(noteslb)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(81, 81, 81)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbDoctors, 0, 90, Short.MAX_VALUE)
+                                    .addComponent(txtDate))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -239,6 +242,26 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
         // TODO add your handling code here:
+        if(txtDate.getText() == null){
+            JOptionPane.showMessageDialog(null, "Please enter a date.");
+            txtDate.requestFocusInWindow();
+            return;
+        }
+        
+        java.util.Date inputDate = null;
+        java.util.Date currTime = new java.util.Date();
+        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+        try{
+            inputDate = df.parse(txtDate.getText());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        if(currTime.after(inputDate)){
+            JOptionPane.showMessageDialog(null, "The date entered is in the past, please enter a valid date in the future.");
+            txtDate.requestFocusInWindow();
+            return;
+        }
         if(cmbDoctors.getSelectedIndex() != -1) {
             Importdb.makeAppointment(doctorUids.get(cmbDoctors.getSelectedIndex()), uid, txtReason.getText(), txtDate.getText());
            
@@ -297,7 +320,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField notes;
     private javax.swing.JLabel noteslb;
-    private javax.swing.JTextField txtDate;
+    private javax.swing.JFormattedTextField txtDate;
     private javax.swing.JTextArea txtReason;
     // End of variables declaration//GEN-END:variables
 }
