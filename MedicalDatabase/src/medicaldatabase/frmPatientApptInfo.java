@@ -282,11 +282,11 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             Importdb.makeAppointment(doctorUids.get(cmbDoctors.getSelectedIndex()), uid, txtReason.getText(), txtDate.getText());
            
             JOptionPane.showMessageDialog(null, "Appointment has been scheduled!");
+            patient.updateApptTable();
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "No doctor is selected.");
-        }
-        patient.updateApptTable();
+        } 
     }//GEN-LAST:event_btnScheduleActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
