@@ -286,12 +286,13 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "No doctor is selected.");
         }
+        patient.updateApptTable();
     }//GEN-LAST:event_btnScheduleActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        patient.updateApptTable();
+        
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void notesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notesActionPerformed
