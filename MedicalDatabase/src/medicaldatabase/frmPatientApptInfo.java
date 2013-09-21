@@ -258,7 +258,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
         // TODO add your handling code here:
-        if(txtDate.getText() == ""){
+        if(txtDate.getText() == ""||txtDate.getText() == null){
             JOptionPane.showMessageDialog(null, "Please enter a date.");
             txtDate.requestFocusInWindow();
             return;
@@ -282,6 +282,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             Importdb.makeAppointment(doctorUids.get(cmbDoctors.getSelectedIndex()), uid, txtReason.getText(), txtDate.getText());
            
             JOptionPane.showMessageDialog(null, "Appointment has been scheduled!");
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "No doctor is selected.");
         }
@@ -290,7 +291,6 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        patient.setVisible(true);
         patient.updateApptTable();
     }//GEN-LAST:event_btnCancelActionPerformed
 

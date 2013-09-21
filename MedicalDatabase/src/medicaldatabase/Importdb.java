@@ -70,13 +70,13 @@ public class Importdb {
 		String id = null;
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
 			String search;
 
-			search = "Select * from account where username= '" + username
-					+ "' and password = '" + password + "'";
-
-			ResultSet rs = stat.executeQuery(search);
+			search = "Select * from account where username=? and password =? ";
+                        PreparedStatement stat = conn.prepareStatement(search);
+                        stat.setString(1, username);
+                        stat.setString(2, password);
+			ResultSet rs = stat.executeQuery();
 
 			while (rs.next()) {
 				id = rs.getString("id");
@@ -119,7 +119,10 @@ public class Importdb {
 				id = "d" + id;
                                 
 			}
-                        ResultSet checkUser = stmtST.executeQuery("select * from account where username = '" + name + "'");
+                       String query = "select * from account where username =?";
+                       PreparedStatement stat = conn.prepareStatement(query);
+                       stat.setString(1, name);
+                       ResultSet checkUser = stat.executeQuery();
                        if(checkUser.next())
                         {
                             System.out.println("ID IS ??????" + checkUser.getString("id"));
@@ -128,31 +131,34 @@ public class Importdb {
                         }      
                        
                         patientTest = "INSERT INTO  ACCOUNT"
-					+ "(id,username,password)" + " VALUES( '" + id + "','"
-					+ name + "','" + password + "')";
-
-                        
-			stmtST.execute(patientTest);
+					+ "(id,username,password)" + " VALUES( ?,?,?)";
+                        stat.close();
+                        stat = conn.prepareStatement(patientTest);
+			stat.setString(1,id);
+                        stat.setString(2,name);
+                        stat.setString(3,password);
+                        stat.executeUpdate();
 			System.out.println(patientTest); 
 
                         
 			if (type.equals("patient")) {
-				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES( '"
-						+ id + "')";
+				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES(?)";
                         System.out.println(patientTest);
 
 			}
 			if (type.equals("doctor")) {
 				patientTest = "INSERT INTO  DOCTOR" + "(did)"
-
-				+ " VALUES( '" + id + "')";
+				+ " VALUES(?)";
+                                
 			System.out.println(patientTest);
 
 			}
-
-			stmtST.execute(patientTest);
-			
-			
+                        stat = conn.prepareStatement(patientTest);
+                        stat.setString(1, id);
+			stat.executeUpdate();
+			stat.close();
+                        stmtST.close();
+                        conn.close();
 			
 			return id;
 			
@@ -172,16 +178,21 @@ public class Importdb {
 
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
+			
 			String profile;
 
-			profile = "update PATIENT set name = '" + name + "' , dob = '"
-					+ dob + "' , gender = '" + gender + "' , allergies = '"
-					+ allergies + "' , medication = '" + currentMedication
-					+ "' , history = '" + history + "' , econtact = '"
-					+ econtact + "' where pid = '" + pid + "'";
+			profile = "update PATIENT set name = ? , dob = ? , gender = ? , allergies = ? , medication = ? , history = ? where pid = ?";
+                        PreparedStatement stat = conn.prepareStatement(profile);
+                        stat.setString(1, name);
+                        stat.setString(2, dob);
+                        stat.setString(3, gender);
+                        stat.setString(4, allergies);
+                        stat.setString(5, currentMedication);
+                        stat.setString(6, history);
+                        stat.setString(7, pid);
+                        
 			System.out.println(profile);
-			stat.execute(profile);
+			stat.executeUpdate();
 
 			stat.close();
 			conn.close();
@@ -201,16 +212,19 @@ public class Importdb {
 
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
 			String profile;
 
-			profile = "update doctor set name = '" + name + "' , hospital = '"
-					+ hospital + "' , gender = '" + gender
-					+ "' , specialization = '" + specialization
-					+ "' , dPhone = '" + phone_number
-                                        + "' where did = '" + did + "'";
+			profile = "update doctor set name = ? , hospital = ? , gender = ? ,"+
+                                " specialization = ? , dPhone = ? where did = ?";
+                        PreparedStatement stat = conn.prepareStatement(profile);
+                        stat.setString(1, name);
+                        stat.setString(2, hospital);
+                        stat.setString(3, gender);
+                        stat.setString(4, specialization);
+                        stat.setString(5, phone_number);
+                        stat.setString(6, did);
 			System.out.println(profile);
-			stat.execute(profile);
+			stat.executeUpdate();
 
 			stat.close();
 			conn.close();
@@ -230,9 +244,9 @@ public class Importdb {
 		String aid = null;
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
+			PreparedStatement stat = conn.prepareStatement("select count(*) from APPOINTMENT");
  
-			ResultSet rs = stat.executeQuery("select count(*) from APPOINTMENT"); 
+			ResultSet rs = stat.executeQuery(); 
 	
 
 			while (rs.next()) {
@@ -240,11 +254,18 @@ public class Importdb {
 			}
 			
 			String apt;
-
-			apt = "INSERT INTO  APPOINTMENT(aid, did, pid, dates, reason)  VALUES( '" + aid + "','" + did + "' ,'" + pid  + "', '" +  date + "','" + reason+ "')";
+                        
+			apt = "INSERT INTO  APPOINTMENT(aid, did, pid, dates, reason)  VALUES( ?,? ,?, ?,?)";
 
 			System.out.println(apt);
-			stat.execute(apt);
+			stat = conn.prepareStatement(apt);
+                        stat.setString(1, aid);
+                        stat.setString(2, did);
+                        stat.setString(3, pid);
+                        stat.setString(4, date);
+                        stat.setString(5, reason);
+			System.out.println(apt);
+			stat.executeUpdate();
 
 			stat.close();
 			conn.close();
@@ -275,7 +296,7 @@ public class Importdb {
 			if (id.substring(0, 1).equals("d")) {
 				search = "select * from DOCTOR where did = '" + id + "'";
 			}
-
+                        
 			System.out.println(search);
 			rs = stat.executeQuery(search);
 
