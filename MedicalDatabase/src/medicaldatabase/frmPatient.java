@@ -376,6 +376,7 @@ public class frmPatient extends javax.swing.JFrame {
                 txaAllergies.setText(r.getString("allergies"));
                 txaCurrentMedication.setText(r.getString("medication"));
                 txaMedicalHistory.setText(r.getString("history"));
+                r.close();
                 int count = 0;
                 r=Importdb.viewAppointments(id);
                 DefaultTableModel model = (DefaultTableModel) tblAppointments.getModel();
@@ -384,10 +385,10 @@ public class frmPatient extends javax.swing.JFrame {
                         doctorNames.add(Importdb.getName(r.getString("did")));
                         apptIds.add(r.getString("aid"));
                         apptDates.add(r.getString("dates"));
-                        model.addRow(new Object[]{apptIds.get(count),doctorNames.get(count) ,apptDates.get(count)});
+                        model.addRow(new Object[]{count+1,doctorNames.get(count) ,apptDates.get(count)});
                         count++;
                     }
-                }
+                    r.close();                }
             }
             else{
                 JOptionPane.showMessageDialog(this, "Database error");
@@ -472,7 +473,7 @@ public class frmPatient extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select an appointment first.");
             return;
         }else{
-            apptId = (String)tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0);
+            apptId = apptIds.get(Integer.parseInt(tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0).toString())-1);
         }
         if(apptId != null){
             frmPatientApptInfo apptInfo = new frmPatientApptInfo(this, id, apptId);
@@ -542,10 +543,18 @@ public class frmPatient extends javax.swing.JFrame {
         try{
             ResultSet r=Importdb.viewAppointments(id);
             if(r!=null){
+                int rowNum = 1;
+                apptIds.clear();
+                apptDates.clear();
+                doctorNames.clear();
                 while(r.next()){
-                    model.addRow(new Object[]{r.getString("aid"),Importdb.getName(r.getString("did")) ,r.getString("dates")});
-                    System.out.println("DATA IN MAKEAAPOINTMENT" + Importdb.getName(r.getString("did")));
+                    apptIds.add(r.getString("aid"));
+                    apptDates.add(r.getString("dates"));
+                    doctorNames.add(Importdb.getName(r.getString("did")));
+                    model.addRow(new Object[]{rowNum,doctorNames.get(rowNum-1) ,apptDates.get(rowNum-1)});
+                    rowNum++;
                 }
+                r.close();
             }
         }catch(SQLException e){
             e.printStackTrace();

@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 public class Importdb {
-
+        private static Connection con;
 	Importdb() {
 		
 	}
@@ -38,7 +38,7 @@ public class Importdb {
                 System.out.println("Tables created!");
 
                 stat.close();
-                conn.close();
+                
         } catch (SQLException ex) {
                 while (ex != null) {
                         ex.printStackTrace();
@@ -50,19 +50,22 @@ public class Importdb {
     }
 
 	public static Connection getConnection() throws SQLException, IOException {
-		Properties props = new Properties();
-		FileInputStream in = new FileInputStream("jdbc.properties");
-		props.load(in);
-		in.close();
+                if(con==null){
+                    Properties props = new Properties();
+                    FileInputStream in = new FileInputStream("jdbc.properties");
+                    props.load(in);
+                    in.close();
 
-		String drivers = props.getProperty("connection.driver_class");
-		if (drivers != null)
-			System.setProperty("jdbc.drivers", drivers);
-		String url = "jdbc:oracle:thin:@claros.cs.purdue.edu:1524:strep";
-		String username = "cs408t1";
-		String password = "r4adf4sdff";
-		Connection conn = DriverManager.getConnection(url, username, password);
-		return conn;
+                    String drivers = props.getProperty("connection.driver_class");
+                    if (drivers != null)
+                            System.setProperty("jdbc.drivers", drivers);
+                    String url = "jdbc:oracle:thin:@claros.cs.purdue.edu:1524:strep";
+                    String username = "cs408t1";
+                    String password = "r4adf4sdff";
+                    Connection conn = DriverManager.getConnection(url, username, password);
+                    con=conn;
+                }
+		return con;
 
 	}
 
@@ -84,7 +87,7 @@ public class Importdb {
 			}
 
 			stat.close();
-			conn.close();
+			
 
 		} catch (SQLException ex) {
 			while (ex != null) {
@@ -158,12 +161,12 @@ public class Importdb {
 			stat.executeUpdate();
 			stat.close();
                         stmtST.close();
-                        conn.close();
+                        
 			
 			return id;
 			
 			//stmtST.close();
-			//conn.close();
+			//
 		} catch (SQLException sqle) {
 			System.out.println("SQLException : " + sqle);
 		} catch (IOException e) {
@@ -195,7 +198,7 @@ public class Importdb {
 			stat.executeUpdate();
 
 			stat.close();
-			conn.close();
+			
 
 		} catch (SQLException ex) {
 			while (ex != null) {
@@ -227,7 +230,7 @@ public class Importdb {
 			stat.executeUpdate();
 
 			stat.close();
-			conn.close();
+			
 
 		} catch (SQLException ex) {
 			while (ex != null) {
@@ -268,7 +271,7 @@ public class Importdb {
 			stat.executeUpdate();
 
 			stat.close();
-			conn.close();
+			
 
 		} catch (SQLException ex) {
 			while (ex != null) {
@@ -285,21 +288,22 @@ public class Importdb {
 		ResultSet rs = null;
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
+			
 			String search = null;
 			System.out.println("pid is " + id);
 
 			if (id.substring(0, 1).equals("p")) {
-				search = "select * from PATIENT where pid = '" + id + "'";
+				search = "select * from PATIENT where pid = ?";
 
 			}
 			if (id.substring(0, 1).equals("d")) {
-				search = "select * from DOCTOR where did = '" + id + "'";
+				search = "select * from DOCTOR where did = ?";
 			}
-                        
+                        PreparedStatement stat = conn.prepareStatement(search);
+                        stat.setString(1, id);
 			System.out.println(search);
-			rs = stat.executeQuery(search);
-
+			rs = stat.executeQuery();
+                        
 			return rs;
 
 		} catch (SQLException ex) {
@@ -372,20 +376,23 @@ public class Importdb {
 		ResultSet rs = null;
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
+			
 			String search = null;
 
 			if(id.substring(0,1).equals("d"))
-			search = "select name from doctor where did ='" + id + "'";
+			search = "select name from doctor where did =?";
 
 			if(id.substring(0,1).equals("p"))
-			search = "select name from patient where pid ='" + id + "'";
-			
-			rs = stat.executeQuery(search);
+			search = "select name from patient where pid =?";
+                        PreparedStatement stat = conn.prepareStatement(search);
+                        stat.setString(1, id);
+			rs = stat.executeQuery();
                         
                         while(rs.next())
                         {
-                        return rs.getString(1);
+                            String ret = rs.getString(1);
+                            stat.close();
+                            return ret;
                         }
             	} catch (SQLException ex) {
 			while (ex != null) {
@@ -403,12 +410,13 @@ public class Importdb {
 		ResultSet rs = null;
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
+			
 			String search = null;
 
-			search = "select * from appointment where aid = '" + id + "'";
-			
-			rs = stat.executeQuery(search);
+			search = "select * from appointment where aid = ?";
+			PreparedStatement stat = conn.prepareStatement(search);
+                        stat.setString(1, id);
+			rs = stat.executeQuery();
 
 			return rs;
 
@@ -426,12 +434,15 @@ public class Importdb {
         public static void saveNotes(String id, String notes) {
 		try {
 			Connection conn = getConnection();
-			Statement stat = conn.createStatement();
+			
 			String update = null;
 
-			update = "update appointment set notes = '" + notes + "' where aid = '" + id + "'";
-			
-			stat.execute(update);
+			update = "update appointment set notes = ? where aid = ?";
+			PreparedStatement stat = conn.prepareStatement(update);
+                        stat.setString(1, notes);
+                        stat.setString(2,id);
+			stat.executeUpdate();
+                        stat.close();
 
 		} catch (SQLException ex) {
 			while (ex != null) {
