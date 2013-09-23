@@ -1,24 +1,66 @@
 To get the repository for the first time (clone it from the web to local...)
+	
 	git clone git@github.com:galarnyk/cs408.git
 
 To check status of your LOCAL repository:
+	
 	git status
 
 ALWAYS PULL before you COMMIT or PUSH
 
 If your git status shows an "untracked" file:
+	
 	git add file
 
 Then git status will show "new file" which means it was added
 
 To pull the latest project from GITHUB:
+	
 	git pull
 
 To commit your changes (such as after an add, and after checking that you have the latest version with git pull):
+	
 	git commit
 
 THEN PUSH YOUR CHANGE TO GITHUB:
+	
 	git push
+	
+_____________________________	
+
+NEW! (added on 9/23/2013 by galarnyk)
+
+To switch to Blackbox branch on terminal::
+
+	First allow git to track new branch 
+		
+		git checkout Blackbox
+	
+	To view branches (* signifies current branch you're on)
+		
+		git branch
+
+	To switch back to the master branch (the one we're not breaking)
+		
+		git checkout master
+		
+	
+	EXAMPLE:
+
+		kgalarny@pod5-3.cs.purdue.edu:~/cs408 
+		:) 514:14 git checkout Blackbox
+		Branch Blackbox set up to track remote branch Blackbox from origin.
+		Switched to a new branch 'Blackbox'
+		
+		kgalarny@pod5-3.cs.purdue.edu:~/cs408 
+		:) 515:15 git branch
+		* Blackbox
+		  master
+		
+		kgalarny@pod5-3.cs.purdue.edu:~/cs408 
+		:) 516:16 git checkout master
+		Switched to branch 'master'
+
 
 
 
