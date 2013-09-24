@@ -184,7 +184,7 @@ public class Importdb {
 			
 			String profile;
 
-			profile = "update PATIENT set name = ? , dob = ? , gender = ? , allergies = ? , medication = ? , history = ? where pid = ?";
+			profile = "update PATIENT set name = ? , dob = ? , gender = ? , allergies = ? , medication = ? , history = ?, econtact = ? where pid = ?";
                         PreparedStatement stat = conn.prepareStatement(profile);
                         stat.setString(1, name);
                         stat.setString(2, dob);
@@ -192,7 +192,8 @@ public class Importdb {
                         stat.setString(4, allergies);
                         stat.setString(5, currentMedication);
                         stat.setString(6, history);
-                        stat.setString(7, pid);
+                        stat.setString(7, econtact);
+                        stat.setString(8, pid);
                         
 			System.out.println(profile);
 			stat.executeUpdate();
