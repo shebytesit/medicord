@@ -270,10 +270,8 @@ public class Importdb {
                         stat.setString(5, reason);
 			System.out.println(apt);
 			stat.executeUpdate();
-
 			stat.close();
-			
-
+		
 		} catch (SQLException ex) {
 			while (ex != null) {
 				ex.printStackTrace();

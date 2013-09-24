@@ -57,6 +57,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "No doctors found in database.");
         }
+        this.pack();
     }
     
     public frmPatientApptInfo(frmPatient patient, String uid, String aid){
