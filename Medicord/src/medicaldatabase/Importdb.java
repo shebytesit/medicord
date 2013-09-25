@@ -257,10 +257,11 @@ public class Importdb {
 				aid = Integer.toString(rs.getInt(1));
 			}
 			
+                        aid = Long.toString(UUID.randomUUID().getMostSignificantBits());
 			String apt;
                         
 			apt = "INSERT INTO  APPOINTMENT(aid, did, pid, dates, reason)  VALUES( ?,? ,?, ?,?)";
-
+                           
 			System.out.println(apt);
 			stat = conn.prepareStatement(apt);
                         stat.setString(1, aid);
@@ -270,10 +271,8 @@ public class Importdb {
                         stat.setString(5, reason);
 			System.out.println(apt);
 			stat.executeUpdate();
-
 			stat.close();
-			
-
+		
 		} catch (SQLException ex) {
 			while (ex != null) {
 				ex.printStackTrace();
@@ -442,6 +441,28 @@ public class Importdb {
 			PreparedStatement stat = conn.prepareStatement(update);
                         stat.setString(1, notes);
                         stat.setString(2,id);
+			stat.executeUpdate();
+                        stat.close();
+
+		} catch (SQLException ex) {
+			while (ex != null) {
+				ex.printStackTrace();
+				ex = ex.getNextException();
+			}
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+        }
+        
+                public static void deleteAppointment(String id) {
+		try {
+			Connection conn = getConnection();
+			
+			String update = null;
+
+			update = "delete from appointment where aid = ?";
+			PreparedStatement stat = conn.prepareStatement(update);
+                        stat.setString(1,id);
 			stat.executeUpdate();
                         stat.close();
 
