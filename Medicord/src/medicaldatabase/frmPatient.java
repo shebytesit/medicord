@@ -30,7 +30,6 @@ public class frmPatient extends javax.swing.JFrame {
         this.login = login;
         this.id=login.getUserId();
         initComponents();
-        login.setVisible(false);
         setVisible(true);
         doctorNames = new ArrayList<String>();
         apptIds = new ArrayList<String>();

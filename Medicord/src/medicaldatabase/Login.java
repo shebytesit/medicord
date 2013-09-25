@@ -34,8 +34,8 @@ public class Login extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         loginBtn = new javax.swing.JButton();
         createAccountBtn = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
         usernameTextField = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medicord");
@@ -78,9 +78,9 @@ public class Login extends javax.swing.JFrame
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usernameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createAccountBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -96,8 +96,8 @@ public class Login extends javax.swing.JFrame
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createAccountBtn)
@@ -110,7 +110,7 @@ public class Login extends javax.swing.JFrame
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        
+        /**
         if (jPasswordField1.getText().isEmpty() && usernameTextField.getText().isEmpty() == true)
         {
             JOptionPane.showMessageDialog(this, "Enter Username and Password");
@@ -126,32 +126,32 @@ public class Login extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Password is empty");
             return;
         }
+        **/
         userId = Importdb.signindb(usernameTextField.getText(), jPasswordField1.getText());
-        if (userId == null || userId.length()<=0)
+     /**   if (userId == null || userId.length()<=0)
         {
             JOptionPane.showMessageDialog(this, "Login or password does not match");
             return;
-        }
+        }**/
         if (userId.charAt(0)=='d')
         {
             frmDoctor frmDoc = new frmDoctor(this);
             frmDoc.setVisible(true);
-            this.setVisible(false);
         }
         else if(userId.charAt(0) == 'p')
         {
             frmPatient frm = new frmPatient(this);
+           
         }
-        else
+ /**       else
         {
             JOptionPane.showMessageDialog(this, "Login or password does not match");
-        }        
+        }        **/
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void createAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountBtnActionPerformed
         // TODO add your handling code here:
         createAccount cAccount = new createAccount(this);
-        this.setVisible(false);
         cAccount.setVisible(true);
     }//GEN-LAST:event_createAccountBtnActionPerformed
 
@@ -194,11 +194,12 @@ public class Login extends javax.swing.JFrame
             }
         });
     }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createAccountBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jPasswordField1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
