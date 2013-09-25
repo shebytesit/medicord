@@ -6,6 +6,7 @@ package medicaldatabase;
 
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +31,8 @@ public class frmDoctor extends javax.swing.JFrame {
         this.loginForm = frm;
         userId = loginForm.getUserId();
         appIds = new ArrayList<String>();
+        appDates = new ArrayList<String>();
+        patientNames = new ArrayList<String>();
         populate(userId);
     }
 
@@ -37,6 +40,8 @@ public class frmDoctor extends javax.swing.JFrame {
     {
         initComponents();
         appIds = new ArrayList<String>();
+        appDates = new ArrayList<String>();
+        patientNames = new ArrayList<String>();
         populate(userId);
     }
     
@@ -144,6 +149,7 @@ public class frmDoctor extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAppointments = new javax.swing.JTable();
         btnView = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         buttonGroup1.add(maleRadioBtn);
@@ -287,26 +293,38 @@ public class frmDoctor extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Remove");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout patientListPanelLayout = new javax.swing.GroupLayout(patientListPanel);
         patientListPanel.setLayout(patientListPanelLayout);
         patientListPanelLayout.setHorizontalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(patientListPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(btnView)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnView)
+                    .addComponent(jButton2))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         patientListPanelLayout.setVerticalGroup(
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(patientListPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(btnView)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(patientListPanelLayout.createSequentialGroup()
+                        .addComponent(btnView)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientListPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Patient List", patientListPanel);
@@ -465,6 +483,49 @@ public class frmDoctor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nameTextFieldKeyTyped
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+          // TODO add your handling code here:
+        if(tblAppointments.getSelectedRow() != -1){
+            //Row is selected
+            Importdb.deleteAppointment(appIds.get(tblAppointments.getSelectedRow()));
+            updateApptTable();
+           JOptionPane.showMessageDialog(null, "Appointment Deleted!");
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select an appointment to delete.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
+    public void updateApptTable() {
+        DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+            model.removeRow(i); 
+        }
+        
+        try{
+            ResultSet r=Importdb.viewAppointments(userId);
+            if(r!=null){
+                int rowNum = 1;
+                appIds.clear();
+                appDates.clear();
+                patientNames.clear();
+                while(r.next()){
+                    appIds.add(r.getString("aid"));
+                    appDates.add(r.getString("dates"));
+                    patientNames.add(Importdb.getName(r.getString("pid")));
+                    model.addRow(new Object[]{rowNum,patientNames.get(rowNum-1) ,appDates.get(rowNum-1)});
+                    rowNum++;
+                }
+                r.close();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -511,6 +572,7 @@ public class frmDoctor extends javax.swing.JFrame {
     private javax.swing.JLabel genderLabel;
     private javax.swing.JTextField hospitalTextField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JRadioButton maleRadioBtn;

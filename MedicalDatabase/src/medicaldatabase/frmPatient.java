@@ -73,6 +73,7 @@ public class frmPatient extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAppointments = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -173,7 +174,7 @@ public class frmPatient extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 33, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel7)
                                 .addGap(138, 138, 138)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -186,7 +187,7 @@ public class frmPatient extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(344, Short.MAX_VALUE))
+                        .addContainerGap(310, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -231,7 +232,7 @@ public class frmPatient extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -265,6 +266,14 @@ public class frmPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton3);
+
+        jButton5.setText("Cancel Appointment");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5);
 
         tblAppointments.setRowSelectionAllowed(true);
         tblAppointments.setAutoCreateRowSorter(true);
@@ -532,6 +541,19 @@ public class frmPatient extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtNameKeyPressed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if(tblAppointments.getSelectedRow() != -1){
+            //Row is selected
+            Importdb.deleteAppointment(apptIds.get(tblAppointments.getSelectedRow()));
+            updateApptTable();
+           JOptionPane.showMessageDialog(null, "Appointment Deleted!");
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select an appointment to delete.");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 
         int rows = model.getRowCount(); 
@@ -604,6 +626,7 @@ public class frmPatient extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
