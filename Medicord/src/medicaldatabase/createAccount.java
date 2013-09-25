@@ -167,7 +167,7 @@ public class createAccount extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
 // TODO add your handling code here:
     //login.setVisible(true);
-    this.dispose();
+   // this.dispose();
     }                                        
 
     private void formPropertyChange(java.beans.PropertyChangeEvent evt) {                                    
