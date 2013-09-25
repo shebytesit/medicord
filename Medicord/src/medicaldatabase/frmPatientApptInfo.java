@@ -158,6 +158,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
         txtReason.setColumns(20);
         txtReason.setRows(5);
+        txtReason.setWrapStyleWord(true);
         txtReason.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtReasonKeyTyped(evt);

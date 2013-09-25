@@ -115,6 +115,7 @@ public class viewPatient extends javax.swing.JFrame {
 
         txaCurrentMedication.setColumns(20);
         txaCurrentMedication.setRows(5);
+        txaCurrentMedication.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txaCurrentMedication);
 
         jLabel8.setText("Current Medication:");
