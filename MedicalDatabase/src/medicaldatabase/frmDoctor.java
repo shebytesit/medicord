@@ -43,7 +43,6 @@ public class frmDoctor extends javax.swing.JFrame {
     private void populate(String userId)
     {
         //setting the basic information tab
-        doctorId.setText(userId);
         try
         {
             ResultSet rsK = Importdb.getUserInfo(userId);
@@ -138,8 +137,6 @@ public class frmDoctor extends javax.swing.JFrame {
         phoneLabel = new javax.swing.JLabel();
         phoneTextField = new javax.swing.JTextField();
         saveInfoButton = new javax.swing.JButton();
-        doctorId = new javax.swing.JLabel();
-        doctorIdLabel = new javax.swing.JLabel();
         genderLabel = new javax.swing.JLabel();
         maleRadioBtn = new javax.swing.JRadioButton();
         femaleRadioBtn = new javax.swing.JRadioButton();
@@ -194,10 +191,6 @@ public class frmDoctor extends javax.swing.JFrame {
             }
         });
 
-        doctorId.setText("value");
-
-        doctorIdLabel.setText("Doctor ID");
-
         genderLabel.setText("Gender");
 
         maleRadioBtn.setSelected(true);
@@ -215,12 +208,10 @@ public class frmDoctor extends javax.swing.JFrame {
                     .addGroup(basicInfoPanelLayout.createSequentialGroup()
                         .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameLabel)
-                            .addComponent(doctorIdLabel)
                             .addComponent(genderLabel))
-                        .addGap(99, 99, 99)
+                        .addGap(110, 110, 110)
                         .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(doctorId)
                             .addGroup(basicInfoPanelLayout.createSequentialGroup()
                                 .addComponent(maleRadioBtn)
                                 .addGap(18, 18, 18)
@@ -237,16 +228,12 @@ public class frmDoctor extends javax.swing.JFrame {
                             .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(saveInfoButton)
                                 .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         basicInfoPanelLayout.setVerticalGroup(
             basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(basicInfoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(doctorId)
-                    .addComponent(doctorIdLabel))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -306,7 +293,7 @@ public class frmDoctor extends javax.swing.JFrame {
             patientListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(patientListPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(btnView)
                 .addContainerGap())
         );
@@ -355,74 +342,12 @@ public class frmDoctor extends javax.swing.JFrame {
                     .addComponent(welcomeLabel)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void saveInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInfoButtonActionPerformed
-        // TODO add your handling code here:
-        
-        StringBuilder phone = new StringBuilder();
-        char[] chars = phoneTextField.getText().toCharArray();
-        //Character [] digits = new Character[10];
-        //int j=0;
-        for(int i=0;i<chars.length;i++){
-            if(Character.isDigit(chars[i])){
-                //digits[j] = chars[i];
-                phone.append(chars[i]);
-                //j++;
-            }
-      //          for (int i = 0; i < chars.length; i++) {
-      //  characters[i]=chars[i];
-      //  System.out.println(chars[i]);
-        }
-        
-        int pLen = phone.toString().length();
-        StringBuilder modNum = new StringBuilder();
-        switch(pLen){
-            case 0:
-                phoneTextField.setText("");
-                break;
-            case 7:
-                modNum.append(phone.substring(0, 3));
-                modNum.append("-");
-                modNum.append(phone.substring(3, 7));
-                phoneTextField.setText(modNum.toString());
-                break;
-            case 10: 
-                modNum.append("(");
-                modNum.append(phone.substring(0, 3));
-                modNum.append(")");
-                modNum.append(phone.substring(3, 6));
-                modNum.append("-");
-                modNum.append(phone.substring(6, 10));
-                phoneTextField.setText(modNum.toString());
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
-                return;
-        }
-        
-        if (maleRadioBtn.isSelected())
-        {
-            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "M", phoneTextField.getText());
-        }
-        else
-        {
-            Importdb.setDoctorProfile(doctorId.getText(), nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F", phoneTextField.getText());
-        }
-        
-        if(nameTextField.getText().isEmpty())
-        {
-            welcomeLabel.setText("Welcome, please fill out your information.");
-        }
-        else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
-                 
-        JOptionPane.showMessageDialog(null, "Information has been saved!");
-    }//GEN-LAST:event_saveInfoButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -448,15 +373,77 @@ public class frmDoctor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void nameTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextFieldKeyTyped
+    private void saveInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInfoButtonActionPerformed
         // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
-            if(nameTextField.getText().length()>19){
-                nameTextField.setText(nameTextField.getText().substring(0,19));
+
+        StringBuilder phone = new StringBuilder();
+        char[] chars = phoneTextField.getText().toCharArray();
+        //Character [] digits = new Character[10];
+        //int j=0;
+        for(int i=0;i<chars.length;i++){
+            if(Character.isDigit(chars[i])){
+                //digits[j] = chars[i];
+                phone.append(chars[i]);
+                //j++;
+            }
+            //          for (int i = 0; i < chars.length; i++) {
+                //  characters[i]=chars[i];
+                //  System.out.println(chars[i]);
+            }
+
+            int pLen = phone.toString().length();
+            StringBuilder modNum = new StringBuilder();
+            switch(pLen){
+                case 0:
+                phoneTextField.setText("");
+                break;
+                case 7:
+                modNum.append(phone.substring(0, 3));
+                modNum.append("-");
+                modNum.append(phone.substring(3, 7));
+                phoneTextField.setText(modNum.toString());
+                break;
+                case 10:
+                modNum.append("(");
+                modNum.append(phone.substring(0, 3));
+                modNum.append(")");
+                modNum.append(phone.substring(3, 6));
+                modNum.append("-");
+                modNum.append(phone.substring(6, 10));
+                phoneTextField.setText(modNum.toString());
+                break;
+                default:
+                JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
+                return;
+            }
+
+            if (maleRadioBtn.isSelected())
+            {
+                Importdb.setDoctorProfile(userId, nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "M", phoneTextField.getText());
+            }
+            else
+            {
+                Importdb.setDoctorProfile(userId, nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F", phoneTextField.getText());
+            }
+
+            if(nameTextField.getText().isEmpty())
+            {
+                welcomeLabel.setText("Welcome, please fill out your information.");
+            }
+            else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
+
+            JOptionPane.showMessageDialog(null, "Information has been saved!");
+    }//GEN-LAST:event_saveInfoButtonActionPerformed
+
+    private void hospitalTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hospitalTextFieldKeyTyped
+        // TODO add your handling code here:
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(hospitalTextField.getText().length()>19){
+                hospitalTextField.setText(hospitalTextField.getText().substring(0,19));
                 JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
-    }//GEN-LAST:event_nameTextFieldKeyTyped
+    }//GEN-LAST:event_hospitalTextFieldKeyTyped
 
     private void specialtiesTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_specialtiesTextFieldKeyTyped
         // TODO add your handling code here:
@@ -468,15 +455,15 @@ public class frmDoctor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_specialtiesTextFieldKeyTyped
 
-    private void hospitalTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hospitalTextFieldKeyTyped
+    private void nameTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextFieldKeyTyped
         // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){ 
-            if(hospitalTextField.getText().length()>19){
-                hospitalTextField.setText(hospitalTextField.getText().substring(0,19));
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(nameTextField.getText().length()>19){
+                nameTextField.setText(nameTextField.getText().substring(0,19));
                 JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
         }
-    }//GEN-LAST:event_hospitalTextFieldKeyTyped
+    }//GEN-LAST:event_nameTextFieldKeyTyped
 
     /**
      * @param args the command line arguments
@@ -520,8 +507,6 @@ public class frmDoctor extends javax.swing.JFrame {
     private javax.swing.JButton btnView;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel companyLabel;
-    private javax.swing.JLabel doctorId;
-    private javax.swing.JLabel doctorIdLabel;
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JLabel genderLabel;
     private javax.swing.JTextField hospitalTextField;
