@@ -74,21 +74,17 @@ public class Importdb {
 		try {
 			Connection conn = getConnection();
 			String search;
-
-			search = "Select * from account where username=? and password =? ";
-                        PreparedStatement stat = conn.prepareStatement(search);
-                        stat.setString(1, username);
-                        stat.setString(2, password);
-			ResultSet rs = stat.executeQuery();
+                        Statement stat = conn.createStatement(); 
+			search = "Select * from account where username like '" + username + "' and password like '" + password +"'";
+                        
+			ResultSet rs = stat.executeQuery(search);
 
 			while (rs.next()) {
 				id = rs.getString("id");
 				return id;
 			}
-
 			stat.close();
-			
-
+		
 		} catch (SQLException ex) {
 			while (ex != null) {
 				ex.printStackTrace();
@@ -105,11 +101,11 @@ public class Importdb {
 		try {
 			// open connection
 			Connection conn = getConnection();
-			Statement stmtST = conn.createStatement();
+			Statement stat = conn.createStatement();
 		
 			String patientTest = null;
 			
-			ResultSet rs = stmtST.executeQuery("select count(*) from ACCOUNT"); 
+			ResultSet rs = stat.executeQuery("select count(*) from ACCOUNT"); 
                           
 			while (rs.next()) {
 				id = Integer.toString(rs.getInt(1));
@@ -120,49 +116,39 @@ public class Importdb {
                         }
                        if (type.equals("doctor")) {
 				id = "d" + id;
-                                
 			}
-                       String query = "select * from account where username =?";
-                       PreparedStatement stat = conn.prepareStatement(query);
-                       stat.setString(1, name);
-                       ResultSet checkUser = stat.executeQuery();
+                       String query = "select * from account where username = '" + name + "'";
+                       ResultSet checkUser = stat.executeQuery(query);
                        if(checkUser.next())
                         {
-                            System.out.println("ID IS ??????" + checkUser.getString("id"));
+                            System.out.println("ID IS " + checkUser.getString("id"));
                             if(checkUser.getString("id") != null)
                             return null;
                         }      
                        
-                        patientTest = "INSERT INTO  ACCOUNT"
-					+ "(id,username,password)" + " VALUES( ?,?,?)";
-                        stat.close();
-                        stat = conn.prepareStatement(patientTest);
-			stat.setString(1,id);
-                        stat.setString(2,name);
-                        stat.setString(3,password);
-                        stat.executeUpdate();
-			System.out.println(patientTest); 
+                        String account = "INSERT INTO  ACCOUNT"
+					+ "(id,username,password)" + " VALUES('" + id + "', '" + name + "','" + password + "' )";
+                       			
+                        System.out.println(account); 
+                        stat.executeQuery(account);
 
                         
 			if (type.equals("patient")) {
-				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES(?)";
+				patientTest = "INSERT INTO  PATIENT" + "(pid)" + " VALUES('" + id + "')";
                         System.out.println(patientTest);
 
 			}
 			if (type.equals("doctor")) {
 				patientTest = "INSERT INTO  DOCTOR" + "(did)"
-				+ " VALUES(?)";
+				+ " VALUES('" + id + "')";
                                 
 			System.out.println(patientTest);
 
 			}
-                        stat = conn.prepareStatement(patientTest);
-                        stat.setString(1, id);
-			stat.executeUpdate();
-			stat.close();
-                        stmtST.close();
+                        stat.executeQuery(patientTest);
                         
-			
+			stat.close();
+                        
 			return id;
 			
 			//stmtST.close();
@@ -181,22 +167,13 @@ public class Importdb {
 
 		try {
 			Connection conn = getConnection();
-			
+			Statement stat = conn.createStatement();
 			String profile;
 
-			profile = "update PATIENT set name = ? , dob = ? , gender = ? , allergies = ? , medication = ? , history = ?, econtact = ? where pid = ?";
-                        PreparedStatement stat = conn.prepareStatement(profile);
-                        stat.setString(1, name);
-                        stat.setString(2, dob);
-                        stat.setString(3, gender);
-                        stat.setString(4, allergies);
-                        stat.setString(5, currentMedication);
-                        stat.setString(6, history);
-                        stat.setString(7, econtact);
-                        stat.setString(8, pid);
-                        
+			profile = "update PATIENT set name = '" + name + "', dob = '" + dob + "' , gender = '" + gender + "' , allergies = '" + allergies + "' , medication = '"  + currentMedication + "' , history = '" + history + "' where pid = '" + pid + "'";
+            
 			System.out.println(profile);
-			stat.executeUpdate();
+			stat.executeQuery(profile);
 
 			stat.close();
 			
@@ -218,21 +195,15 @@ public class Importdb {
 			Connection conn = getConnection();
 			String profile;
 
-			profile = "update doctor set name = ? , hospital = ? , gender = ? ,"+
-                                " specialization = ? , dPhone = ? where did = ?";
-                        PreparedStatement stat = conn.prepareStatement(profile);
-                        stat.setString(1, name);
-                        stat.setString(2, hospital);
-                        stat.setString(3, gender);
-                        stat.setString(4, specialization);
-                        stat.setString(5, phone_number);
-                        stat.setString(6, did);
+			Statement stat = conn.createStatement();
+                        
+			profile = "update doctor set name = '" + name + "', hospital = '" + hospital + "' , gender = '" + gender + "' ,"+
+                                " specialization = '" + specialization + "' , dPhone = '" + phone_number + "' where did = '" + did + "'";
+                        
 			System.out.println(profile);
-			stat.executeUpdate();
-
+			stat.executeQuery(profile);
 			stat.close();
-			
-
+		
 		} catch (SQLException ex) {
 			while (ex != null) {
 				ex.printStackTrace();
@@ -248,29 +219,15 @@ public class Importdb {
 		String aid = null;
 		try {
 			Connection conn = getConnection();
-			PreparedStatement stat = conn.prepareStatement("select count(*) from APPOINTMENT");
- 
-			ResultSet rs = stat.executeQuery(); 
-	
-
-			while (rs.next()) {
-				aid = Integer.toString(rs.getInt(1));
-			}
-			
+			Statement stat = conn.createStatement();
+                        
                         aid = Long.toString(UUID.randomUUID().getMostSignificantBits());
 			String apt;
                         
-			apt = "INSERT INTO  APPOINTMENT(aid, did, pid, dates, reason)  VALUES( ?,? ,?, ?,?)";
-                           
+			apt = "INSERT INTO  APPOINTMENT(aid, did, pid, dates, reason)  VALUES( '" + aid + "','" + did + "','" + pid + "','" + date + "','" +reason + "')";
+                            
 			System.out.println(apt);
-			stat = conn.prepareStatement(apt);
-                        stat.setString(1, aid);
-                        stat.setString(2, did);
-                        stat.setString(3, pid);
-                        stat.setString(4, date);
-                        stat.setString(5, reason);
-			System.out.println(apt);
-			stat.executeUpdate();
+			stat.executeQuery(apt);
 			stat.close();
 		
 		} catch (SQLException ex) {
@@ -288,21 +245,19 @@ public class Importdb {
 		ResultSet rs = null;
 		try {
 			Connection conn = getConnection();
-			
+                        Statement stat = conn.createStatement();
 			String search = null;
 			System.out.println("pid is " + id);
 
 			if (id.substring(0, 1).equals("p")) {
-				search = "select * from PATIENT where pid = ?";
+				search = "select * from PATIENT where pid = '" + id + "'";
 
 			}
 			if (id.substring(0, 1).equals("d")) {
-				search = "select * from DOCTOR where did = ?";
+				search = "select * from DOCTOR where did = '" + id +"'";
 			}
-                        PreparedStatement stat = conn.prepareStatement(search);
-                        stat.setString(1, id);
 			System.out.println(search);
-			rs = stat.executeQuery();
+			rs = stat.executeQuery(search);
                         
 			return rs;
 
@@ -438,11 +393,9 @@ public class Importdb {
 			
 			String update = null;
 
-			update = "update appointment set notes = ? where aid = ?";
-			PreparedStatement stat = conn.prepareStatement(update);
-                        stat.setString(1, notes);
-                        stat.setString(2,id);
-			stat.executeUpdate();
+			update = "update appointment set notes = '" + notes +"' where aid = '" + id + "'";
+			Statement stat = conn.createStatement();
+			stat.executeQuery(update);
                         stat.close();
 
 		} catch (SQLException ex) {
