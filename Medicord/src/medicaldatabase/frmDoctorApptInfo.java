@@ -64,11 +64,10 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReason = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtNotes = new javax.swing.JTextArea();
         txtPatient = new javax.swing.JTextField();
+        txtNotes = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medicord");
         setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
 
@@ -108,15 +107,6 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
 
         jLabel4.setText("Notes:");
 
-        txtNotes.setColumns(20);
-        txtNotes.setRows(5);
-        txtNotes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNotesKeyTyped(evt);
-            }
-        });
-        jScrollPane2.setViewportView(txtNotes);
-
         txtPatient.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,7 +135,7 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                                     .addComponent(txtPatient)))
-                            .addComponent(jScrollPane2))
+                            .addComponent(txtNotes))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -176,13 +166,13 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNotes))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -199,16 +189,6 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void txtNotesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNotesKeyTyped
-        // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-            if(txtNotes.getText().length()>99){
-                txtNotes.setText(txtNotes.getText().substring(0,99));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_txtNotesKeyTyped
 
     private void btnPatientInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientInfoActionPerformed
         // TODO add your handling code here:
@@ -254,9 +234,8 @@ public class frmDoctorApptInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtDate;
-    private javax.swing.JTextArea txtNotes;
+    private javax.swing.JTextField txtNotes;
     private javax.swing.JTextField txtPatient;
     private javax.swing.JTextArea txtReason;
     // End of variables declaration//GEN-END:variables
