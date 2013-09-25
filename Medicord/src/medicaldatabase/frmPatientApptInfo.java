@@ -40,13 +40,13 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
                 while(rs.next()){
                     doctorName = rs.getString("name");
                     doctorUid = rs.getString("did");
-                    if(doctorName != null && doctorUid != null){
+                    //if(doctorName != null && doctorUid != null){
                         doctorNames.add(doctorName);
                         doctorUids.add(doctorUid);
-                    }else{
-                        System.out.println("Either a doctor name or uid was null with did: " + doctorUid
-                                   + " or name: " + doctorName + ".");
-                    }
+                    //}else{
+                      //  System.out.println("Either a doctor name or uid was null with did: " + doctorUid
+                         //          + " or name: " + doctorName + ".");
+                    //}
                 }
                 for(int i = 0; i < doctorNames.size(); i++){
                     cmbDoctors.addItem(doctorNames.get(i));
@@ -57,7 +57,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "No doctors found in database.");
         }
-        this.pack();
+        //this.pack();
     }
     
     public frmPatientApptInfo(frmPatient patient, String uid, String aid){
@@ -140,7 +140,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
         noteslb = new javax.swing.JLabel();
         txtDate = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medicord");
         setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
 
@@ -255,7 +255,7 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
                 .addComponent(noteslb, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(btnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,13 +271,13 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
         // TODO add your handling code here:
-        if(txtDate.getText() == ""||txtDate.getText() == null){
+        /*if(txtDate.getText().equals("")||txtDate.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Please enter a date.");
             txtDate.requestFocusInWindow();
             return;
-        }
+        }*/
         
-        java.util.Date inputDate = null;
+        /*java.util.Date inputDate = null;
         java.util.Date currTime = new java.util.Date();
         DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
         try{
@@ -290,22 +290,22 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The date entered is in the past, please enter a valid date in the future.");
             txtDate.requestFocusInWindow();
             return;
-        }
-        if(cmbDoctors.getSelectedIndex() != -1) {
+        }*/
+        /*if(cmbDoctors.getSelectedIndex() != -1) {
             Importdb.makeAppointment(doctorUids.get(cmbDoctors.getSelectedIndex()), uid, txtReason.getText(), txtDate.getText());
-           
             JOptionPane.showMessageDialog(null, "Appointment has been scheduled!");
-            patient.updateApptTable();
-            this.dispose();
+            //patient.updateApptTable();
+            //this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "No doctor is selected.");
-        } 
+        } */
     }//GEN-LAST:event_btnScheduleActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        
+        patient.setVisible(true);
+        patient.updateApptTable();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void notesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notesActionPerformed
@@ -314,24 +314,24 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
     private void txtReasonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReasonKeyTyped
         // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){ 
+        /*if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){ 
             if(txtReason.getText().length()>99){
                 txtReason.setText(txtReason.getText().substring(0,99));
                 JOptionPane.showMessageDialog(this, "Character Limit exceeded");
             }
-        }
+        }*/
     }//GEN-LAST:event_txtReasonKeyTyped
 
     private void notesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_notesKeyTyped
         // TODO add your handling code here:
-        if(notes.getText().length()>=99){
+        /*if(notes.getText().length()>=99){
             if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){  
         //code to execute if backspace is pressed
             notes.setText(notes.getText().substring(0,99));
             JOptionPane.showMessageDialog(this, "Character Limit exceeded");
 
             }
-        }
+        }*/ 
     }//GEN-LAST:event_notesKeyTyped
 
     private void btnLookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLookupActionPerformed
