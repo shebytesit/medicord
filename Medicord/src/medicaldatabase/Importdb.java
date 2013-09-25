@@ -283,7 +283,8 @@ public class Importdb {
 			search = "select * from appointment where pid = '" + id + "'";
 
 			if(id.substring(0,1).equals("d"))
-			search = "select * from appointment where did = '" + id + "'";
+			//search = "select * from appointment where did = '" + id + "'";
+                            search = "select * from appointment";
 			
 			rs = stat.executeQuery(search);
 
