@@ -105,17 +105,14 @@ public class viewPatient extends javax.swing.JFrame {
 
         jLabel7.setText("Allergies:");
 
-        txaAllergies.setEditable(false);
         txaAllergies.setColumns(20);
         txaAllergies.setRows(5);
         jScrollPane1.setViewportView(txaAllergies);
 
-        txaMedicalHistory.setEditable(false);
         txaMedicalHistory.setColumns(20);
         txaMedicalHistory.setRows(5);
         jScrollPane2.setViewportView(txaMedicalHistory);
 
-        txaCurrentMedication.setEditable(false);
         txaCurrentMedication.setColumns(20);
         txaCurrentMedication.setRows(5);
         jScrollPane4.setViewportView(txaCurrentMedication);
@@ -124,9 +121,6 @@ public class viewPatient extends javax.swing.JFrame {
 
         jLabel10.setText("Medical History:");
 
-        txtName.setEditable(false);
-
-        txtEmergencyContact.setEditable(false);
         txtEmergencyContact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmergencyContactActionPerformed(evt);
@@ -140,8 +134,12 @@ public class viewPatient extends javax.swing.JFrame {
             }
         });
 
-        txtDob.setEditable(false);
         txtDob.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtDob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDobActionPerformed(evt);
+            }
+        });
 
         female.setText("Female");
         female.setEnabled(false);
@@ -262,6 +260,10 @@ public class viewPatient extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txtDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDobActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDobActionPerformed
 
     /**
      * @param args the command line arguments

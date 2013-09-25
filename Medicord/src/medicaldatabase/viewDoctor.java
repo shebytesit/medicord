@@ -97,19 +97,17 @@ public class viewDoctor extends javax.swing.JFrame {
 
         nameLabel.setText("Name");
 
-        nameTextField.setEditable(false);
+        nameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextFieldActionPerformed(evt);
+            }
+        });
 
         specialtiesLabel.setText("Specialties");
 
-        specialtiesTextField.setEditable(false);
-
         companyLabel.setText("Hospital");
 
-        hospitalTextField.setEditable(false);
-
         phoneLabel.setText("Phone");
-
-        phoneTextField.setEditable(false);
 
         btnClose.setText("Close");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -214,6 +212,10 @@ public class viewDoctor extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
