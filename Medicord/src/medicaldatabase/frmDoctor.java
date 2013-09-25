@@ -61,13 +61,14 @@ public class frmDoctor extends javax.swing.JFrame {
                 {
                     nameTextField.setText(rsK.getString("name"));
                 }
-                
+                welcomeLabel.setText("Welcome <default name>, please fill out your information.");
+                /*
                 if(nameTextField.getText().isEmpty())
                 {
                     welcomeLabel.setText("Welcome, please fill out your information.");
                 }
                 else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
-                
+                */
                 String gender;
                 if (rsK.getString("gender") != null && rsK.getString("gender").isEmpty()==false)
                 {
@@ -153,7 +154,7 @@ public class frmDoctor extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         buttonGroup1.add(maleRadioBtn);
-        buttonGroup1.add(femaleRadioBtn);
+        //buttonGroup1.add(femaleRadioBtn);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medicord");
@@ -172,27 +173,9 @@ public class frmDoctor extends javax.swing.JFrame {
 
         nameLabel.setText("Name:");
 
-        nameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nameTextFieldKeyTyped(evt);
-            }
-        });
-
         specialtiesLabel.setText("Specialties:");
 
-        specialtiesTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                specialtiesTextFieldKeyTyped(evt);
-            }
-        });
-
         companyLabel.setText("Hospital:");
-
-        hospitalTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                hospitalTextFieldKeyTyped(evt);
-            }
-        });
 
         phoneLabel.setText("Phone Number:");
 
@@ -231,14 +214,14 @@ public class frmDoctor extends javax.swing.JFrame {
                         .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameLabel)
                             .addComponent(genderLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                         .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(basicInfoPanelLayout.createSequentialGroup()
                                 .addComponent(maleRadioBtn)
                                 .addGap(23, 23, 23)
                                 .addComponent(femaleRadioBtn))
                             .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicInfoPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,10 +367,12 @@ public class frmDoctor extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        /*
         if(tblAppointments.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Select an appointment to view.");
             return;
         }
+        * */
         String apptId = appIds.get(Integer.parseInt(tblAppointments.getValueAt(tblAppointments.getSelectedRow(), 0).toString()) - 1);
         if(apptId != null){
             frmDoctorApptInfo apptInfo = new frmDoctorApptInfo(this, userId, apptId);
@@ -398,12 +383,12 @@ public class frmDoctor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         loginForm.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInfoButtonActionPerformed
         // TODO add your handling code here:
-
+        /*
         StringBuilder phone = new StringBuilder();
         char[] chars = phoneTextField.getText().toCharArray();
         //Character [] digits = new Character[10];
@@ -417,94 +402,65 @@ public class frmDoctor extends javax.swing.JFrame {
             //          for (int i = 0; i < chars.length; i++) {
                 //  characters[i]=chars[i];
                 //  System.out.println(chars[i]);
-            }
+        }
 
-            int pLen = phone.toString().length();
-            StringBuilder modNum = new StringBuilder();
-            switch(pLen){
-                case 0:
-                phoneTextField.setText("");
-                break;
-                case 7:
-                modNum.append(phone.substring(0, 3));
-                modNum.append("-");
-                modNum.append(phone.substring(3, 7));
-                phoneTextField.setText(modNum.toString());
-                break;
-                case 10:
-                modNum.append("(");
-                modNum.append(phone.substring(0, 3));
-                modNum.append(")");
-                modNum.append(phone.substring(3, 6));
-                modNum.append("-");
-                modNum.append(phone.substring(6, 10));
-                phoneTextField.setText(modNum.toString());
-                break;
-                default:
-                JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
-                return;
-            }
-
-            if (maleRadioBtn.isSelected())
-            {
-                Importdb.setDoctorProfile(userId, nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "M", phoneTextField.getText());
-            }
-            else
-            {
-                Importdb.setDoctorProfile(userId, nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F", phoneTextField.getText());
-            }
-
-            if(nameTextField.getText().isEmpty())
-            {
-                welcomeLabel.setText("Welcome, please fill out your information.");
-            }
-            else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
-
-            JOptionPane.showMessageDialog(null, "Information has been saved!");
+        int pLen = phone.toString().length();
+        StringBuilder modNum = new StringBuilder();
+        switch(pLen){
+            case 0:
+            phoneTextField.setText("");
+            break;
+            case 7:
+            modNum.append(phone.substring(0, 3));
+            modNum.append("-");
+            modNum.append(phone.substring(3, 7));
+            phoneTextField.setText(modNum.toString());
+            break;
+            case 10:
+            modNum.append("(");
+            modNum.append(phone.substring(0, 3));
+            modNum.append(")");
+            modNum.append(phone.substring(3, 6));
+            modNum.append("-");
+            modNum.append(phone.substring(6, 10));
+            phoneTextField.setText(modNum.toString());
+            break;
+            default:
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
+            return;
+        }
+        * */
+        if (maleRadioBtn.isSelected())
+        {
+            Importdb.setDoctorProfile(userId, nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "M", phoneTextField.getText());
+        }
+        else
+        {
+            Importdb.setDoctorProfile(userId, nameTextField.getText(), hospitalTextField.getText(), specialtiesTextField.getText(), "F", phoneTextField.getText());
+        }
+        welcomeLabel.setText("Welcome <default name>, please fill out your information.");
+        /*
+        if(nameTextField.getText().isEmpty())
+        {
+            welcomeLabel.setText("Welcome, please fill out your information.");
+        }
+        else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
+        * */
+        JOptionPane.showMessageDialog(null, "Information has been saved!");
     }//GEN-LAST:event_saveInfoButtonActionPerformed
-
-    private void hospitalTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hospitalTextFieldKeyTyped
-        // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-            if(hospitalTextField.getText().length()>19){
-                hospitalTextField.setText(hospitalTextField.getText().substring(0,19));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_hospitalTextFieldKeyTyped
-
-    private void specialtiesTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_specialtiesTextFieldKeyTyped
-        // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-            if(specialtiesTextField.getText().length()>19){
-                specialtiesTextField.setText(specialtiesTextField.getText().substring(0,19));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_specialtiesTextFieldKeyTyped
-
-    private void nameTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextFieldKeyTyped
-        // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-            if(nameTextField.getText().length()>19){
-                nameTextField.setText(nameTextField.getText().substring(0,19));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_nameTextFieldKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-          // TODO add your handling code here:
-        if(tblAppointments.getSelectedRow() != -1){
+        //if(tblAppointments.getSelectedRow() != -1){
             //Row is selected
             Importdb.deleteAppointment(appIds.get(tblAppointments.getSelectedRow()));
-            updateApptTable();
-           JOptionPane.showMessageDialog(null, "Appointment Deleted!");
-
+            //updateApptTable();
+            //JOptionPane.showMessageDialog(null, "Appointment Deleted!");
+        /*
         }else{
             JOptionPane.showMessageDialog(null, "Please select an appointment to delete.");
         }
+        * */
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -530,7 +486,7 @@ public class frmDoctor extends javax.swing.JFrame {
                     model.addRow(new Object[]{rowNum,patientNames.get(rowNum-1) ,appDates.get(rowNum-1)});
                     rowNum++;
                 }
-                r.close();
+                //r.close();
             }
         }catch(SQLException e){
             e.printStackTrace();
