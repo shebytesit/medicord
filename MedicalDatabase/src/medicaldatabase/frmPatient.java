@@ -365,7 +365,7 @@ public class frmPatient extends javax.swing.JFrame {
                 
                 txtDob.setText(r.getString("dob"));                
                 
-                txtEmergencyContact.setText(r.getString("gender"));
+                //txtEmergencyContact.setText(r.getString("gender"));
 
                 String gender;
                 if (r.getString("gender") != null && r.getString("gender").isEmpty()==false)
