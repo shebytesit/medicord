@@ -80,6 +80,8 @@ public class frmPatient extends javax.swing.JFrame {
         lblWelcome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Medicord");
+        setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -88,6 +90,8 @@ public class frmPatient extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         jLabel2.setText("Name:");
 
@@ -165,88 +169,87 @@ public class frmPatient extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(84, 84, 84)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(138, 138, 138)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(310, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel7)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(male)))
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 29, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDob, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(male)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(female))
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel5))
-                        .addGap(0, 458, Short.MAX_VALUE))))
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(female)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDob, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(98, 98, 98)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(female)
+                    .addComponent(male)
+                    .addComponent(jLabel4))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(male)
-                            .addComponent(female))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jButton4)
-                .addGap(92, 92, 92))
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                .addComponent(jLabel10)
+                                .addGap(178, 178, 178))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Account Information", jPanel1);
@@ -309,6 +312,7 @@ public class frmPatient extends javax.swing.JFrame {
             }
         });
 
+        lblWelcome.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblWelcome.setText("Welcome");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -316,9 +320,11 @@ public class frmPatient extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -326,12 +332,11 @@ public class frmPatient extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -407,74 +412,6 @@ public class frmPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // save changes button
-        //String phone = new String();
-        StringBuilder phone = new StringBuilder();
-        char[] chars = txtEmergencyContact.getText().toCharArray();
-        //Character [] digits = new Character[10];
-        //int j=0;
-        for(int i=0;i<chars.length;i++){
-            if(Character.isDigit(chars[i])){
-                //digits[j] = chars[i];
-                phone.append(chars[i]);
-                //j++;
-            }
-      //          for (int i = 0; i < chars.length; i++) {
-      //  characters[i]=chars[i];
-      //  System.out.println(chars[i]);
-        }
-        int pLen = phone.toString().length();
-        StringBuilder modNum = new StringBuilder();
-        switch(pLen){
-            case 0:
-                txtEmergencyContact.setText("");
-                break;
-            case 7:
-                modNum.append(phone.substring(0, 3));
-                modNum.append("-");
-                modNum.append(phone.substring(3, 7));
-                txtEmergencyContact.setText(modNum.toString());
-                break;
-            case 10: 
-                modNum.append("(");
-                modNum.append(phone.substring(0, 3));
-                modNum.append(")");
-                modNum.append(phone.substring(3, 6));
-                modNum.append("-");
-                modNum.append(phone.substring(6, 10));
-                txtEmergencyContact.setText(modNum.toString());
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
-                return;
-        }
-                    
-        //txtEmergencyContact.setText(phone.toString());
-             
-        if (male.isSelected())
-        {
-  
-        Importdb.setPatientProfile(id,txtName.getText(),txtDob.getText(),"M",txaAllergies.getText(),
-        
-            txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
-        }
-        else
-        {
-              
-        Importdb.setPatientProfile(id,txtName.getText(),txtDob.getText(),"F",txaAllergies.getText(),
-        
-            txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
-        }
-                if(txtName.getText().isEmpty())
-                {
-                    lblWelcome.setText("Welcome, please fill out your information.");
-                }
-                else lblWelcome.setText("Welcome "+txtName.getText()+"!");
-                
-        JOptionPane.showMessageDialog(this, "Credentials saved!");
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String apptId = null;
@@ -496,51 +433,6 @@ public class frmPatient extends javax.swing.JFrame {
         apptInfo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtEmergencyContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyContactActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmergencyContactActionPerformed
-
-    private void txaCurrentMedicationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaCurrentMedicationKeyTyped
-        // TODO add your handling code here:
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){ 
-            if(txaCurrentMedication.getText().length()>99){
-                txaCurrentMedication.setText(txaCurrentMedication.getText().substring(0,99));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_txaCurrentMedicationKeyTyped
-
-    private void txaAllergiesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaAllergiesKeyTyped
-       if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-           if(txaAllergies.getText().length()>99){
-                txaAllergies.setText(txaAllergies.getText().substring(0,99));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_txaAllergiesKeyTyped
-
-    private void txaMedicalHistoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaMedicalHistoryKeyTyped
-       if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-           if(txaMedicalHistory.getText().length()>99){
-                txaMedicalHistory.setText(txaMedicalHistory.getText().substring(0,99));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_txaMedicalHistoryKeyTyped
-
-    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
-        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-           if(txtName.getText().length()>19){
-                txtName.setText(txtName.getText().substring(0,19));
-                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
-            }
-        }
-    }//GEN-LAST:event_txtNameKeyTyped
-
-    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
-
-    }//GEN-LAST:event_txtNameKeyPressed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         if(tblAppointments.getSelectedRow() != -1){
@@ -553,6 +445,119 @@ public class frmPatient extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select an appointment to delete.");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // save changes button
+        //String phone = new String();
+        StringBuilder phone = new StringBuilder();
+        char[] chars = txtEmergencyContact.getText().toCharArray();
+        //Character [] digits = new Character[10];
+        //int j=0;
+        for(int i=0;i<chars.length;i++){
+            if(Character.isDigit(chars[i])){
+                //digits[j] = chars[i];
+                phone.append(chars[i]);
+                //j++;
+            }
+            //          for (int i = 0; i < chars.length; i++) {
+                //  characters[i]=chars[i];
+                //  System.out.println(chars[i]);
+            }
+            int pLen = phone.toString().length();
+            StringBuilder modNum = new StringBuilder();
+            switch(pLen){
+                case 0:
+                txtEmergencyContact.setText("");
+                break;
+                case 7:
+                modNum.append(phone.substring(0, 3));
+                modNum.append("-");
+                modNum.append(phone.substring(3, 7));
+                txtEmergencyContact.setText(modNum.toString());
+                break;
+                case 10:
+                modNum.append("(");
+                modNum.append(phone.substring(0, 3));
+                modNum.append(")");
+                modNum.append(phone.substring(3, 6));
+                modNum.append("-");
+                modNum.append(phone.substring(6, 10));
+                txtEmergencyContact.setText(modNum.toString());
+                break;
+                default:
+                JOptionPane.showMessageDialog(this, "Please Enter Valid Phone Number!");
+                return;
+            }
+
+            //txtEmergencyContact.setText(phone.toString());
+
+            if (male.isSelected())
+            {
+
+                Importdb.setPatientProfile(id,txtName.getText(),txtDob.getText(),"M",txaAllergies.getText(),
+
+                    txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
+            }
+            else
+            {
+
+                Importdb.setPatientProfile(id,txtName.getText(),txtDob.getText(),"F",txaAllergies.getText(),
+
+                    txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
+            }
+            if(txtName.getText().isEmpty())
+            {
+                lblWelcome.setText("Welcome, please fill out your information.");
+            }
+            else lblWelcome.setText("Welcome "+txtName.getText()+"!");
+
+            JOptionPane.showMessageDialog(this, "Credentials saved!");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txtEmergencyContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyContactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmergencyContactActionPerformed
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(txtName.getText().length()>19){
+                txtName.setText(txtName.getText().substring(0,19));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+            }
+        }
+    }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txaCurrentMedicationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaCurrentMedicationKeyTyped
+        // TODO add your handling code here:
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(txaCurrentMedication.getText().length()>99){
+                txaCurrentMedication.setText(txaCurrentMedication.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+            }
+        }
+    }//GEN-LAST:event_txaCurrentMedicationKeyTyped
+
+    private void txaMedicalHistoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaMedicalHistoryKeyTyped
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(txaMedicalHistory.getText().length()>99){
+                txaMedicalHistory.setText(txaMedicalHistory.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+            }
+        }
+    }//GEN-LAST:event_txaMedicalHistoryKeyTyped
+
+    private void txaAllergiesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaAllergiesKeyTyped
+        if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+            if(txaAllergies.getText().length()>99){
+                txaAllergies.setText(txaAllergies.getText().substring(0,99));
+                JOptionPane.showMessageDialog(this, "Character Limit exceeded");
+            }
+        }
+    }//GEN-LAST:event_txaAllergiesKeyTyped
 
     public void updateApptTable() {
         DefaultTableModel model = (DefaultTableModel)tblAppointments.getModel(); 

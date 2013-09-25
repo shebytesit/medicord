@@ -92,6 +92,8 @@ public class viewDoctor extends javax.swing.JFrame {
         femaleRadioBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Medicord");
+        setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
 
         nameLabel.setText("Name");
 
@@ -136,13 +138,15 @@ public class viewDoctor extends javax.swing.JFrame {
                         .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameLabel)
                             .addComponent(genderLabel))
-                        .addGap(110, 110, 110)
-                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(basicInfoPanelLayout.createSequentialGroup()
+                                .addGap(110, 110, 110)
                                 .addComponent(maleRadioBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(femaleRadioBtn))))
+                                .addComponent(femaleRadioBtn))
+                            .addGroup(basicInfoPanelLayout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(basicInfoPanelLayout.createSequentialGroup()
                         .addGroup(basicInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phoneLabel)
