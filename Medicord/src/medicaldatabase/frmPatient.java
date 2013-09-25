@@ -294,7 +294,7 @@ public class frmPatient extends javax.swing.JFrame {
             }
 
         );
-        tblAppointments.getTableHeader().setReorderingAllowed(false);
+        //tblAppointments.getTableHeader().setReorderingAllowed(false);
         tblAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblAppointments.setShowVerticalLines(false);
@@ -434,15 +434,15 @@ public class frmPatient extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        if(tblAppointments.getSelectedRow() != -1){
+        //if(tblAppointments.getSelectedRow() != -1){
             //Row is selected
             Importdb.deleteAppointment(apptIds.get(tblAppointments.getSelectedRow()));
-            updateApptTable();
-           JOptionPane.showMessageDialog(null, "Appointment Deleted!");
+            //updateApptTable();
+            JOptionPane.showMessageDialog(null, "Appointment Deleted!");
 
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select an appointment to delete.");
-        }
+        //}else{
+          //  JOptionPane.showMessageDialog(null, "Please select an appointment to delete.");
+        //}
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
