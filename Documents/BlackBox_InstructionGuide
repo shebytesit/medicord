@@ -1,7 +1,0 @@
-Instructions:
-
-Run our program on 64 bit JVM. JDK 1.7 or greater is required. 
-Unzip the file. Change your current directory to where the .jar file is located. Make sure jdbc.properties is in the same directory as the .jar file. To run, double click .jar file or run it in the terminal with java -jar <file location/Medicord.jar> and it will launch the program. Create an account and login to proceed to the rest of the functionality. 
-
-Database is already set up. However, if you need to clear it, execute the ClearDb.jar with same instruction as above. Keep theses files in the same directory.
-
