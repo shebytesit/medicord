@@ -158,7 +158,6 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
 
         txtReason.setColumns(20);
         txtReason.setRows(5);
-        txtReason.setWrapStyleWord(true);
         txtReason.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtReasonKeyTyped(evt);
@@ -292,14 +291,14 @@ public class frmPatientApptInfo extends javax.swing.JFrame {
             txtDate.requestFocusInWindow();
             return;
         }*/
-        /*if(cmbDoctors.getSelectedIndex() != -1) {
+        //if(cmbDoctors.getSelectedIndex() != -1) {
             Importdb.makeAppointment(doctorUids.get(cmbDoctors.getSelectedIndex()), uid, txtReason.getText(), txtDate.getText());
             JOptionPane.showMessageDialog(null, "Appointment has been scheduled!");
             //patient.updateApptTable();
             //this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "No doctor is selected.");
-        } */
+        //}else{
+           // JOptionPane.showMessageDialog(null, "No doctor is selected.");
+        //} 
     }//GEN-LAST:event_btnScheduleActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
