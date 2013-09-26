@@ -458,7 +458,7 @@ public class frmDoctor extends javax.swing.JFrame {
         }
         else welcomeLabel.setText("Welcome "+nameTextField.getText()+"!");
         * */
-        JOptionPane.showMessageDialog(null, "Information has been saved!");
+        //JOptionPane.showMessageDialog(null, "Information has been saved!");
     }//GEN-LAST:event_saveInfoButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
