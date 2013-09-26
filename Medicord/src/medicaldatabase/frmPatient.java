@@ -446,7 +446,7 @@ public class frmPatient extends javax.swing.JFrame {
                     txaCurrentMedication.getText(),txaMedicalHistory.getText(),txtEmergencyContact.getText());
             }
 
-            JOptionPane.showMessageDialog(this, "Credentials saved!");
+          //  JOptionPane.showMessageDialog(this, "Credentials saved!");
     }//GEN-LAST:event_bttSaveChangesActionPerformed
 
     private void txtEmergencyContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyContactActionPerformed
