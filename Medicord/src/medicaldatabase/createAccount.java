@@ -51,7 +51,7 @@ public class createAccount extends javax.swing.JFrame {
         //buttonGroup1.add(jRadioButton1);
         //buttonGroup1.add(jRadioButton2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Medicord");
         setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -221,7 +221,7 @@ public class createAccount extends javax.swing.JFrame {
                       JOptionPane.showMessageDialog(this, "Username already exists, please select a new username.");
                 }else{*/
                     //Successful patient account created and sign in
-                   JOptionPane.showMessageDialog(this, "Account successfully created!");
+                   //JOptionPane.showMessageDialog(this, "Account successfully created!");
                     System.out.println("Successfully creating patient account");
                     login.setVisible(true);
                     this.dispose();
@@ -233,7 +233,7 @@ public class createAccount extends javax.swing.JFrame {
                 if(uid == null)
                 {
                       //Error
-                      JOptionPane.showMessageDialog(this, "Database Error, account not created!");
+                     // JOptionPane.showMessageDialog(this, "Database Error, account not created!");
                 }else{
                     //Successful patient account created and sign in
                     System.out.println("Successfully creating doctor account");
