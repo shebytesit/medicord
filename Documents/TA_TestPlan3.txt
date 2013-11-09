@@ -1,0 +1,2 @@
+This file is located in Documents directory of our repository.
+Test Plan 3 is located in Documents directory.
