@@ -28,7 +28,16 @@ public class Programming extends Question implements Serializable {
     public Language getLang() {
         return lang;
     }
-    
+    public String getStrLang(){
+        if(lang==Language.JAVA){
+            return "Java";
+        }
+        else if(lang==Language.C){
+            return "C";
+        }
+        else
+            return "C++";
+    }
     public String getCompilerOutput() {
         return compilerOutput;
     }
@@ -58,7 +67,7 @@ public class Programming extends Question implements Serializable {
      * @return the comments
      */
     public String getComments() {
-        return comments + " " + comments;
+        return comments;
     }
 
     /**

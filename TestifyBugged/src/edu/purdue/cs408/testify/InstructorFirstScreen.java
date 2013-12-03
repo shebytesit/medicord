@@ -92,19 +92,19 @@ public class InstructorFirstScreen extends javax.swing.JFrame {
 
     private void createTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTestButtonActionPerformed
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        InstructorTestify.main(new String[] {"open"});
+        InstructorTestify.main(new String[] {""});
         this.dispose();
     }//GEN-LAST:event_createTestButtonActionPerformed
 
     private void editTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTestButtonActionPerformed
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        GraderTestify.main(new String[] {""});
+        InstructorTestify.main(new String[] {"open"});
         this.dispose();
     }//GEN-LAST:event_editTestButtonActionPerformed
 
     private void gradeTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeTestButtonActionPerformed
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        InstructorTestify.main(new String[] {""});
+        GraderTestify.main(new String[] {""});
         this.dispose();
     }//GEN-LAST:event_gradeTestButtonActionPerformed
 

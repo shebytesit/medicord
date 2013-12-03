@@ -86,11 +86,12 @@ public class GraderTestify extends javax.swing.JFrame {
         commentsTextArea = new javax.swing.JTextArea();
         commentsLabel = new javax.swing.JLabel();
         whichLangLabel = new javax.swing.JLabel();
+        compiles = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         testMenu = new javax.swing.JMenu();
-        autogradeMenuItem = new javax.swing.JMenuItem();
         openKeyMenuItem = new javax.swing.JMenuItem();
         openStudentMenuItem = new javax.swing.JMenuItem();
+        autogradeMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -134,6 +135,7 @@ public class GraderTestify extends javax.swing.JFrame {
         jScrollPane3.setViewportView(choicesList);
 
         prevQButton.setText("Previous");
+        prevQButton.setEnabled(false);
         prevQButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 prevQButtonMouseClicked(evt);
@@ -146,6 +148,7 @@ public class GraderTestify extends javax.swing.JFrame {
         });
 
         nextQButton.setText("Next");
+        nextQButton.setEnabled(false);
         nextQButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nextQButtonMouseClicked(evt);
@@ -192,6 +195,7 @@ public class GraderTestify extends javax.swing.JFrame {
         jLabel1.setText("Student Answer");
 
         summaryButton.setText("Show Summary");
+        summaryButton.setEnabled(false);
         summaryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 summaryButtonActionPerformed(evt);
@@ -202,22 +206,18 @@ public class GraderTestify extends javax.swing.JFrame {
 
         commentsTextArea.setColumns(20);
         commentsTextArea.setRows(5);
+        commentsTextArea.setEnabled(false);
         jScrollPane5.setViewportView(commentsTextArea);
 
         commentsLabel.setText("Comments ");
 
-        whichLangLabel.setText("jLabel3");
-
         testMenu.setMnemonic('t');
         testMenu.setText("Test");
-
-        autogradeMenuItem.setText("Auto-grade Multiple Choice");
-        autogradeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        testMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autogradeMenuItemActionPerformed(evt);
+                testMenuActionPerformed(evt);
             }
         });
-        testMenu.add(autogradeMenuItem);
 
         openKeyMenuItem.setText("Open Key");
         openKeyMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +229,7 @@ public class GraderTestify extends javax.swing.JFrame {
 
         openStudentMenuItem.setMnemonic('o');
         openStudentMenuItem.setText("Open Student Exam");
+        openStudentMenuItem.setEnabled(false);
         openStudentMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openStudentMenuItemActionPerformed(evt);
@@ -236,8 +237,18 @@ public class GraderTestify extends javax.swing.JFrame {
         });
         testMenu.add(openStudentMenuItem);
 
+        autogradeMenuItem.setText("Auto-grade Multiple Choice");
+        autogradeMenuItem.setEnabled(false);
+        autogradeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autogradeMenuItemActionPerformed(evt);
+            }
+        });
+        testMenu.add(autogradeMenuItem);
+
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Save");
+        saveMenuItem.setEnabled(false);
         saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveMenuItemActionPerformed(evt);
@@ -248,6 +259,7 @@ public class GraderTestify extends javax.swing.JFrame {
         saveAsMenuItem.setMnemonic('a');
         saveAsMenuItem.setText("Save As ...");
         saveAsMenuItem.setDisplayedMnemonicIndex(5);
+        saveAsMenuItem.setEnabled(false);
         saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveAsMenuItemActionPerformed(evt);
@@ -282,7 +294,7 @@ public class GraderTestify extends javax.swing.JFrame {
                         .addComponent(typeMarker)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(questionTypeLabel)
-                        .addContainerGap(546, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(commentsLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -295,13 +307,6 @@ public class GraderTestify extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(promptLabel)
-                                    .addComponent(answerLabel))
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane4))
@@ -311,7 +316,7 @@ public class GraderTestify extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(choicesLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(langLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(ptsPossLabel, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -319,11 +324,23 @@ public class GraderTestify extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(pointsEarnedTextField)
-                                        .addComponent(pointsPossTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(whichLangLabel, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addContainerGap())))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(pointsEarnedTextField)
+                                            .addComponent(pointsPossTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(whichLangLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(compiles)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(promptLabel)
+                                .addGap(250, 250, 250)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(answerLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(142, 142, 142))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,11 +353,10 @@ public class GraderTestify extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(promptLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(answerLabel))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(answerLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -369,7 +385,9 @@ public class GraderTestify extends javax.swing.JFrame {
                             .addComponent(langLabel)
                             .addComponent(whichLangLabel))))
                 .addGap(13, 13, 13)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(compiles))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prevQButton)
@@ -381,9 +399,12 @@ public class GraderTestify extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+    }
 
+    
+    
     private void nextQButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextQButtonMouseClicked
     }//GEN-LAST:event_nextQButtonMouseClicked
 
@@ -393,36 +414,58 @@ public class GraderTestify extends javax.swing.JFrame {
     private void openStudentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openStudentMenuItemActionPerformed
         // TODO add your handling code here:
         // bring up file selection dialog
-
-            Test openedTest = null;
-            int result = openFileChooser.showDialog(this, "Open");
-
-            if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
-                testFile = openFileChooser.getSelectedFile();
-                try {
-                    openedTest = Test.open(testFile);
-                    if (openedTest.length() != key.length()) {
-                        JOptionPane.showMessageDialog(null, "Error", "Key and student's exam are not of same length.", JOptionPane.ERROR_MESSAGE);
-                        return;
+            if(key==null){
+                JOptionPane.showMessageDialog(null, "Error key must be loaded before student exam");
+                return;
+            }
+            try{
+                Test openedTest = null;
+                int result = openFileChooser.showDialog(this, "Open");
+                if(result==JFileChooser.CANCEL_OPTION )
+                    return;
+                if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
+                    testFile = openFileChooser.getSelectedFile();
+                    try {
+                        openedTest = Test.open(testFile);
+                        if(openedTest==null){
+                            JOptionPane.showMessageDialog(null,"Error invalid test");
+                        }
+                        if(openedTest.getInstructor()){
+                            JOptionPane.showMessageDialog(null,"Warning this test is labeled as an instructors test, might be a key");
+                        }
+                        if (openedTest.length() != key.length()) {
+                            JOptionPane.showMessageDialog(null, "Error Key and student's exam are not of same length.");
+                            return;
+                        }
+                        this.setTitle("Testify - " + testFile.getName());
+                    } catch (IOException ex) {
+                        Logger.getLogger(GraderTestify.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    this.setTitle("Testify - " + testFile.getName());
-                } catch (IOException ex) {
-                    Logger.getLogger(GraderTestify.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
-               
-            }
-            test = openedTest;
+                test = openedTest;
+                if(!test.isValid()){
+                    JOptionPane.showMessageDialog(null,"This test is not valid, the student might not have followed the rules");
+                }
+                if (test.length() != key.length()) {
+                    JOptionPane.showMessageDialog(null, "Error. Key and Student Exam have a different number of questions.");
+                } // refresh form
+                else if (test.getQuestion(0) != null) {
+                    loadQuestion(test.getQuestion(0));
+                    question = test.getQuestion(0);
+                }
 
-            if (test.length() != key.length()) {
-                JOptionPane.showMessageDialog(null, "Error. Key and Student Exam have a different number of questions.");
-            } // refresh form
-            else if (test.getQuestion(0) != null) {
-                loadQuestion(test.getQuestion(0));
-                question = test.getQuestion(0);
+                //change question selection box
+                reconstructComboBox();
+                autogradeMenuItem.setEnabled(true);
+                saveMenuItem.setEnabled(true);
+                saveAsMenuItem.setEnabled(true);
+                summaryButton.setEnabled(true);
+                promptTextArea.setEnabled(true);
             }
-
-            //change question selection box
-            reconstructComboBox();
+            catch(Exception e){
+                e.printStackTrace();
+            }
     }//GEN-LAST:event_openStudentMenuItemActionPerformed
 
     private void prevQButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevQButtonMouseClicked
@@ -431,26 +474,26 @@ public class GraderTestify extends javax.swing.JFrame {
     private void prevQButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQButtonActionPerformed
         // TODO add your handling code here:
         saveQuestion();
-        if(!(test.length() == 0) && current < test.length()){
-        
-        isNew = false;
-        current++;
-        question = test.getQuestion(current - 1);
-        questionComboBox.setSelectedIndex(current - 1);
-        loadQuestion(question);
+        if(!(test.length() == 0)&& current > 1){
+
+            isNew = false;
+            current--;
+            question = test.getQuestion(current - 1);
+            questionComboBox.setSelectedIndex(current - 1);
+            loadQuestion(question);
         }
     }//GEN-LAST:event_prevQButtonActionPerformed
 
     private void nextQButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQButtonActionPerformed
         // TODO add your handling code here:
          saveQuestion();
-        if(!(test.length() == 0) && current > 1){
+        if(!(test.length() == 0) && current < test.length()){ 
         
-        isNew = false;
-        current--;
-        question = test.getQuestion(current - 1);
-        questionComboBox.setSelectedIndex(current - 1);
-        loadQuestion(question);
+            isNew = false;
+            current++;
+            question = test.getQuestion(current - 1);
+            questionComboBox.setSelectedIndex(current - 1);
+            loadQuestion(question);
         }
     }//GEN-LAST:event_nextQButtonActionPerformed
 
@@ -514,29 +557,43 @@ public class GraderTestify extends javax.swing.JFrame {
         // bring up file selection dialog
         int result = openFileChooser.showDialog(this, "Open");
         File f;
+        if(result==JFileChooser.CANCEL_OPTION )
+            return;
+        try{
+            if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
+                f = openFileChooser.getSelectedFile();
+                try {
+                    key = Test.open(f);
+                    if(key==null){
+                        JOptionPane.showMessageDialog(null,"Error invalid test");
+                    }
+                    if(!key.getInstructor()){
+                        JOptionPane.showMessageDialog(null,"Warning, This test is not labeled as in instructor test, might be a students test");
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(GraderTestify.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-        if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
-            f = openFileChooser.getSelectedFile();
-            try {
-                key = Test.open(f);
-            } catch (IOException ex) {
-                Logger.getLogger(GraderTestify.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        }
 
-        current = 1;
-        // refresh form
-        if (test.getQuestion(0) != null) {
-            loadQuestion(test.getQuestion(0));
-        }
-        if (key.getQuestion(0) != null) {
-            loadKeyAnswer();
-            
-        }
+            current = 1;
+            // refresh form
+            if (test.getQuestion(0) != null) {
+                loadQuestion(test.getQuestion(0));
+            }
+            if (key.getQuestion(0) != null) {
+                loadKeyAnswer();
 
-        //change question selection box
-        reconstructComboBox();
+            }
+
+            //change question selection box
+            reconstructComboBox();
+            openStudentMenuItem.setEnabled(true);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"There was an error loading the test");
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_openKeyMenuItemActionPerformed
 
     private void autogradeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autogradeMenuItemActionPerformed
@@ -551,7 +608,7 @@ public class GraderTestify extends javax.swing.JFrame {
                     }
                 }
             }
-        loadQuestion(question);
+        //loadQuestion(question);
     }//GEN-LAST:event_autogradeMenuItemActionPerformed
 
     private void summaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summaryButtonActionPerformed
@@ -559,6 +616,10 @@ public class GraderTestify extends javax.swing.JFrame {
         SummaryDialog s = new SummaryDialog(this, true, test);
         s.setVisible(true);
     }//GEN-LAST:event_summaryButtonActionPerformed
+
+    private void testMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_testMenuActionPerformed
 
     private void resetQuestionComboBox() {
 
@@ -594,6 +655,7 @@ public class GraderTestify extends javax.swing.JFrame {
         answerTextArea.setEnabled(false);
         pointsEarnedTextField.setEnabled(false);
         pointsPossTextField.setEnabled(false);
+        
     }
 
     /**
@@ -638,6 +700,7 @@ public class GraderTestify extends javax.swing.JFrame {
     private javax.swing.JList choicesList;
     private javax.swing.JLabel commentsLabel;
     private javax.swing.JTextArea commentsTextArea;
+    private javax.swing.JLabel compiles;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -699,14 +762,16 @@ public class GraderTestify extends javax.swing.JFrame {
 
     private void loadKeyAnswer() {
         keyAnswerTextArea.setEnabled(true);
-        if(current > 1)
-        keyAnswerTextArea.setText(test.getQuestion(current - 1).getAnswer());
+        answerTextArea.setText("");
+        if(current > 0)
+            keyAnswerTextArea.setText(key.getQuestion(current - 1).getAnswer());
     }
 
     private void loadStudentAnswer() {
         answerTextArea.setEnabled(true);
-        if(current > 1)
-        answerTextArea.setText(key.getQuestion(current - 1).getAnswer());
+        answerTextArea.setText("");
+        if(current > 0)
+            answerTextArea.setText(test.getQuestion(current - 1).getAnswer());
     }
 
     private void loadQuestion(Question loadQ) {
@@ -738,7 +803,7 @@ public class GraderTestify extends javax.swing.JFrame {
         }
 
         promptTextArea.setText(loadQ.getPrompt());
-        keyAnswerTextArea.setText(loadQ.getAnswer());
+        //keyAnswerTextArea.setText(loadQ.getAnswer());
         pointsEarnedTextField.setText(String.valueOf(loadQ.getPtsEarned()));
         pointsPossTextField.setText(String.valueOf(loadQ.getPtsPossible()));
 
@@ -768,7 +833,7 @@ public class GraderTestify extends javax.swing.JFrame {
 
             questionTypeLabel.setText("Programming");
             commentsTextArea.setText(((Programming)loadQ).getComments());
-            whichLangLabel.setText("C");
+            whichLangLabel.setText(((Programming)loadQ).getStrLang());
             setComponentsEnabled(progComponents, true);
 
         } else {
@@ -778,7 +843,7 @@ public class GraderTestify extends javax.swing.JFrame {
             throw new RuntimeException("Illegal question type");
         }
         
-        this.pointsPossTextField.setText(Integer.toString(key.getQuestion(current-1).getPtsPossible()));
+        this.pointsPossTextField.setText(Integer.toString(loadQ.getPtsPossible()));
     }
 
     private void setComponentsEnabled(JComponent[] components, boolean cond) {
@@ -807,9 +872,6 @@ public class GraderTestify extends javax.swing.JFrame {
         // General operations for all question types
         question.setPtsEarned(Integer.parseInt(pointsEarnedTextField.getText()));
 
-        if (key != null) {
-            key.getQuestion(current - 1).setAnswer(keyAnswerTextArea.getText());
-        }
 //        if (isNew) {
 //            test.add(question);
 //        }
@@ -821,7 +883,10 @@ public class GraderTestify extends javax.swing.JFrame {
             commentsLabel,
             choicesLabel,
             choicesList,
-            langLabel,};
+            langLabel,
+            whichLangLabel,
+            jLabel2
+        };
 
         mcComponents = new JComponent[]{
             choicesLabel,
@@ -836,7 +901,9 @@ public class GraderTestify extends javax.swing.JFrame {
         progComponents = new JComponent[]{
             commentsTextArea,
             commentsLabel,
-            langLabel
+            langLabel,
+            whichLangLabel,
+            jLabel2
         };
     }
 
@@ -846,4 +913,5 @@ public class GraderTestify extends javax.swing.JFrame {
             
         }
     }
+    
 }

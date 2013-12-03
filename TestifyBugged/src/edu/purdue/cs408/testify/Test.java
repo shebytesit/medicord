@@ -35,6 +35,7 @@ public class Test implements Serializable {
     private boolean invalidate_on_focus;
     private boolean enable_compilation;
     private boolean valid;
+    private boolean instructor;
     
     /** Create a new Test.
      * @param date The date on which this test can be taken
@@ -46,7 +47,7 @@ public class Test implements Serializable {
     public Test(Date date, Time startTime, Time endTime, 
             boolean invalidate_on_focus, boolean enable_compilation) {
         questions = new ArrayList<Question>();
-        valid = true;
+        valid = false;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -99,7 +100,12 @@ public class Test implements Serializable {
     public void setDate(Date d) {
         this.date = d;
     }
-    
+    public void setInstructor(boolean i) {
+        this.instructor = i;
+    }
+    public boolean getInstructor() {
+        return instructor;
+    }
     public void setStartTime(Time l) {
         this.startTime = l;
     }
@@ -231,5 +237,7 @@ public class Test implements Serializable {
     public boolean isValid() {
         return valid;
     }
-    
+    public void setValid(boolean b){
+        valid=b;
+    }
 }
