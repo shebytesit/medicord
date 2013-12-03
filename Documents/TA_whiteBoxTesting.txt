@@ -1,0 +1,1 @@
+Testify white box PDF is located in Documents directory in our repository.
