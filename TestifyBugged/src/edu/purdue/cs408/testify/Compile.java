@@ -17,7 +17,7 @@ public class Compile {
     public static ProcessBuilder getProcess (String fileName) {
         
         String OS = System.getProperty("os.name").toLowerCase();
-        return new ProcessBuilder("/bin/bash/", "-c", "make "); 
+        return new ProcessBuilder("/bin/bash", "-c", "make "); 
         
 
     }

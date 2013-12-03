@@ -135,8 +135,9 @@ public class StudentTestify extends javax.swing.JFrame {
                 lastNameTextActionPerformed(evt);
             }
         });
-
-        open.setText("Exit Test");
+        //EDIT MADE
+        //Switched label of open button from exit to open
+        open.setText("Open Test");
         open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openActionPerformed(evt);
@@ -207,7 +208,8 @@ public class StudentTestify extends javax.swing.JFrame {
         AnswerBox.setRows(5);
         AnswerBoxScroll.setViewportView(AnswerBox);
 
-        PointsPossible.setText("Points: 25");
+        //point problem
+        
 
         org.jdesktop.layout.GroupLayout ShortAnswerCardLayout = new org.jdesktop.layout.GroupLayout(ShortAnswerCard);
         ShortAnswerCard.setLayout(ShortAnswerCardLayout);
@@ -257,7 +259,7 @@ public class StudentTestify extends javax.swing.JFrame {
         QuestionBox2.setText("Define Balls.");
         QuestionBoxScroll2.setViewportView(QuestionBox2);
 
-        PointsPossible2.setText("Points: 25");
+        //PointsPossible2.setText("Points: 25");
 
         MultipleChoiceGroup.add(MCAnswer1);
         MCAnswer1.setText("balls 1");
@@ -370,7 +372,7 @@ public class StudentTestify extends javax.swing.JFrame {
         codeBox.setName("CodeInput"); // NOI18N
         AnswerBoxScroll1.setViewportView(codeBox);
 
-        PointsPossible1.setText("Points: 25");
+        //PointsPossible1.setText("Points: 25");
 
         compileBtn.setText("Compile");
         compileBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -430,8 +432,9 @@ public class StudentTestify extends javax.swing.JFrame {
         QuestionCards.add(CodingCard, "Programming");
 
         jLabel2.setText("Thank you for taking the exam. Your exam has been saved.");
-
-        exit.setText("Open Test");
+        //EDIT MADE
+        //Switched label on exit button from open to exit
+        exit.setText("Exit Test");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitActionPerformed(evt);
@@ -503,12 +506,21 @@ public class StudentTestify extends javax.swing.JFrame {
                 .add(PrevNextControlLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(Previous)
                     .add(Next)
+                    
                     .add(QuestionNumber))
                 .addContainerGap())
         );
 
         setJMenuBar(Menu);
-
+        
+        /*edit made 
+         * next and previous are initially disabled 
+         * and enabled in the open button
+         * 
+         * */
+        Next.setEnabled(false);
+    	Previous.setEnabled(false);
+        
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -543,16 +555,18 @@ public class StudentTestify extends javax.swing.JFrame {
         // so many times.
         QuestionBox.setEditable(true);
         if (question.equals("ShortAnswer")) {
+        	/*
             if (questionIndex < questions.size() - 1)
                 QuestionBox.setText(questions.get(questionIndex + 1).getPrompt());
             else
+            */
                 QuestionBox.setText(questions.get(questionIndex).getPrompt());
 
           
         } else if (question.equals("Programming")) {
-            if (questionIndex < questions.size() - 1)
+           /* if (questionIndex < questions.size() - 1)
                 QuestionBox1.setText(questions.get(questionIndex + 1).getPrompt());
-            else
+            else*/
                 QuestionBox1.setText(questions.get(questionIndex).getPrompt());
             
             //QuestionBox1.setText(questions.get(questionIndex + 1).getPrompt());
@@ -562,9 +576,9 @@ public class StudentTestify extends javax.swing.JFrame {
             compilerOutput.setText("");
           
         } else { // Multiple Choice
-            if (questionIndex < questions.size() - 1)
+            /*if (questionIndex < questions.size() - 1)
                 QuestionBox2.setText(questions.get(questionIndex + 1).getPrompt());
-            else
+            else*/
                 QuestionBox2.setText(questions.get(questionIndex).getPrompt());
                         
             //QuestionBox2.setText(questions.get(questionIndex).getPrompt());
@@ -600,20 +614,71 @@ public class StudentTestify extends javax.swing.JFrame {
         card.show(QuestionCards, question);
         QuestionNumber.setText(String.valueOf(questionIndex + 1));
         QuestionNumber.repaint();
+
+        /*
+            EDIT MADE
+            Set QuestionBox.editable to false so that 
+            you can't edit the prompt as a student
+        */
+        QuestionBox.setEditable(false);
+
     }
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
+        /* EDIT MADE
+           added a check to see if the number of questions is zero
+           this prevents you from getting a null exception at the beginning
+        */
+        if(questions.size()==0){
+            return;
+        }
+        String pointsPoss = "Points Possible: " + questions.get(questionIndex).getPtsPossible();
+        PointsPossible.setText(pointsPoss);
+        PointsPossible1.setText(pointsPoss);
+        PointsPossible2.setText(pointsPoss);
+        
+        
+
         saveAnswer(questions.get(questionIndex).getClass().getSimpleName());
+        questionIndex++;
+        if(questions.get(questionIndex).getClass().getSimpleName().equals("ShortAnswer") || questions.get(questionIndex).getClass().getSimpleName().equals("Programming")){
+	        String ANS=questions.get(questionIndex).getAnswer();
+	        AnswerBox.setText("");
+	        codeBox.setText("");
+	        AnswerBox.setText(ANS);
+	        codeBox.setText(ANS);
+        }else if(questions.get(questionIndex).getClass().getSimpleName().equals("MultipleChoice")){
+        	//Multiple choice
+        	
+        }
         if (Next.getText().equals("Submit")) {
             saveTestObject();
             return;
         }
         
+        /*
+
+        EDIT MADE
+        error line removed        
     
-            questionIndex++;
-        
-        if (questionIndex == questions.size() - 2) {
+    
+        if ( (questionIndex - 1) % 3 == 0 && questionIndex < questions.size() - 2)
+            questionIndex += 2;
+        else
+
+        */
+            
+        //Edit made
+        //changed from -2 to -1
+        //allows for submition on last question instead of second to last
+        if (questionIndex == questions.size() - 1) {
             Next.setText("Submit");
+        }
+        //EDIT MADE
+        //Added an else clause
+        //if you are not on the final question set the text to "Next"
+        else{
+            Next.setText("Next");
         }
         if (questionIndex == 1) {
             Previous.setEnabled(true);
@@ -624,8 +689,34 @@ public class StudentTestify extends javax.swing.JFrame {
     }//GEN-LAST:event_NextActionPerformed
 
     private void PreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousActionPerformed
+        /* EDIT MADE
+           added a check to see if the number of questions is zero
+           this prevents you from getting a null exception at the beginning
+        */
+        if(questions.size()==0){
+            return;
+        }
+        String pointsPoss = "Points Possible: " + questions.get(questionIndex).getPtsPossible();
+        PointsPossible.setText(pointsPoss);
+        PointsPossible1.setText(pointsPoss);
+        PointsPossible2.setText(pointsPoss);
+        
         saveAnswer(questions.get(questionIndex).getClass().getSimpleName());
-            questionIndex--;
+        questionIndex--;
+        String ANS=questions.get(questionIndex).getAnswer();
+        AnswerBox.setText("");
+        codeBox.setText("");
+        AnswerBox.setText(ANS);
+        codeBox.setText(ANS);
+        /*
+            EDIT MADE
+            ERROR line removed
+
+        if ( (questionIndex) % 3 == 0 && questionIndex > 1)
+            questionIndex -= 2;
+        else
+            */
+            
         
         if (questionIndex == questions.size() - 2) {
             Next.setText("Next");
@@ -666,7 +757,7 @@ public class StudentTestify extends javax.swing.JFrame {
             }
         }
 
-        if((numberOfCompiles - 1) % 2 == 0)
+        //if((numberOfCompiles - 1) % 2 == 0)
             compilerOutput.setText(Compile.compile(fileName));
 
     }//GEN-LAST:event_compileBtnActionPerformed
@@ -678,7 +769,8 @@ public class StudentTestify extends javax.swing.JFrame {
             openBool = !openBool;
             return;
         }
-        
+        Next.setEnabled(true);
+        Previous.setEnabled(true);
         if (firstNameText.getText().equals("")) {
             nameError.setText("Please enter Both a First and Last name!");
             nameError.setVisible(true);
@@ -688,6 +780,13 @@ public class StudentTestify extends javax.swing.JFrame {
 
            
                 File file = fc.getSelectedFile();
+                /*Edit made
+                  check to see if file is null
+                  return if it is  
+                */
+                if(file==null){
+                    return;
+                }
                 test = getTestObject(file);
                 if (test == null) {
                     nameError.setVisible(true);
@@ -698,7 +797,10 @@ public class StudentTestify extends javax.swing.JFrame {
                     }
                     PrevNextControl.setVisible(true);
                     setQuestionData(questions.get(questionIndex).getClass().getSimpleName());
-                    
+                    String pointsPoss = "Points Possible: " + questions.get(0).getPtsPossible();
+                    PointsPossible.setText(pointsPoss);
+                    PointsPossible1.setText(pointsPoss);
+                    PointsPossible2.setText(pointsPoss);
 
                 }
             
@@ -715,8 +817,11 @@ public class StudentTestify extends javax.swing.JFrame {
     }
 
     private void saveTestObject() {
-        String last = firstNameText.getText();
-        String first = lastNameText.getText();
+        //EDIT MADE
+        //First and last were reversed 
+        //I swapped them
+        String first = firstNameText.getText();
+        String last = lastNameText.getText();
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(first + "_" + last))); //Select where you wish to save the file...
             oos.writeObject(test); // write the class as an 'object'
@@ -740,18 +845,24 @@ public class StudentTestify extends javax.swing.JFrame {
     }//GEN-LAST:event_firstNameTextActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        //System.exit(0);        // TODO add your handling code here:
+        System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
+
+    /*EDIT MADE
+      The setanswer parameter for choice 1 and two are reversed
+      Set them back to the correct state  
+    */
+
 
     private void MCAnswer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MCAnswer1ActionPerformed
         // TODO add your handling code here:
-        questions.get(questionIndex).setAnswer(MCAnswer2.getText());
+        questions.get(questionIndex).setAnswer(MCAnswer1.getText());
 
     }//GEN-LAST:event_MCAnswer1ActionPerformed
 
     private void MCAnswer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MCAnswer2ActionPerformed
         // TODO add your handling code here:
-        questions.get(questionIndex).setAnswer(MCAnswer1.getText());
+        questions.get(questionIndex).setAnswer(MCAnswer2.getText());
     }//GEN-LAST:event_MCAnswer2ActionPerformed
 
     private void MCAnswer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MCAnswer3ActionPerformed
@@ -859,7 +970,7 @@ public class StudentTestify extends javax.swing.JFrame {
     private JFileChooser fc = new JFileChooser();
     private Test test;
     private ArrayList<Question> questions;
-    private int questionIndex = 1;
+    private int questionIndex = 0;
     private int numberOfCompiles = 0;
     private boolean openBool = false;
 }
