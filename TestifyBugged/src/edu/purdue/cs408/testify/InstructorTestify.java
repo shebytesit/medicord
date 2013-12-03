@@ -863,16 +863,16 @@ public class InstructorTestify extends javax.swing.JFrame {
         test = new Test(new Date(), new Time(0, 0, 0, true), new Time(1, 0, 0, true), false, false);
 
         resetQuestionComboBox();
-        questionTypeLabel.setText("");
-        promptTextArea.setText("");
-        answerTextArea.setText("");
-        pointsPossTextField.setText("5");
+        questionTypeLabel.setEnabled(false);
+        promptTextArea.setEnabled(false);
+        answerTextArea.setEnabled(false);
+        pointsPossTextField.setEnabled(false);
         addChoiceButton.setEnabled(false);
         deleteChoiceButton.setEnabled(false);
         pointsPossTextField.setEnabled(false);
         languageCombo.setEnabled(false);
         deleteMenuItem.setEnabled(false);
-        fileLabel.setEnabled(false);
+        fileTextField.setEnabled(false);
     }
 
     private void setComponentsEnabled(JComponent[] components, boolean cond) {
