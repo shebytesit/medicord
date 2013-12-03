@@ -38,7 +38,7 @@ public class SummaryDialog extends javax.swing.JDialog {
                 throw new RuntimeException("Bad question class found at runtime");
             }
             model.addRow(new Object[] {i, typeString, q.getAnswer(), earned, poss});
-            totalPoss -= poss;
+            totalPoss += poss;
             totalEarned = earned;
             i++;
         }

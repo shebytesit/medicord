@@ -44,6 +44,7 @@
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="Menu"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -90,7 +91,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="500" max="32767" attributes="0"/>
+                      <EmptySpace pref="524" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="nameError" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -196,7 +197,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="QuestionBoxScroll" alignment="0" pref="1011" max="32767" attributes="0"/>
+                          <Component id="QuestionBoxScroll" alignment="0" pref="1014" max="32767" attributes="0"/>
                           <Component id="AnswerBoxScroll" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="QuestionPrompt" min="-2" pref="124" max="-2" attributes="0"/>
@@ -208,7 +209,7 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="184" max="32767" attributes="0"/>
+                      <EmptySpace pref="187" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -225,8 +226,8 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="AnswerPrompt" min="-2" pref="19" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="AnswerBoxScroll" pref="254" max="32767" attributes="0"/>
-                      <EmptySpace pref="82" max="32767" attributes="0"/>
+                      <Component id="AnswerBoxScroll" pref="256" max="32767" attributes="0"/>
+                      <EmptySpace pref="85" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -313,7 +314,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="QuestionBoxScroll2" alignment="0" pref="1011" max="32767" attributes="0"/>
+                                  <Component id="QuestionBoxScroll2" alignment="0" pref="1014" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="QuestionPrompt2" min="-2" pref="124" max="-2" attributes="0"/>
                                       <EmptySpace pref="740" max="32767" attributes="0"/>
@@ -324,7 +325,7 @@
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="184" max="32767" attributes="0"/>
+                              <EmptySpace pref="187" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -352,7 +353,7 @@
                       <Component id="MCAnswer4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="MCAnswer5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="197" max="32767" attributes="0"/>
+                      <EmptySpace pref="212" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -509,7 +510,7 @@
                           <Component id="AnswerBoxScroll1" min="-2" pref="190" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="190" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="146" max="32767" attributes="0"/>
+                      <EmptySpace pref="151" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -605,7 +606,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="574" max="32767" attributes="0"/>
+                      <EmptySpace pref="614" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="exit" min="-2" max="-2" attributes="0"/>

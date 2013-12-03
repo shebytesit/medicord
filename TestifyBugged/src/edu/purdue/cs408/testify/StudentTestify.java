@@ -609,9 +609,7 @@ public class StudentTestify extends javax.swing.JFrame {
             return;
         }
         
-        if ( (questionIndex - 1) % 3 == 0 && questionIndex < questions.size() - 2)
-            questionIndex += 2;
-        else
+    
             questionIndex++;
         
         if (questionIndex == questions.size() - 2) {
@@ -627,9 +625,6 @@ public class StudentTestify extends javax.swing.JFrame {
 
     private void PreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousActionPerformed
         saveAnswer(questions.get(questionIndex).getClass().getSimpleName());
-        if ( (questionIndex) % 3 == 0 && questionIndex > 1)
-            questionIndex -= 2;
-        else
             questionIndex--;
         
         if (questionIndex == questions.size() - 2) {
